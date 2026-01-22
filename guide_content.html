@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 이용 가이드</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .guide-layout {
+            display: flex;
+            gap: 60px;
+            margin-top: 0px;
+            margin-bottom: 100px;
+        }
+
+        /* Sticky Sidebar Navigation */
+        .guide-nav {
+            width: 240px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .guide-nav-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            padding-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border-left: 2px solid #eee;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            font-size: 15px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+            margin-left: -2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            color: #111;
+            background: #f9f9f9;
+        }
+
+        .nav-link.active {
+            color: #111;
+            font-weight: 700;
+            border-left-color: #111;
+            background: #fff;
+        }
+
+        /* Main Content */
+        .guide-content {
+            flex: 1;
+            max-width: 800px;
+        }
+
+        .guide-section {
+            margin-bottom: 100px;
+            scroll-margin-top: 100px;
+            /* For smooth anchor scrolling */
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #111;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-desc {
+            margin-top: 10px;
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Step Card Style */
+        .step-card {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .step-num {
+            width: 40px;
+            height: 40px;
+            background: #111;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        .step-body {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .step-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Screenshot Placeholder */
+        .screenshot-box {
+            width: 100%;
+            background: #f4f4f5;
+            border: 1px dashed #ccc;
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .screenshot-box:hover {
+            border-color: #888;
+            background: #eee;
+        }
+
+        .screenshot-box i {
+            font-size: 48px;
+            margin-bottom: 12px;
+            color: #ccc;
+        }
+
+        /* Tip Box */
+        .tip-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #166534;
+            display: flex;
+            gap: 10px;
+            align-items: start;
+        }
+
+        /* Mobile handling */
+        @media (max-width: 1000px) {
+            .guide-layout {
+                flex-direction: column;
+            }
+
+            .guide-nav {
+                width: 100%;
+                position: static;
+                margin-bottom: 40px;
+            }
+
+            .nav-links {
+                flex-direction: row;
+                overflow-x: auto;
+                border-left: none;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 0;
+            }
+
+            .nav-link {
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                margin-left: 0;
+                margin-bottom: -2px;
+                white-space: nowrap;
+            }
+
+            .nav-link.active {
+                border-left-color: transparent;
+                border-bottom-color: #111;
+            }
+
+            .step-card {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <body>
+
+        <div class="w-container">
+            <!-- Hero Section -->
+            <div style="text-align: center; padding: 60px 0 20px;">
+                <h1 style="font-size: 42px; font-weight: 900; margin-bottom: 16px;">WINIPIC GUIDE</h1>
+                <p style="font-size: 18px; color: #666;">위니픽의 모든 기능을 100% 활용하는 방법을 안내해 드립니다.</p>
+            </div>
+
+            <div class="guide-layout">
+                <!-- Sidebar Navigation -->
+                <aside class="guide-nav">
+                    <div class="guide-nav-title">CONTENTS</div>
+                    <nav class="nav-links">
+                        <a class="nav-link active" onclick="scrollToSection('sec-intro')">
+                            <i class="ph ph-star"></i> 시작하기
+                        </a>
+                        <a class="nav-link" onclick="scrollToSection('sec-request')">
+                            <i class="ph ph-magnifying-glass"></i> 상품 검색/요청
+                        </a>
+                        <a class="nav-link" onclick="scrollToSection('sec-order')">
+                            <i class="ph ph-shopping-cart"></i> 주문/결제
+                        </a>
+                        <a class="nav-link" onclick="scrollToSection('sec-delivery')">
+                            <i class="ph ph-truck"></i> 배송 조회
+                        </a>
+                        <a class="nav-link" onclick="scrollToSection('sec-points')">
+                            <i class="ph ph-wallet"></i> 적립금 충전
+                        </a>
+                        <a class="nav-link" onclick="scrollToSection('sec-etc')">
+                            <i class="ph ph-dots-three-circle"></i> 기타 서비스
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="guide-content">
+
+                    <!-- 1. Intro -->
+                    <section id="sec-intro" class="guide-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                01. 시작하기
+                            </div>
+                            <div class="section-desc">
+                                위니픽은 해외 상품 소싱부터 배송까지 원스톱으로 제공하는 플랫폼입니다.<br>
+                                회원가입 후 관리자 승인을 통해 서비스를 이용하실 수 있습니다.
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">회원가입</div>
+                                <div class="step-desc">
+                                    약관 동의 후 회원 정보를 입력하여 가입을 신청합니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_signup.png" alt="회원가입 화면"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. 상품 요청 -->
+                    <section id="sec-request" class="guide-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="ph ph-magnifying-glass"></i> 02. 상품 검색 및 요청
+                            </div>
+                            <div class="section-desc">
+                                원하시는 상품을 VVIC, 1688 등에서 찾아 위니픽에 등록을 요청하는 방법입니다.
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">상품 URL 복사하기</div>
+                                <div class="step-desc">
+                                    1688 또는 VVIC 사이트에서 소싱하고 싶은 상품의 URL 주소를 복사합니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_vvic_site.png" alt="VVIC 사이트"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">'상품요청' 메뉴 이용</div>
+                                <div class="step-desc">
+                                    위니픽 상단 메뉴의 <strong>[상품요청]</strong> 페이지로 이동하여 복사한 URL을 입력하고 <strong>[등록 요청]</strong>
+                                    버튼을
+                                    누릅니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_request.png" alt="상품요청 화면"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                                <div class="tip-box">
+                                    <i class="ph-fill ph-check-circle"></i>
+                                    <div>
+                                        <strong>Tip:</strong> 요청하신 상품은 담당자 확인 후 실시간으로 등록되며, 결과는 하단 리스트에서 바로 확인 가능합니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 3. 주문/결제 -->
+                    <section id="sec-order" class="guide-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="ph ph-shopping-cart"></i> 03. 상품 주문 및 결제
+                            </div>
+                            <div class="section-desc">
+                                등록된 상품을 장바구니에 담고 적립금으로 결제하는 과정입니다.
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">옵션 선택 및 장바구니 담기</div>
+                                <div class="step-desc">
+                                    상품 상세 페이지에서 원하는 색상과 사이즈를 선택합니다. 옵션별 수량을 입력하고 <strong>[장바구니]</strong> 또는
+                                    <strong>[바로구매]</strong>를 클릭하세요.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_detail.png" alt="상품상세 옵션선택"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">주문서 작성 및 적립금 결제</div>
+                                <div class="step-desc">
+                                    주문 내역을 확인하고 배송지를 입력합니다. 결제는 충전해둔 <strong>적립금</strong>에서 즉시 차감됩니다. 잔액이 부족하면 결제가 진행되지
+                                    않습니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_order.png" alt="주문서 작성"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. 주문내역 및 배송 조회 -->
+                    <section id="sec-delivery" class="guide-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="ph ph-truck"></i> 04. 주문내역 확인 및 배송조회
+                            </div>
+                            <div class="section-desc">
+                                위니픽은 주문내역과 배송조회를 목적에 따라 구분하여 더욱 상세하고 체계적인 정보를 제공합니다.
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">주문 조회 (기본 주문 단위)</div>
+                                <div class="step-desc">
+                                    <strong>My Shopping > 주문내역</strong> 메뉴에서는 모든 상품의 주문 상태 및 상세 배송 상태를 확인할 수 있습니다.<br>
+                                    내가 주문한 건들을 '주문 단위'로 모아보며 전체적인 진행 상황을 파악할 때 유용합니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_history.png" alt="주문내역"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">배송 조회 (기본 입항 단위)</div>
+                                <div class="step-desc">
+                                    <strong>My Shopping > 배송조회</strong> 메뉴는 '입항(한국 도착)'을 기준으로 상품을 조회하는 기능입니다.<br>
+                                    한국 입항일 하루 전부터 지정일에 입항하는 상품들을 모아서 볼 수 있어, 통관 및 국내 배송 일정을 관리하기 좋습니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_delivery.png" alt="배송조회"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">3</div>
+                            <div class="step-body">
+                                <div class="step-title">집계 조회 (단위 상품 정보)</div>
+                                <div class="step-desc">
+                                    특정 상품(단위 상품)에 대한 상세 종합 정보를 보고 싶다면 <strong>집계 조회</strong> 기능을 활용하세요.<br>
+                                    해당 상품을 총 몇 개 주문했고, 현재 몇 개가 입고 예정인지, 몇 개가 배송 중인지 한눈에 파악할 수 있습니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_order_summary.png" alt="집계 조회"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 5. 적립금 충전 -->
+                    <section id="sec-points" class="guide-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="ph ph-wallet"></i> 05. 적립금 충전 방법
+                            </div>
+                            <div class="section-desc">
+                                빠른 주문 처리를 위해 적립금을 미리 충전해두고 사용합니다.
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">적립금 관리 페이지 이용</div>
+                                <div class="step-desc">
+                                    상단 메뉴의 적립금 영역을 클릭하거나 <strong>[적립금 관리]</strong> 메뉴로 이동하여 <strong>[+ 적립금 충전]</strong>
+                                    버튼을
+                                    클릭합니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_points_modal.png" alt="적립금 모달"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">충전 요청 및 입금</div>
+                                <div class="step-body"
+                                    style="background: #f9fafb; padding: 24px; border-radius: 12px; margin-top: 10px;">
+                                    <div class="step-desc">
+                                        충전 요청 팝업에서 <strong>충전 금액</strong>과 <strong>입금자명</strong>을 입력하고 신청합니다.<br>
+                                        아래 계좌로 해당 금액을 입금하시면, 자동 확인 후 적립금으로 충전됩니다.
+                                    </div>
+                                    <div
+                                        style="margin-top: 15px; font-size: 16px; border-top: 1px dashed #ddd; padding-top: 15px;">
+                                        <div style="margin-bottom: 8px;"><strong>은행명:</strong> KB국민은행</div>
+                                        <div style="margin-bottom: 8px;"><strong>계좌번호:</strong> 850101-00-117728</div>
+                                        <div><strong>예금주:</strong> 주식회사 씨엘로</div>
+                                    </div>
+                                </div>
+                                <div class="screenshot-box"
+                                    style="margin-top: 20px; background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_charge_modal.png" alt="충전요청 모달"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 6. 기타 -->
+                    <section id="sec-etc" class="guide-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="ph ph-dots-three-circle"></i> 06. 기타 유용한 기능
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num"><i class="ph ph-file-xls"></i></div>
+                            <div class="step-body">
+                                <div class="step-title">엑셀 주문</div>
+                                <div class="step-desc">
+                                    엑셀 업로드를 통해 주문할 경우 상품 바코드를 변경할 수 있습니다. 양식을 다운로드하여 작성 후 업로드해주세요.<br>
+                                    <strong>최초 기능 사용 전 바코드 변경 요청이 필요합니다.</strong>
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_excel.png" alt="엑셀 주문"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-num"><i class="ph ph-camera"></i></div>
+                            <div class="step-body">
+                                <div class="step-title">마네킹 촬영 확인</div>
+                                <div class="step-desc">
+                                    현지에서 촬영된 실제 상품의 마네킹 핏을 <strong>[마네킹샷 확인]</strong> 메뉴에서 요청하고 조회할 수 있습니다.<br>
+                                    마네킹샷은 별도 계정으로 주문 시 촬영해드리며 자세한 문의는 카카오톡으로 연락 바랍니다.
+                                </div>
+                                <div class="screenshot-box" style="background:none; border:none; aspect-ratio:auto;">
+                                    <img src="guide_images/guide_mannequin.png" alt="마네킹 촬영 확인"
+                                        style="width:100%; border-radius:12px; border:1px solid #eee; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </main>
+            </div>
+        </div>
+
+        <!-- Script for Sticky Nav & Smooth Scroll -->
+        <script>
+            function scrollToSection(id) {
+                const element = document.getElementById(id);
+                if (element) {
+                    const y = element.getBoundingClientRect().top + window.scrollY - 100; // Offset for header
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            }
+
+            // Highlight active nav item on scroll
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('.guide-section');
+                const navLinks = document.querySelectorAll('.nav-link');
+
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('onclick').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>
