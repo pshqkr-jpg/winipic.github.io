@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 엑셀 대량 주문</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .page-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .excel-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 16px 24px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .et-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .et-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-upload-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 4px;
+            background: #f9fafb;
+        }
+
+        .real-file-btn {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 4px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .btn-green {
+            background: #166534;
+            /* Green shade */
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-green:hover {
+            background: #14532d;
+        }
+
+        .guide-section {
+            background: #fff;
+            /* border: 1px solid #eee; */
+            border-radius: 8px;
+            /* padding: 30px; */
+            margin-bottom: 30px;
+        }
+
+        .guide-title {
+            color: #2563eb;
+            /* Blue */
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .guide-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #444;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .guide-list li {
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .guide-list li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-red {
+            color: #e11d48;
+            font-weight: 700;
+        }
+
+        /* Table Styles reusing global w-data-table mostly but specific tweaks */
+        .excel-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .excel-table th {
+            background: #f4f4f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .excel-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            color: #555;
+        }
+
+        .excel-table tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        .btn-outline {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+            border-color: #bbb;
+            color: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="page-container">
+
+        <!-- Header & Toolbar -->
+        <div id="MASTER" class="excel-toolbar">
+            <div class="et-left">
+                <div class="et-title">
+                    <i class="ph-fill ph-upload-simple"></i> Excel주문
+                </div>
+                <!-- Real File Input -->
+                <div style="font-size: 13px; color: #666; display:flex; align-items:center; gap:8px;">
+                    <input type="file" id="excelFile" name="FileData"
+                        style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+            </div>
+
+            <button id="ToExcel" class="btn-green" onclick="location.href='excel_order_check.html'">
+                <i class="ph-fill ph-upload-simple"></i> Excel업로드
+            </button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="guide-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div class="guide-title" style="margin-bottom: 0;">[ 엑셀 파일 형식 설명 ]</div>
+                <button class="btn-outline">
+                    <i class="ph ph-download-simple"></i> 양식 다운로드
+                </button>
+            </div>
+            <ul class="guide-list">
+                <li>시작컬럼은 순서대로 <span class="highlight-red">[ 상품코드, 색상, 사이즈, 주문수량 ]</span> 일치해야 합니다.</li>
+                <li>첫행은 컬럼설명으로 간주하며 무시합니다.</li>
+            </ul>
+        </div>
+
+        <!-- Example Table -->
+        <div style="overflow-x: auto; background: #fff; border-radius: 4px;">
+            <table class="excel-table">
+                <thead>
+                    <tr>
+                        <th>상품코드</th>
+                        <th>색상</th>
+                        <th>사이즈</th>
+                        <th>주문수량</th>
+                        <th>고객바코드</th>
+                        <th>고객상품명</th>
+                        <th>고객색상</th>
+                        <th>고객사이즈</th>
+                        <th>회사약칭</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>22343447</td>
+                        <td>그린</td>
+                        <td>2XL</td>
+                        <td>20</td>
+                        <td>1001-0001</td>
+                        <td>원피스 1240</td>
+                        <td>화이트</td>
+                        <td>2XL</td>
+                        <td>회사약칭</td>
+                    </tr>
+                    <tr>
+                        <td>32456585</td>
+                        <td>블랙</td>
+                        <td>L</td>
+                        <td>50</td>
+                        <td>1002-0002</td>
+                        <td>티셔츠 6732</td>
+                        <td>연핑크</td>
+                        <td>L</td>
+                        <td>회사약칭</td>
+                    </tr>
+                    <tr>
+                        <td>44645087</td>
+                        <td>블랙</td>
+                        <td>M</td>
+                        <td>100</td>
+                        <td>1003-0003</td>
+                        <td>티셔츠 5623</td>
+                        <td>화이트</td>
+                        <td>M</td>
+                        <td>회사약칭</td>
+                    </tr>
+                    <tr>
+                        <td>32285434</td>
+                        <td>블랙</td>
+                        <td>FREE</td>
+                        <td>200</td>
+                        <td>1004-0004</td>
+                        <td>바지 8963</td>
+                        <td>검정색</td>
+                        <td>FREE</td>
+                        <td>회사약칭</td>
+                    </tr>
+                    <tr>
+                        <td>18273422</td>
+                        <td>화이트</td>
+                        <td>XL</td>
+                        <td>50</td>
+                        <td>1005-0005</td>
+                        <td>셔츠 3245</td>
+                        <td>화이트</td>
+                        <td>XL</td>
+                        <td>회사약칭</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

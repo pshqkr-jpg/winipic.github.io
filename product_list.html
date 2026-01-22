@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 상품 목록</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="w-header"></header>
+
+    <div class="w-container">
+
+        <!-- Category Navigation Map -->
+        <div class="category-map">
+            <!-- My Products Row -->
+            <div class="cat-row">
+                <div class="cat-header">My Products</div>
+                <div class="cat-items">
+                    <div class="cat-btn active" data-cat="my" data-sub="전체">전체</div>
+                </div>
+            </div>
+            <!-- Women's Row -->
+            <div class="cat-row">
+                <div class="cat-header">여성의류</div>
+                <div class="cat-items">
+                    <div class="cat-btn" data-cat="women" data-sub="아우터">아우터</div>
+                    <div class="cat-btn" data-cat="women" data-sub="상의">상의</div>
+                    <div class="cat-btn" data-cat="women" data-sub="니트">니트</div>
+                    <div class="cat-btn" data-cat="women" data-sub="세트">세트</div>
+                    <div class="cat-btn" data-cat="women" data-sub="스커트&원피스">스커트&원피스</div>
+                    <div class="cat-btn" data-cat="women" data-sub="팬츠">팬츠</div>
+                    <div class="cat-btn" data-cat="women" data-sub="홈웨어">홈웨어</div>
+                    <div class="cat-btn" data-cat="women" data-sub="가방">가방</div>
+                    <div class="cat-btn" data-cat="women" data-sub="신발">신발</div>
+                    <div class="cat-btn" data-cat="women" data-sub="기타악세사리">기타악세사리</div>
+                </div>
+            </div>
+            <!-- Men's Row -->
+            <div class="cat-row">
+                <div class="cat-header">남성의류</div>
+                <div class="cat-items">
+                    <div class="cat-btn" data-cat="men" data-sub="아우터">아우터</div>
+                    <div class="cat-btn" data-cat="men" data-sub="상의">상의</div>
+                    <div class="cat-btn" data-cat="men" data-sub="니트">니트</div>
+                    <div class="cat-btn" data-cat="men" data-sub="세트">세트</div>
+                    <div class="cat-btn" data-cat="men" data-sub="팬츠">팬츠</div>
+                    <div class="cat-btn" data-cat="men" data-sub="가방">가방</div>
+                    <div class="cat-btn" data-cat="men" data-sub="신발">신발</div>
+                </div>
+            </div>
+            <!-- Admin Row (Demo) -->
+            <div class="cat-row" style="border-top: 1px solid #f5f5f5;">
+                <div class="cat-header" style="color: #ef4444;">관리자 예시</div>
+                <div class="cat-items">
+                    <div class="cat-btn" onclick="location.href='error_product.html'"
+                        style="color:#ef4444; font-weight:700;">잘못된 상품코드</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Count Bar -->
+        <div class="total-count-bar">
+            판매 중인 총 상품수량: <strong>7,300</strong>개
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-header" style="justify-content: flex-end;">
+            <div class="sort-options">
+                <div class="sort-item active"><i class="ph ph-plus"></i> 신상품순</div>
+                <div class="sort-item"><i class="ph ph-thumbs-up"></i> 인기상품순</div>
+                <div class="sort-item"><i class="ph ph-arrow-down"></i> 가격낮은순</div>
+                <div class="sort-item"><i class="ph ph-arrow-up"></i> 가격높은순</div>
+            </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="w-product-grid">
+
+            <!-- Item 1 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <span class="p-tag" style="background: #ef4444;">NEW</span>
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN010hkitU27iCAeD3WZW_!!2215815327830-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: PapayaWhip;"></div>
+                        <div class="p-color-chip" style="background: Pink;"></div>
+                        <div class="p-color-chip" style="background: LightBlue;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">기모집업 #732231407632</div>
+                    <div class="p-price-row">
+                        <div class="p-price">12,540원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 2 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01lLuanc1pd0cIV8FlP_!!2214282085382-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: #fff;"></div>
+                        <div class="p-color-chip" style="background: Peru;"></div>
+                        <div class="p-color-chip" style="background: PapayaWhip;"></div>
+                        <div class="p-color-chip" style="background: Navy;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">코트 #836171517206</div>
+                    <div class="p-price-row">
+                        <div class="p-price">119,570원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 3 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN018rFN3r1EFyi27mXeJ_!!2214624860323-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: Sienna;"></div>
+                        <div class="p-color-chip" style="background: DarkGray;"></div>
+                        <div class="p-color-chip" style="background: Pink;"></div>
+                        <div class="p-color-chip" style="background: LightBlue;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">집업 #685050703556</div>
+                    <div class="p-price-row">
+                        <div class="p-price">51,700원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 4 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <span class="p-tag" style="background: #3b82f6;">BEST</span>
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN013svFMw2Jdrwz1BAlq_!!2219884159445-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: OliveDrab;"></div>
+                        <div class="p-color-chip" style="background: DarkGray;"></div>
+                        <div class="p-color-chip" style="background: #fff;"></div>
+                        <div class="p-color-chip" style="background: Ivory;"></div>
+                        <div class="p-color-chip" style="background: #000;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">기모집업 #1000920501376</div>
+                    <div class="p-price-row">
+                        <div class="p-price">21,670원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 5 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01epfsk31WN0BGsaEhq_!!2213344312775-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: DarkGray;"></div>
+                        <div class="p-color-chip" style="background: Pink;"></div>
+                        <div class="p-color-chip" style="background: Ivory;"></div>
+                        <div class="p-color-chip" style="background: #000;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">점퍼 #987089310222</div>
+                    <div class="p-price-row">
+                        <div class="p-price">19,910원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 6 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01qFxiyE1lcJeLv43C1_!!2215975944839-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: LightGray;"></div>
+                        <div class="p-color-chip" style="background: LightPink;"></div>
+                        <div class="p-color-chip" style="background: LightBlue;"></div>
+                        <div class="p-color-chip" style="background: Ivory;"></div>
+                        <div class="p-color-chip" style="background: #000;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">점퍼 #964658827165</div>
+                    <div class="p-price-row">
+                        <div class="p-price">58,630원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 7 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01WwIf8c2MEcx6pdQ6J_!!2212322249796-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: OliveDrab;"></div>
+                        <div class="p-color-chip" style="background: LightGray;"></div>
+                        <div class="p-color-chip" style="background: MediumBlue;"></div>
+                        <div class="p-color-chip" style="background: Maroon;"></div>
+                        <div class="p-color-chip" style="background: #000;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">집업 #978459303062</div>
+                    <div class="p-price-row">
+                        <div class="p-price">16,280원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 8 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01PIabXn1vEAweHXSGe_!!2217874056140-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: LightBlue;"></div>
+                        <div class="p-color-chip" style="background: #fff;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">기모집업 #989886983387</div>
+                    <div class="p-price-row">
+                        <div class="p-price">24,750원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 9 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01Zc9CHM1Q4KKRPN1js_!!1991131922-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: LightBlue;"></div>
+                        <div class="p-color-chip" style="background: Pink;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">패딩 #977410577565</div>
+                    <div class="p-price-row">
+                        <div class="p-price">25,080원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 10 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="http://item-img.vvic.com/prod/67211/1761305615478_ts2EXa.jpg" alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: #111;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">기모집업 #53409490</div>
+                    <div class="p-price-row">
+                        <div class="p-price">28,050원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 11 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="http://item-img.vvic.com/prod/45583/1761233895348_TZx6cZ.jpg" alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: Sienna;"></div>
+                        <div class="p-color-chip" style="background: LightBlue;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">기모집업 #53399463</div>
+                    <div class="p-price-row">
+                        <div class="p-price">19,910원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 12 -->
+            <a href="product_detail.html" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://img1.vvic.com/upload/1720665180486_827792.jpg" alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: PapayaWhip;"></div>
+                        <div class="p-color-chip" style="background: #000;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">점퍼 #45954890</div>
+                    <div class="p-price-row">
+                        <div class="p-price">13,750원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Pagination -->
+        <div style="margin-top: 60px; display: flex; justify-content: center;">
+            <div class="pagination">
+                <div class="page-btn"><i class="ph ph-caret-left"></i></div>
+                <div class="page-btn active">1</div>
+                <div class="page-btn">2</div>
+                <div class="page-btn">3</div>
+                <div class="page-btn"><i class="ph ph-caret-right"></i></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Script: Just for global interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize Active State based on URL params
+            const params = new URLSearchParams(window.location.search);
+            const currentCat = params.get('cat');
+            const currentSub = params.get('sub');
+
+            if (currentCat && currentSub) {
+                // Remove default active
+                document.querySelectorAll('.cat-btn.active').forEach(btn => btn.classList.remove('active'));
+
+                // Find and activate the correct button
+                const targetBtn = document.querySelector(`.cat-btn[data-cat="${currentCat}"][data-sub="${currentSub}"]`);
+                if (targetBtn) {
+                    targetBtn.classList.add('active');
+                }
+            }
+
+            // 2. Click Interaction Logic
+            const catBtns = document.querySelectorAll('.cat-btn[data-cat]');
+            catBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const cat = this.dataset.cat;
+                    const sub = this.dataset.sub;
+
+                    // Update URL without reloading (optional, or just navigate)
+                    // For now, we assume the links in navbar.js navigate, but these buttons might be links too.
+                    // If they are just divs, we might want to navigate to the url.
+                    window.location.href = `product_list.html?cat=${cat}&sub=${sub}`;
+                });
+            });
+
+            // Sort Interaction Logic
+            const sortItems = document.querySelectorAll('.sort-item');
+            sortItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    sortItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 회원가입</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .page-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            border-bottom: 2px solid #111;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        /* Form Structure */
+        .form-section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .section-header i {
+            font-size: 20px;
+        }
+
+        .register-table {
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+
+        .register-row {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-label {
+            background: #fdfdfd;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            border-right: 1px solid #eee;
+        }
+
+        .form-content {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .required {
+            color: #e11d48;
+            margin-right: 4px;
+        }
+
+        /* Inputs */
+        .w-input {
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0 12px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .w-input:focus {
+            border-color: #111;
+            outline: none;
+        }
+
+        .w-input.full {
+            width: 100%;
+        }
+
+        .w-input.half {
+            width: 50%;
+        }
+
+        /* Buttons */
+        .btn-check {
+            height: 40px;
+            padding: 0 16px;
+            background: #fff;
+            border: 1px solid #222;
+            color: #222;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-check:hover {
+            background: #f9f9f9;
+        }
+
+        .helper-text {
+            font-size: 13px;
+            color: #888;
+            margin-left: 6px;
+        }
+
+        /* Address Block */
+        .address-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        /* Form Controls */
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 60px;
+            margin-bottom: 100px;
+        }
+
+        .btn-submit {
+            height: 52px;
+            padding: 0 40px;
+            background: #111;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        .btn-cancel {
+            height: 52px;
+            padding: 0 40px;
+            background: #fff;
+            color: #555;
+            border: 1px solid #ddd;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-cancel:hover {
+            background: #f4f4f5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="w-header"></header>
+
+    <div class="page-container">
+        <div class="page-header">
+            <i class="ph-fill ph-user-plus" style="font-size: 32px;"></i>
+            <div class="page-title">회원가입</div>
+        </div>
+
+        <form action="login.html">
+            <!-- 기본정보 섹션 -->
+            <div class="form-section">
+                <div class="section-header">
+                    <i class="ph ph-identification-card"></i> 기본정보
+                </div>
+
+                <div class="register-table">
+                    <!-- 아이디 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>아이디</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input" style="width: 200px;" value="winipic">
+                            <button type="button" class="btn-check"><i class="ph-bold ph-check"></i> 아이디 중복확인</button>
+                            <span class="helper-text">영문 소문자/숫자, 4~20자리</span>
+                        </div>
+                    </div>
+
+                    <!-- 비밀번호 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>비밀번호</label>
+                        <div class="form-content">
+                            <input type="password" class="w-input" style="width: 200px;" value="********">
+                            <span class="helper-text">영문대소문자/숫자/특수문자 중 3가지 이상 조합, 6~20자</span>
+                        </div>
+                    </div>
+
+                    <!-- 비밀번호 확인 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>비밀번호 확인</label>
+                        <div class="form-content">
+                            <input type="password" class="w-input" style="width: 200px;">
+                            <span class="helper-text">사용가능 특수문자: ~ ` ! @ # $ % ^ ( ) _ - = { } [ ] ; : , . ? /</span>
+                        </div>
+                    </div>
+
+                    <!-- 이름 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>이름</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input" style="width: 200px;">
+                            <span class="helper-text">영문/한글, 2~20자리 ( 특수문자 배제 )</span>
+                        </div>
+                    </div>
+
+                    <!-- 휴대번호 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>휴대번호</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input" style="width: 200px;" placeholder="010-1234-1234">
+                        </div>
+                    </div>
+
+                    <!-- 이메일주소 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>이메일주소</label>
+                        <div class="form-content">
+                            <input type="email" class="w-input" style="width: 300px;" placeholder="user@naver.com">
+                        </div>
+                    </div>
+
+                    <!-- 주소 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>주소</label>
+                        <div class="form-content">
+                            <div class="address-block">
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <input type="text" class="w-input" style="width: 100px;" placeholder="우편번호">
+                                    <button type="button" class="btn-check"
+                                        style="height: 40px; padding: 0 12px; font-size:12px;">주소검색</button>
+                                </div>
+                                <input type="text" class="w-input full" placeholder="기본주소">
+                                <input type="text" class="w-input full" placeholder="상세주소">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 회사정보 섹션 -->
+            <div class="form-section">
+                <div class="section-header">
+                    <i class="ph ph-buildings"></i> 회사정보 (사업자등록증 기준)
+                </div>
+
+                <div class="register-table">
+                    <!-- 회사명 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>회사명</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input" style="width: 300px;">
+                            <span class="helper-text">(영문/한글, 4~50자리)</span>
+                        </div>
+                    </div>
+
+                    <!-- 사업자등록증 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>사업자등록증</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input" style="width: 300px;" placeholder="101-01-12345">
+                        </div>
+                    </div>
+
+                    <!-- 업태 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>업태</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input full">
+                            <span class="helper-text" style="width:100%; margin-left:0; margin-top:4px;">(영문/한글,
+                                200자리이내)</span>
+                        </div>
+                    </div>
+
+                    <!-- 종목 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>종목</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input full">
+                            <span class="helper-text" style="width:100%; margin-left:0; margin-top:4px;">(영문/한글,
+                                200자리이내)</span>
+                        </div>
+                    </div>
+
+                    <!-- 소재지 -->
+                    <div class="register-row">
+                        <label class="form-label"><span class="required">*</span>소재지</label>
+                        <div class="form-content">
+                            <input type="text" class="w-input full">
+                            <span class="helper-text" style="width:100%; margin-left:0; margin-top:4px;">(영문/한글,
+                                200자리이내)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" onclick="history.back()">
+                    <i class="ph-bold ph-arrow-u-up-left"></i> 가입취소
+                </button>
+                <button type="submit" class="btn-submit">
+                    <i class="ph-bold ph-plus"></i> 회원가입
+                </button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

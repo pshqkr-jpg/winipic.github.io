@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 로그인</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .login-container {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fdfdfd;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 120px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eee;
+        }
+
+        .login-notice {
+            text-align: center;
+            color: #3b82f6;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .l-logo {
+            font-size: 28px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+            display: block;
+        }
+
+        .l-input {
+            width: 100%;
+            height: 52px;
+            padding: 0 16px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .l-input:focus {
+            border-color: #111;
+            outline: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            height: 56px;
+            background: #111;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .l-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .l-links a:hover {
+            text-decoration: underline;
+            color: #111;
+        }
+
+        .login-options {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .check-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .check-input {
+            width: 16px;
+            height: 16px;
+            accent-color: #111;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="w-header"></header>
+
+    <div class="login-container">
+
+        <div class="login-notice">
+            가격 확인 및 구매를 위해서는 회원가입이 필요합니다.<br>
+            가입 신청 후 담당자가 확인 전화를 드린 뒤<br>
+            승인 절차가 완료되면 서비스를 이용하실 수 있습니다.
+        </div>
+
+        <div class="login-card">
+            <a href="index.html" class="l-logo">WINIPIC</a>
+
+            <form
+                onsubmit="event.preventDefault(); localStorage.setItem('isLoggedIn', 'true'); location.href='index.html';">
+                <input type="text" class="l-input" placeholder="아이디" autofocus>
+                <input type="password" class="l-input" placeholder="비밀번호">
+
+                <div class="login-options">
+                    <label class="check-label">
+                        <input type="checkbox" class="check-input"> 아이디 저장
+                    </label>
+                    <label class="check-label">
+                        <input type="checkbox" class="check-input"> 비밀번호 저장
+                    </label>
+                </div>
+
+                <button class="btn-login">로그인</button>
+            </form>
+
+            <div class="l-links">
+                <a href="signup.html">회원가입</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

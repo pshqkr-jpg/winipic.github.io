@@ -1,0 +1,534 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 상품 요청</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .tool-layout {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        /* Hero Section */
+        .req-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .req-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        .req-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Input Container */
+        .req-input-container {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 100px;
+            /* Pill shape */
+            padding: 8px 8px 8px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #111;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .req-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding-right: 16px;
+        }
+
+        .btn-req-submit {
+            background: #111;
+            color: #fff;
+            border: none;
+            height: 48px;
+            padding: 0 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-req-submit:hover {
+            background: #333;
+        }
+
+        /* Info Box */
+        .info-box {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            color: #111;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        /* History Section */
+        .history-section {
+            margin-top: 80px;
+        }
+
+        .history-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #111;
+        }
+
+        .h-title {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        /* Modern Table */
+        .req-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .req-table th {
+            text-align: left;
+            padding: 16px 8px;
+            font-size: 13px;
+            color: #888;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+
+        .req-table td {
+            padding: 20px 8px;
+            border-bottom: 1px solid #f5f5f5;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        .req-row:hover {
+            background: #fafafa;
+        }
+
+        /* Column Styles */
+        .cell-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-icon {
+            background: #f0f0f0;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .link-text {
+            color: #111;
+            font-weight: 500;
+            text-decoration: none;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .link-text:hover {
+            text-decoration: underline;
+        }
+
+        .code-pill {
+            background: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+            color: #555;
+        }
+
+        .time-group {
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+        }
+
+        .time-date {
+            color: #111;
+            font-weight: 500;
+        }
+
+        .time-hour {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-done {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .status-pending {
+            background: #fff7ed;
+            color: #d97706;
+        }
+
+        .status-fail {
+            background: #fef2f2;
+            color: #ef4444;
+        }
+
+        .btn-view {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #eee;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-view:hover {
+            border-color: #111;
+            background: #111;
+            color: #fff;
+        }
+
+        /* Extension Promo Card */
+        .extension-card {
+            max-width: 680px;
+            margin: 0 auto 30px;
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .extension-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1);
+        }
+
+        .ext-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #4f46e5;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .ext-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ext-icon-area {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+        }
+
+        .ext-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .ext-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .ext-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .btn-install {
+            background: #4f46e5;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-install:hover {
+            background: #4338ca;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .ext-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ext-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="tool-layout">
+
+        <!-- Hero Input -->
+        <div class="req-hero">
+            <h1 class="req-title">상품 등록 요청</h1>
+            <p class="req-subtitle">VVIC나 1688 상품 링크를 입력하면 위니픽에 등록해드립니다.</p>
+
+            <div class="req-input-container">
+                <div class="input-wrapper">
+                    <i class="ph ph-link" style="font-size: 20px; color: #999; margin-right: 12px;"></i>
+                    <!-- Legacy ID: VVIC_URL -->
+                    <input type="text" id="VVIC_URL" class="req-input" placeholder="VVIC 또는 1688 상품 링크를 입력하세요...">
+                    <!-- Legacy ID: URL_REQ -->
+                    <button id="URL_REQ" class="btn-req-submit">
+                        등록 요청 <i class="ph ph-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chrome Extension Promo Card -->
+            <div class="extension-card">
+                <div class="ext-badge">추천</div>
+                <div class="ext-content">
+                    <div class="ext-icon-area">
+                        <i class="ph ph-google-chrome-logo" style="font-size: 32px; color: #4f46e5;"></i>
+                    </div>
+                    <div class="ext-text">
+                        <div class="ext-title">아직도 일일이 링크를 복사하시나요?</div>
+                        <div class="ext-desc">
+                            <strong>WINIPIC 확장프로그램</strong>을 설치해보세요! <br>
+                            VVIC, 1688 상품 페이지에서 <span style="color:#4f46e5; font-weight:700;">버튼 한 번만 누르면 바로
+                                등록</span>됩니다.
+                        </div>
+                    </div>
+                    <a href="https://chromewebstore.google.com/detail/bngcfjoaohfedooghlpdeoalcbdihmee?utm_source=item-share-cb"
+                        target="_blank" class="btn-install">
+                        지금 설치하기
+                    </a>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="ph ph-info info-icon"></i>
+                <div style="text-align: left;">
+                    <div>요청하신 경로는 담당자 확인 절차를 거쳐 등록되며, 경우에 따라 거절될 수 있습니다.</div>
+                    <div style="margin-top: 4px; opacity: 0.8;">처리 결과는 최근 요청 순서대로 상위 500건만 조회됩니다.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Table -->
+        <div class="history-section">
+            <div class="history-title-row">
+                <div class="h-title">상품요청 이력</div>
+            </div>
+
+            <table class="req-table">
+                <thead>
+                    <tr>
+                        <th width="50%">상품경로</th>
+                        <th width="10%">상품코드</th>
+                        <th width="15%">요청시간</th>
+                        <th width="15%">등록시간 or 거절이유</th>
+                        <th width="10%" style="text-align: center;">위니픽에서 보기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Success Case -->
+                    <tr class="req-row">
+                        <td>
+                            <div class="cell-link">
+                                <div class="link-icon"><i class="ph ph-link-simple"></i></div>
+                                <a href="#" class="link-text">https://www.vvic.com/item/68cb77741818f00007830760</a>
+                            </div>
+                        </td>
+                        <td><span class="code-pill">52884446</span></td>
+                        <td>
+                            <div class="time-group">
+                                <span class="time-date">2026.01.16</span>
+                                <span class="time-hour">00:44:11</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="status-badge status-done">
+                                <i class="ph ph-check-circle"></i> 등록완료
+                            </div>
+                            <div class="time-hour" style="margin-top: 4px; padding-left: 6px;">2026.01.16 08:09</div>
+                        </td>
+                        <td align="center">
+                            <button class="btn-view"><i class="ph ph-arrow-right"></i></button>
+                        </td>
+                    </tr>
+
+                    <!-- Sold Out / Fail Case (Legacy style) -->
+                    <tr class="req-row">
+                        <td>
+                            <div class="cell-link">
+                                <div class="link-icon"><i class="ph ph-link-simple"></i></div>
+                                <a href="#" class="link-text">https://www.vvic.com/item/6706801b5aa806000841aeb5</a>
+                            </div>
+                        </td>
+                        <td><span class="code-pill">47844805</span></td>
+                        <td>
+                            <div class="time-group">
+                                <span class="time-date">2025.12.15</span>
+                                <span class="time-hour">17:17:56</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="status-badge status-fail">
+                                <i class="ph ph-warning-circle"></i> 상품 품절입니다
+                            </div>
+                        </td>
+                        <td align="center">
+                            <button class="btn-view"><i class="ph ph-arrow-right"></i></button>
+                        </td>
+                    </tr>
+
+                    <!-- Success Case 2 -->
+                    <tr class="req-row">
+                        <td>
+                            <div class="cell-link">
+                                <div class="link-icon"><i class="ph ph-link-simple"></i></div>
+                                <a href="#" class="link-text">https://www.vvic.com/item/68d0d2960ddc98000820f247</a>
+                            </div>
+                        </td>
+                        <td><span class="code-pill">52953822</span></td>
+                        <td>
+                            <div class="time-group">
+                                <span class="time-date">2025.12.05</span>
+                                <span class="time-hour">10:38:29</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="status-badge status-done">
+                                <i class="ph ph-check-circle"></i> 등록완료
+                            </div>
+                            <div class="time-hour" style="margin-top: 4px; padding-left: 6px;">2025.12.05 11:47:38</div>
+                        </td>
+                        <td align="center">
+                            <button class="btn-view"><i class="ph ph-arrow-right"></i></button>
+                        </td>
+                    </tr>
+
+                    <!-- Closed Shop Case -->
+                    <tr class="req-row">
+                        <td>
+                            <div class="cell-link">
+                                <div class="link-icon"><i class="ph ph-link-simple"></i></div>
+                                <a href="#" class="link-text">https://www.vvic.com/item/68a0807cb4f726000705eeab</a>
+                            </div>
+                        </td>
+                        <td><span class="code-pill">52308878</span></td>
+                        <td>
+                            <div class="time-group">
+                                <span class="time-date">2025.11.29</span>
+                                <span class="time-hour">11:12:04</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="status-badge status-fail" style="background:#f3f4f6; color:#4b5563;">
+                                <i class="ph ph-storefront"></i> 거래 종료된 가게입니다
+                            </div>
+                        </td>
+                        <td align="center">
+                            <button class="btn-view"><i class="ph ph-arrow-right"></i></button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

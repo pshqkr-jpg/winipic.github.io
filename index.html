@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 대시보드</title>
+    <link rel="stylesheet" href="global.css">
+    <!-- 아이콘 라이브러리 (Phosphor Icons 또는 직접 SVG 사용) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- 1. Header (Loaded via navbar.js) -->
+    <header class="w-header"></header>
+
+    <!-- 2. Hero Section: Brand Identity -->
+    <section class="w-hero"
+        style="position: relative; overflow: hidden; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero_main.png'); background-size: cover; background-position: center; color: #fff;">
+        <div class="w-hero-content" style="z-index: 2; position: relative;">
+            <span
+                style="display: inline-block; padding: 6px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; backdrop-filter: blur(5px);">
+                GLOBAL FASHION SOURCING
+            </span>
+            <h1 class="w-hero-title"
+                style="font-size: 48px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; text-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                동대문보다 빠른<br>
+                <span style="color: #fff; border-bottom: 3px solid #fff;">글로벌 패션 소싱</span>의 시작
+            </h1>
+            <p class="w-hero-subtitle"
+                style="font-size: 18px; color: #eee; line-height: 1.6; margin-bottom: 40px; max-width: 600px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                복잡한 사입부터 배송, 검수까지 위니픽이 해결해 드립니다.<br>
+                지금 바로 판매 성장에만 집중하세요.
+            </p>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn-cta" onclick="location.href='guide.html'">
+                    이용 가이드
+                </button>
+                <button class="btn-cta secondary" onclick="location.href='about.html'">
+                    회사소개
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Dashboard Grid: Quick Tools -->
+    <div class="w-container" style="margin-top: 40px;">
+        <div style="margin-bottom: 20px; font-weight: 700; font-size: 14px; letter-spacing: 1px; color: #888;">QUICK
+            TOOLS</div>
+        <div class="w-dashboard-grid">
+            <!-- Card 1 -->
+            <div class="w-action-card" onclick="location.href='order_history.html'">
+                <span
+                    style="position: absolute; top: 24px; right: 24px; font-size: 12px; color: #888; background: #f5f5f5; padding: 4px 10px; border-radius: 20px; font-weight:500;">최근
+                    1달</span>
+                <div
+                    style="width: 48px; height: 48px; background: #fff7ed; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="ph ph-truck" style="font-size: 24px; color: #ea580c;"></i>
+                </div>
+                <div class="w-action-title">배송/주문 현황</div>
+                <div class="w-action-desc" style="font-size: 14px; color: #555;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span>주문 접수</span>
+                        <strong style="color: #111;">4건</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span>중국 배송</span>
+                        <strong style="color: #111;">12건</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span>한국 배송</span>
+                        <strong style="color: #111;">5건</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;"><span>배송 완료</span> <strong
+                            style="color: #111;">82건</strong></div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="w-action-card" onclick="location.href='request_tool.html'">
+                <div
+                    style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="ph ph-link" style="font-size: 24px; color: var(--color-accent);"></i>
+                </div>
+                <div class="w-action-title">상품 요청</div>
+                <div class="w-action-desc">VVIC나 1688 링크를 입력하여 상품을 등록합니다.</div>
+            </div>
+            <!-- Card 3 -->
+            <div class="w-action-card" onclick="location.href='excel_order.html'">
+                <div
+                    style="width: 48px; height: 48px; background: #f0fdf4; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="ph ph-file-xls" style="font-size: 24px; color: #16a34a;"></i>
+                </div>
+                <div class="w-action-title">엑셀 주문</div>
+                <div class="w-action-desc">주문서 양식을 업로드하여 대량 주문을 처리합니다.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. New Arrivals (Legacy Products) -->
+    <div class="w-container" style="margin-top: 60px; margin-bottom: 80px;">
+        <div
+            style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <h2 style="font-size: 28px; font-weight: 800; color: #111;">TREND PICK</h2>
+            </div>
+        </div>
+
+        <div class="w-product-grid">
+            <!-- Item 1: T-Shirt -->
+            <a href="product_detail.html?id=974190076407" class="product-card">
+                <div class="p-thumb">
+                    <span class="p-tag" style="background: #ef4444;">NEW</span>
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01OEM6rH20WYuYPJLpR_!!2205026857-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: Sienna;"></div>
+                        <div class="p-color-chip" style="background: DarkGray;"></div>
+                        <div class="p-color-chip" style="background: Gold;"></div>
+                        <div class="p-color-chip" style="background: Black;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">티셔츠 #974190076407</div>
+                    <div class="p-price-row">
+                        <div class="p-price">18,480원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 2: Knit -->
+            <a href="product_detail.html?id=974710770113" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN013ofvz720WYuiD964y_!!2205026857-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: Tan;"></div>
+                        <div class="p-color-chip" style="background: Sienna;"></div>
+                        <div class="p-color-chip" style="background: Ivory;"></div>
+                        <div class="p-color-chip" style="background: LightGray;"></div>
+                        <div class="p-color-chip" style="background: Pink;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">니트 #974710770113</div>
+                    <div class="p-price-row">
+                        <div class="p-price">15,070원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Item 3: Skirt -->
+            <a href="product_detail.html?id=905718978870" class="product-card">
+                <div class="p-thumb">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN014KXxiw2BJhWLVdnbc_!!2218131968318-0-cib.jpg"
+                        alt="상품이미지">
+                    <div class="p-colors">
+                        <div class="p-color-chip" style="background: Ivory;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-title">미니스커트 #905718978870</div>
+                    <div class="p-price-row">
+                        <div class="p-price">21,000원</div>
+                        <div class="p-meta">단가유형: CIF</div>
+                    </div>
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <script src="js/footer.js"></script>
+</body>
+
+</html>

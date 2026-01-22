@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 이용 가이드</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        body {
+            background-color: #fff;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Iframe Container */
+        .iframe-container {
+            width: 100%;
+            height: calc(100vh - 60px);
+            /* Fill remaining height */
+            margin-top: 60px;
+            /* Header Height */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="iframe-container">
+        <iframe id="guideFrame" src="https://pshqkr-jpg.github.io/winipic.github.io/guide_content"
+            title="Guide Content"></iframe>
+    </div>
+
+</body>
+
+</html>

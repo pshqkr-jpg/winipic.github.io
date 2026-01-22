@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 회원정보 수정</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .mypage-layout {
+            max-width: 900px;
+            margin: 60px auto;
+        }
+
+
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            background: #fff;
+        }
+
+        .page-title-bar {
+            background: #1e293b;
+            /* Dark slate */
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 8px 8px 0 0;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            border: 1px solid #ddd;
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            padding: 30px;
+            background: #fff;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .field-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .field-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            width: 80px;
+            /* Fixed width for labels */
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .field-label.required::after {
+            content: "*";
+            color: #e11d48;
+            margin-left: 2px;
+        }
+
+        .form-input {
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            flex: 1;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #111;
+            outline: none;
+        }
+
+        .btn-footer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .btn-save {
+            background: #fff;
+            border: 1px solid #333;
+            color: #111;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-cancel {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #555;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-save:hover {
+            background: #f9fafb;
+        }
+
+        .btn-cancel:hover {
+            background: #f9fafb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="w-header"></header>
+
+    <div class="w-container">
+        <div class="mypage-layout">
+
+
+
+            <!-- Content -->
+            <div class="content-area">
+
+                <div class="page-title-bar">
+                    회원정보수정 (ID: winipic_user)
+                </div>
+
+                <div class="form-container">
+
+                    <!-- Password Section -->
+                    <div class="form-section">
+                        <div class="field-row">
+                            <label class="field-label required">기존비번</label>
+                            <input type="password" class="form-input LOGINPASS" style="max-width: 300px;">
+                        </div>
+                        <div class="field-row" style="margin-top: 12px;">
+                            <label class="field-label required">신규비번</label>
+                            <input type="password" class="form-input LOGINPASSNEW">
+
+                            <label class="field-label required">비번확인</label>
+                            <input type="password" class="form-input LOGINPASSCONFIRM">
+                        </div>
+                    </div>
+
+                    <!-- Personal Info Section -->
+                    <div class="form-section">
+                        <div class="field-row">
+                            <label class="field-label required">회원명</label>
+                            <input type="text" class="form-input VIPNM" value="위니픽">
+
+                            <label class="field-label required">휴대번호</label>
+                            <input type="text" class="form-input MOBILE" value="01055070520">
+
+                            <!-- Hidden Fields from Legacy -->
+                            <input type="text" class="TEL" style="display:none;">
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">이메일</label>
+                            <input type="email" class="form-input EMAIL" value="">
+                        </div>
+
+                        <!-- Address Section Refactored -->
+                        <div class="field-row">
+                            <label class="field-label required">수취인</label>
+                            <input type="text" class="form-input RECVNM" value="위니픽">
+
+                            <label class="field-label">우편번호</label>
+                            <input type="text" class="form-input POSTCODE" value="">
+                            <a id="MST_BUTTON_OPEN_POST" class="btn-save"
+                                style="padding: 0 16px; height: 40px; font-size: 13px; display:none;">
+                                <i class="ph ph-magnifying-glass"></i> 조회
+                            </a>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label required">주요주소</label>
+                            <input type="text" class="form-input ADDRMAJOR" value="인천광역시 연수구 송도과학">
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label required">상세주소</label>
+                            <input type="text" class="form-input ADDRMINOR" value="AIT센터 101동 2205호">
+                        </div>
+                    </div>
+
+                    <!-- Company Info Section -->
+                    <div class="form-section" style="border-bottom: none;">
+                        <div class="field-row">
+                            <label class="field-label">회사명</label>
+                            <input type="text" class="form-input CUSTNM" value="위니픽">
+
+                            <label class="field-label">사업자등록증</label>
+                            <input type="text" class="form-input BUSINUM" value="">
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">업태</label>
+                            <input type="text" class="form-input BUSISCOPE" value="">
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">종목</label>
+                            <input type="text" class="form-input BUSIITEM" value="">
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">소재지</label>
+                            <input type="text" class="form-input CUSTADDR" value="인천광역시 연수구 송도과학로 80 AIT 101동 2205호">
+                        </div>
+                    </div>
+
+                    <!-- Footer Buttons -->
+                    <div class="btn-footer">
+                        <button class="btn-save">
+                            <i class="ph-fill ph-floppy-disk"></i> 저장
+                        </button>
+                        <button class="btn-cancel">
+                            <i class="ph-bold ph-x"></i> 취소
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

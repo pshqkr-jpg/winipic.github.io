@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 상품상세</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="w-header"></header>
+
+    <div class="w-container">
+
+        <!-- Top Navigation -->
+        <div class="pd-top-nav">
+            <div class="pd-breadcrumb">
+                <i class="ph ph-house"></i> 홈
+                <i class="ph ph-caret-right"></i> 여성의류
+                <i class="ph ph-caret-right"></i> 아우터
+                <i class="ph ph-caret-right"></i> 점퍼
+            </div>
+            <div class="pd-top-actions">
+                <span class="pd-reg-date"><i class="ph ph-calendar-blank"></i> 등록일자: 2025-11-08</span>
+                <a href="https://www.vvic.com/item/53477645" target="_blank" class="pd-vvic-link-btn">
+                    vvic에서 상품보기 <i class="ph ph-arrow-square-out"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content Wrapper -->
+        <div class="pd-main-wrapper">
+
+            <!-- Left Column: Gallery & Detail Info -->
+            <div class="pd-left-column">
+                <div class="pd-gallery">
+                    <div class="pd-gallery-main">
+                        <img id="mainImage"
+                            src="https://cbu01.alicdn.com/img/ibank/O1CN010hkitU27iCAeD3WZW_!!2215815327830-0-cib.jpg"
+                            alt="메인 이미지">
+                    </div>
+                    <div class="pd-gallery-thumbs">
+                        <div class="pd-thumb active"
+                            onclick="changeImage(this, 'https://cbu01.alicdn.com/img/ibank/O1CN010hkitU27iCAeD3WZW_!!2215815327830-0-cib.jpg')">
+                            <img src="https://cbu01.alicdn.com/img/ibank/O1CN010hkitU27iCAeD3WZW_!!2215815327830-0-cib.jpg"
+                                alt="썸네일1">
+                        </div>
+                        <div class="pd-thumb"
+                            onclick="changeImage(this, 'https://cbu01.alicdn.com/img/ibank/O1CN01lLuanc1pd0cIV8FlP_!!2214282085382-0-cib.jpg')">
+                            <img src="https://cbu01.alicdn.com/img/ibank/O1CN01lLuanc1pd0cIV8FlP_!!2214282085382-0-cib.jpg"
+                                alt="썸네일2">
+                        </div>
+                        <div class="pd-thumb"
+                            onclick="changeImage(this, 'https://cbu01.alicdn.com/img/ibank/O1CN018rFN3r1EFyi27mXeJ_!!2214624860323-0-cib.jpg')">
+                            <img src="https://cbu01.alicdn.com/img/ibank/O1CN018rFN3r1EFyi27mXeJ_!!2214624860323-0-cib.jpg"
+                                alt="썸네일3">
+                        </div>
+                        <div class="pd-thumb"
+                            onclick="changeImage(this, 'https://cbu01.alicdn.com/img/ibank/O1CN013svFMw2Jdrwz1BAlq_!!2219884159445-0-cib.jpg')">
+                            <img src="https://cbu01.alicdn.com/img/ibank/O1CN013svFMw2Jdrwz1BAlq_!!2219884159445-0-cib.jpg"
+                                alt="썸네일4">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Information Part -->
+                <div class="pd-detailed-info">
+                    <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 20px;">상품 상세정보</h3>
+                    <div class="pd-content-body">
+                        <!-- Placeholder for detailed images -->
+                        <img src="https://cbu01.alicdn.com/img/ibank/O1CN010hkitU27iCAeD3WZW_!!2215815327830-0-cib.jpg"
+                            style="margin-bottom: 10px;">
+                        <img src="https://cbu01.alicdn.com/img/ibank/O1CN01lLuanc1pd0cIV8FlP_!!2214282085382-0-cib.jpg"
+                            style="margin-bottom: 10px;">
+                        <img src="https://cbu01.alicdn.com/img/ibank/O1CN018rFN3r1EFyi27mXeJ_!!2214624860323-0-cib.jpg"
+                            style="margin-bottom: 10px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Sticky Info Box -->
+            <div class="pd-info-sticky">
+
+                <div class="pd-header">
+                    <div class="pd-title">기모집업 #732231407632</div>
+                </div>
+
+                <div class="pd-price-box">
+                    <div class="pd-price-row-wrap">
+                        <div class="pd-price">12,540원</div>
+                        <div class="pd-meta">
+                            <span>단가유형: CIF</span>
+                            <span>최소수량: 1개</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pd-option-section">
+                    <label class="pd-option-label">색상 선택</label>
+                    <div class="pd-options" id="colorOptions">
+                        <div class="pd-option-chip" onclick="selectOption('color', this, 'Cream', '크림')">
+                            <span class="color-preview" style="background: PapayaWhip;"></span> 크림
+                        </div>
+                        <div class="pd-option-chip" onclick="selectOption('color', this, 'Pink', '핑크')">
+                            <span class="color-preview" style="background: Pink;"></span> 핑크
+                        </div>
+                        <div class="pd-option-chip" onclick="selectOption('color', this, 'SkyBlue', '소라')">
+                            <span class="color-preview" style="background: LightBlue;"></span> 소라
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pd-option-section">
+                    <label class="pd-option-label">사이즈 선택</label>
+                    <div class="pd-options" id="sizeOptions">
+                        <div class="pd-option-chip" onclick="selectOption('size', this, 'S', 'S (55)')">S (55)</div>
+                        <div class="pd-option-chip" onclick="selectOption('size', this, 'M', 'M (66)')">M (66)</div>
+                    </div>
+                </div>
+
+                <div class="pd-qty-section">
+                    <div class="pd-qty-input">
+                        <button class="pd-qty-btn" onclick="adjustQty(-1)">-</button>
+                        <input type="text" class="pd-qty-val" value="1" id="baseQty">
+                        <button class="pd-qty-btn" onclick="adjustQty(1)">+</button>
+                    </div>
+                    <button class="pd-add-btn" onclick="addToSelection()">
+                        <i class="ph ph-plus"></i> 옵션 추가
+                    </button>
+                </div>
+
+                <!-- Selected Options List -->
+                <div class="pd-selection-list" id="selectionList" style="display: none;">
+                    <!-- Items added here -->
+                </div>
+
+                <div class="pd-total">
+                    <span class="pd-total-label">총 상품 금액</span>
+                    <span class="pd-total-price" id="totalPrice">0원</span>
+                </div>
+
+                <div class="pd-actions">
+                    <button class="pd-btn pd-btn-cart"><i class="ph ph-shopping-cart"></i> 장바구니</button>
+                    <button class="pd-btn pd-btn-buy">바로구매</button>
+                    <button class="pd-btn pd-btn-wish"><i class="ph ph-star"></i> 관심상품</button>
+                    <button class="pd-btn pd-btn-similar" onclick="openSimilarModal()"><i
+                            class="ph ph-magnifying-glass"></i> 유사상품</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Similar Items Modal -->
+    <div class="similar-modal-overlay" id="similarModal">
+        <div class="similar-modal-content">
+            <div class="similar-modal-header">
+                <div class="similar-modal-title">
+                    <i class="ph ph-sparkle" style="color: var(--color-accent)"></i> 유사한 상품 추천
+                </div>
+                <div class="similar-modal-close" onclick="closeSimilarModal()">
+                    <i class="ph ph-x"></i>
+                </div>
+            </div>
+            <div class="similar-grid">
+                <!-- Similar Item 1 -->
+                <a href="#" class="similar-item-card">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01lLuanc1pd0cIV8FlP_!!2214282085382-0-cib.jpg"
+                        class="similar-item-img">
+                    <div class="similar-item-name">코트 #836171517206</div>
+                    <div class="similar-item-price">119,570원</div>
+                </a>
+                <!-- Similar Item 2 -->
+                <a href="#" class="similar-item-card">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN018rFN3r1EFyi27mXeJ_!!2214624860323-0-cib.jpg"
+                        class="similar-item-img">
+                    <div class="similar-item-name">집업 #685050703556</div>
+                    <div class="similar-item-price">51,700원</div>
+                </a>
+                <!-- Similar Item 3 -->
+                <a href="#" class="similar-item-card">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01epfsk31WN0BGsaEhq_!!2213344312775-0-cib.jpg"
+                        class="similar-item-img">
+                    <div class="similar-item-name">점퍼 #987089310222</div>
+                    <div class="similar-item-price">19,910원 <span class="similar-item-meta">CIF</span></div>
+                </a>
+                <!-- Similar Item 4 -->
+                <a href="#" class="similar-item-card">
+                    <img src="https://cbu01.alicdn.com/img/ibank/O1CN01qFxiyE1lcJeLv43C1_!!2215975944839-0-cib.jpg"
+                        class="similar-item-img">
+                    <div class="similar-item-name">점퍼 #964658827165</div>
+                    <div class="similar-item-price">58,630원</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Script -->
+    <script>
+        // State
+        const UNIT_PRICE = 12540;
+        let selected = {
+            color: null,
+            size: null
+        };
+        let selections = [];
+
+        // Initialize (Auto-select first options)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Auto Select First Color
+            const firstColor = document.querySelector('#colorOptions .pd-option-chip');
+            if (firstColor) firstColor.click();
+
+            // Auto Select First Size
+            const firstSize = document.querySelector('#sizeOptions .pd-option-chip');
+            if (firstSize) firstSize.click();
+        });
+
+        // Image Gallery
+        function changeImage(el, src) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Option Selection (Dual)
+        function selectOption(type, el, code, name) {
+            // Clear active in group
+            const group = type === 'color' ? 'colorOptions' : 'sizeOptions';
+            document.querySelectorAll(`#${group} .pd-option-chip`).forEach(c => c.classList.remove('active'));
+
+            // Set active
+            el.classList.add('active');
+
+            // Update State
+            selected[type] = { code: code, name: name };
+        }
+
+        // Base Qty Adjustment
+        function adjustQty(delta) {
+            const input = document.getElementById('baseQty');
+            let val = parseInt(input.value) || 1;
+            val += delta;
+            if (val < 1) val = 1;
+            input.value = val;
+        }
+
+        // Add to Selection List
+        function addToSelection() {
+            if (!selected.color || !selected.size) {
+                alert('색상과 사이즈를 모두 선택해주세요.');
+                return;
+            }
+
+            const qtyInput = document.getElementById('baseQty');
+            let qty = parseInt(qtyInput.value) || 1;
+
+            const comboKey = `${selected.color.code}-${selected.size.code}`;
+            const comboName = `${selected.color.name} / ${selected.size.name}`;
+
+            // Check if already exists
+            const existingIndex = selections.findIndex(item => item.key === comboKey);
+
+            if (existingIndex >= 0) {
+                // Merge quantities
+                selections[existingIndex].qty += qty;
+            } else {
+                // Add new item
+                selections.push({
+                    id: Date.now(),
+                    key: comboKey,
+                    name: comboName,
+                    qty: qty
+                });
+            }
+
+            // Reset Qty only (Keep selection active for convenience)
+            qtyInput.value = 1;
+
+            renderSelections();
+        }
+
+        // Render Selection List & Update Total Price
+        function renderSelections() {
+            const container = document.getElementById('selectionList');
+            container.innerHTML = '';
+
+            if (selections.length === 0) {
+                container.style.display = 'none';
+                document.getElementById('totalPrice').textContent = '0원';
+                return;
+            }
+
+            container.style.display = 'block';
+            let total = 0;
+
+            selections.forEach((item, index) => {
+                const itemTotal = item.qty * UNIT_PRICE;
+                total += itemTotal;
+
+                const div = document.createElement('div');
+                div.className = 'pd-selection-item';
+                div.innerHTML = `
+                    <div class="pd-selection-info">
+                        <strong>${item.name}</strong> · ${item.qty}개
+                        <br><span style="color:#888;">${itemTotal.toLocaleString()}원</span>
+                    </div>
+                    <div class="pd-selection-remove" onclick="removeSelection(${index})">
+                        <i class="ph ph-x-circle"></i>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById('totalPrice').textContent = total.toLocaleString() + '원';
+        }
+
+        function removeSelection(index) {
+            selections.splice(index, 1);
+            renderSelections();
+        }
+
+        // Modal Logic
+        function openSimilarModal() {
+            document.getElementById('similarModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+        }
+
+        function closeSimilarModal() {
+            document.getElementById('similarModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('similarModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeSimilarModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

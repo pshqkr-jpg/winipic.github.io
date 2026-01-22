@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 공지사항 상세</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .page-layout {
+            display: flex;
+            gap: 50px;
+            padding-top: 40px;
+            min-height: 600px;
+        }
+
+        /* Sidebar Styles (Same as notice.html) */
+        .sidebar {
+            width: 220px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .side-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .side-item {
+            padding: 14px 16px;
+            border-radius: 8px;
+            color: #666;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .side-item:hover {
+            background: #f4f4f5;
+            color: #111;
+        }
+
+        .side-item.active {
+            background: #111;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Content Styles */
+        .content-area {
+            flex: 1;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #111;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        /* Detail View Styles */
+        .post-container {
+            border-top: 2px solid #111;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .post-header {
+            background: #f9f9fafb;
+            padding: 24px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .post-body {
+            padding: 40px 24px;
+            min-height: 300px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .post-footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-list {
+            padding: 10px 24px;
+            background: #111;
+            color: #fff;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-list:hover {
+            opacity: 0.9;
+        }
+
+        /* Previous/Next Navigation */
+        .nav-links {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-row {
+            display: flex;
+            padding: 16px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .nav-label {
+            width: 100px;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .nav-title {
+            color: #333;
+            cursor: pointer;
+        }
+
+        .nav-title:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="w-header"></header>
+
+    <div class="w-container">
+        <div class="page-layout">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-title">
+                    <i class="ph ph-headphones"></i>
+                    고객센터
+                </div>
+                <div class="side-menu">
+                    <a class="side-item active" href="notice.html">
+                        공지사항
+                        <i class="ph ph-caret-right"></i>
+                    </a>
+                    <a class="side-item">
+                        자주묻는 질문
+                        <i class="ph ph-caret-right"></i>
+                    </a>
+                    <a class="side-item">
+                        1:1 문의
+                        <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content-area">
+                <div class="page-header">
+                    <div class="page-title">공지사항</div>
+                </div>
+
+                <div class="post-container">
+                    <div class="post-header">
+                        <div class="post-title" style="display: flex; align-items: center; gap: 8px;">
+                            <span
+                                style="font-size: 12px; background: #eef2ff; color: #4f46e5; padding: 2px 8px; border-radius: 4px; font-weight: 700;">공지</span>
+                            이미지 사용 관련 저작권 안내
+                        </div>
+                        <div class="post-meta">
+                            <div class="meta-item">
+                                <span style="font-weight: 600;">작성자</span> 위니픽
+                            </div>
+                            <div style="width: 1px; height: 12px; background: #ddd; margin: 2px 0;"></div>
+                            <div class="meta-item">
+                                <span style="font-weight: 600;">등록일</span> 2023.09.23
+                            </div>
+                            <div style="width: 1px; height: 12px; background: #ddd; margin: 2px 0;"></div>
+                            <div class="meta-item">
+                                <i class="ph ph-eye"></i> 1,280
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-body">
+                        안녕하세요. 위니픽입니다.<br>
+                        위니픽을 이용해 주셔서 감사합니다.<br><br>
+
+                        "위니픽은 중국의 방대한 상품들을 구매자의 요청에 의해 한국에 공급하는 업체이므로<br>
+                        중국 제조업체 및 중국 유통업체에서 제공하는 이미지에 관해 저작권이 없습니다.<br><br>
+
+                        <strong>이미지 사용은 가능하시지만 사용 중 "이미지 도용"이라는 저작권 문제 등이 있습니다.</strong><br>
+                        이에 법적인 책임은 당사와 무관하니 유념하여 판매 하시기 바랍니다.<br><br>
+
+                        감사합니다.
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <div class="nav-row">
+                        <span class="nav-label">다음글 <i class="ph ph-caret-up"
+                                style="vertical-align: middle;"></i></span>
+                        <span class="nav-title">[필독] 반품/교환 관련 공지사항</span>
+                    </div>
+                    <div class="nav-row">
+                        <span class="nav-label">이전글 <i class="ph ph-caret-down"
+                                style="vertical-align: middle;"></i></span>
+                        <span class="nav-title">해외 배송 지연 보상 안내</span>
+                    </div>
+                </div>
+
+                <div class="post-footer" style="justify-content: flex-end;">
+                    <a href="notice.html" class="btn-list">
+                        <i class="ph ph-list-dashes"></i>
+                        목록보기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

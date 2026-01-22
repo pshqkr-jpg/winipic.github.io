@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC Logo Concepts</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 16px;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .logo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-card h3 {
+            margin-top: 30px;
+            color: #888;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .desc {
+            margin-top: 10px;
+            color: #aaa;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Dark Mode Preview */
+        .logo-card.dark {
+            background: #111;
+        }
+
+        .logo-card.dark h3 {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>WINIPIC Logo Concepts</h1>
+
+    <div class="logo-grid">
+
+        <!-- Concept 1: Modern & Tech (The Current Trend) -->
+        <div class="logo-card">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Icon: Connected Dots/Nodes -->
+                <path d="M30 15L15 45H25L30 35L35 45H45L30 15Z" fill="#111" />
+                <circle cx="30" cy="15" r="4" fill="#2563eb" />
+                <circle cx="15" cy="45" r="4" fill="#111" />
+                <circle cx="45" cy="45" r="4" fill="#111" />
+
+                <!-- Text -->
+                <text x="60" y="42" font-family="'Inter', sans-serif" font-weight="800" font-size="32"
+                    letter-spacing="-1" fill="#111">WINIPIC</text>
+            </svg>
+            <h3>Concept 1: Connection</h3>
+            <div class="desc">패션과 기술, 한국과 중국의 연결을 상징하는 심볼과<br>단단한 산세리프 폰트의 조화</div>
+        </div>
+
+        <!-- Concept 2: Minimal Wordmark (Luxury/SaaS) -->
+        <div class="logo-card">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="40" font-family="'Inter', sans-serif" font-weight="900" font-style="italic"
+                    font-size="36" letter-spacing="-2" fill="#111">
+                    WINIPIC
+                </text>
+                <circle cx="178" cy="18" r="4" fill="#2563eb" />
+            </svg>
+            <h3>Concept 2: Speed & Impact</h3>
+            <div class="desc">빠른 속도감을 나타내는 이텔릭체와<br>포인트 컬러(Blue Dot)로 완성점(방점)을 찍음</div>
+        </div>
+
+        <!-- Concept 3: Editorial / High Fashion -->
+        <div class="logo-card dark">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
+                    font-family="'Playfair Display', serif" font-weight="700" font-size="38" letter-spacing="2"
+                    fill="#fff">
+                    WINIPIC
+                </text>
+            </svg>
+            <h3>Concept 3: Premium Editorial</h3>
+            <div class="desc">고급 패션 매거진 스타일의 세리프 폰트.<br>하이엔드 브랜드 이미지를 강조</div>
+        </div>
+
+        <!-- Concept 4: Abstract W (Symbolic) -->
+        <div class="logo-card">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Abstract 'W' made of lines -->
+                <path d="M10 20 L20 45 L30 25 L40 45 L50 20" stroke="#111" stroke-width="4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M65 42 L65 22" stroke="#111" stroke-width="4" stroke-linecap="round" />
+                <circle cx="65" cy="16" r="2.5" fill="#111" />
+                <!-- Simple Text -->
+                <text x="80" y="42" font-family="'Inter', sans-serif" font-weight="600" font-size="28"
+                    letter-spacing="0" fill="#333">WINIPIC</text>
+            </svg>
+            <h3>Concept 4: Structure</h3>
+            <div class="desc">물류의 흐름과 구조적인 아름다움을<br>라인 아트로 표현한 심볼</div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

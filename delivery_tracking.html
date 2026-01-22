@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 배송 조회</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <!-- Legacy: #MASTER -->
+    <div id="MASTER" class="page-container">
+
+        <!-- Header -->
+        <div class="page-header">
+            <i class="ph ph-truck"></i> 배송 조회
+        </div>
+
+        <!-- Filter Card -->
+        <div class="w-card">
+            <div class="filter-row">
+                <div class="w-card-title">
+                    <i class="ph-fill ph-package"></i> 배송 조회
+                </div>
+
+                <div class="filter-group">
+                    <span class="filter-label">시작일자</span>
+                    <!-- Legacy: #SDATE -->
+                    <input type="date" id="SDATE" class="w-input rj_datetime" value="2025-10-21">
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">종료일자</span>
+                    <!-- Legacy: #EDATE -->
+                    <input type="date" id="EDATE" class="w-input rj_datetime" value="2026-01-21">
+                </div>
+
+                <div style="flex: 1;"></div>
+
+                <!-- Legacy: #BUTTON_SEARCH, #BUTTON_DELAY, #BUTTON_OUT, #BUTTON_DOWN -->
+                <button id="BUTTON_SEARCH" class="btn-filter btn-black search-type-select">
+                    <i class="ph ph-magnifying-glass"></i> 배송조회
+                </button>
+                <button id="BUTTON_DELAY" class="btn-filter btn-white search-type"
+                    onclick="location.href='delivery_delay.html'">
+                    <i class="ph ph-clock"></i> 지연조회
+                </button>
+                <button id="BUTTON_OUT" class="btn-filter btn-white search-type"
+                    onclick="location.href='order_soldout.html'">
+                    <i class="ph ph-x-circle"></i> 주문품절조회
+                </button>
+                <button id="BUTTON_DOWN" class="btn-filter btn-white search-type"
+                    onclick="location.href='product_soldout.html'">
+                    <i class="ph ph-x-circle"></i> 상품품절조회
+                </button>
+            </div>
+        </div>
+
+        <!-- Master Table Card (납품 목록) -->
+        <div class="w-card">
+            <div class="w-card-header">
+                <div class="w-card-title"><i class="ph ph-list-bullets"></i> 납품 목록</div>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn page_button_skip"><i class="ph ph-caret-double-left"></i></button>
+                        <button class="page-btn page_button_skip"><i class="ph ph-caret-left"></i></button>
+                        <button class="page-btn page_button_select active">1</button>
+                        <button class="page-btn page_button">2</button>
+                        <button class="page-btn page_button">3</button>
+                        <button class="page-btn page_button">4</button>
+                        <button class="page-btn page_button">5</button>
+                        <button class="page-btn page_button_skip"><i class="ph ph-caret-right"></i></button>
+                        <button class="page-btn page_button_skip"><i class="ph ph-caret-double-right"></i></button>
+                    </div>
+                    <div style="font-size: 13px; color: #555; display: flex; align-items: center; gap: 4px;">
+                        Goto <input id="gotoPageNo" type="text" value="1"
+                            style="width: 30px; text-align: center; border:1px solid #ddd; border-radius:4px; height:28px;">
+                        / 5
+                        <button id="gotoPage" class="btn-filter btn-white"
+                            style="height:28px; padding:0 8px; font-size:12px;">이동</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legacy: #BILL_LIST -->
+            <div id="BILL_LIST" class="master-table-wrapper rj_table">
+                <table class="w-data-table">
+                    <thead>
+                        <tr class="rj_header">
+                            <th>국내입고일</th>
+                            <th>진행상태</th>
+                            <th>납품수량</th>
+                            <th>납품금액</th>
+                            <th>견적서번호</th>
+                            <th>수신인</th>
+                            <th>전화번호</th>
+                            <th class="text-left">배송지</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rj_row active-row">
+                            <td class="rj_cell">2026-01-21</td>
+                            <td class="rj_cell">배송준비</td>
+                            <td class="rj_cell text-blue font-bold">67</td>
+                            <td class="rj_cell text-red">875,820</td>
+                            <td class="rj_cell BILLKEY">2601200081</td>
+                            <td class="rj_cell">위니픽</td>
+                            <td class="rj_cell">01055070520</td>
+                            <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell">2026-01-20</td>
+                            <td class="rj_cell">거래완료</td>
+                            <td class="rj_cell text-blue font-bold">68</td>
+                            <td class="rj_cell text-red">680,460</td>
+                            <td class="rj_cell BILLKEY">2601190156</td>
+                            <td class="rj_cell">위니픽</td>
+                            <td class="rj_cell">01055070520</td>
+                            <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell">2026-01-19</td>
+                            <td class="rj_cell">배송준비</td>
+                            <td class="rj_cell text-blue font-bold">200</td>
+                            <td class="rj_cell text-red">1,963,170</td>
+                            <td class="rj_cell BILLKEY">2601190001</td>
+                            <td class="rj_cell">위니픽</td>
+                            <td class="rj_cell">01055070520</td>
+                            <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell">2026-01-16</td>
+                            <td class="rj_cell">거래완료</td>
+                            <td class="rj_cell text-blue font-bold">207</td>
+                            <td class="rj_cell text-red">2,280,300</td>
+                            <td class="rj_cell BILLKEY">2601150094</td>
+                            <td class="rj_cell">위니픽</td>
+                            <td class="rj_cell">01055070520</td>
+                            <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell">2026-01-14</td>
+                            <td class="rj_cell">거래완료</td>
+                            <td class="rj_cell text-blue font-bold">1</td>
+                            <td class="rj_cell text-red">8,360</td>
+                            <td class="rj_cell BILLKEY">2601130066</td>
+                            <td class="rj_cell">위니픽</td>
+                            <td class="rj_cell">01055070520</td>
+                            <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 납품 상품 상세 Card -->
+        <div class="w-card">
+            <div class="w-card-header">
+                <div class="w-card-title"><i class="ph-fill ph-box"></i> 납품 상품 상세</div>
+                <div class="filter-row">
+                    <!-- Legacy: #DOWN_EXCEL, #DOWN_LOT, #PRINT_LOT -->
+                    <button id="DOWN_EXCEL" class="btn-filter btn-white">
+                        <i class="ph ph-file-xls"></i> 내려받기
+                    </button>
+                    <button id="DOWN_LOT" class="btn-filter btn-white">
+                        <i class="ph ph-file-xls"></i> 발행LOT
+                    </button>
+                    <button id="PRINT_LOT" class="btn-filter btn-white">
+                        <i class="ph ph-printer"></i> 출력
+                    </button>
+                    <span style="margin: 0 8px; border-left: 1px solid #ddd; height: 20px;"></span>
+                    <span class="filter-label">중국배송일자</span>
+                    <!-- Legacy: #OUTSDATE, #OUTEDATE -->
+                    <input type="date" id="OUTSDATE" class="w-input rj_datetime" value="2026-01-18">
+                    <input type="date" id="OUTEDATE" class="w-input rj_datetime" value="2026-01-21">
+                    <!-- Legacy: #DOWN_OUT -->
+                    <button id="DOWN_OUT" class="btn-filter btn-white">
+                        <i class="ph ph-file-xls"></i> 내려받기
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detail Table - Legacy: #BILL_DETAIL -->
+            <div id="BILL_DETAIL" class="rj_table">
+
+                <!-- Item 1 Card -->
+                <div class="product-item-card">
+                    <a href="../Goods/Detail.aspx?ITEMCD=46537142">
+                        <div class="pic-image">
+                            <img src="https://img1.vvic.com/upload/1723374127401_495635.jpg" alt="미니원피스">
+                        </div>
+                    </a>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <span class="font-bold">상품명: <a href="../Goods/Detail.aspx?ITEMCD=46537142"
+                                    class="text-blue">미니원피스 #46537142</a></span>
+                            <span class="font-bold">총수량: <span class="text-blue">1</span></span>
+                        </div>
+                        <table class="sub-table rj_table">
+                            <thead>
+                                <tr class="rj_header">
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>상품수량</th>
+                                    <th>상품단가</th>
+                                    <th>상품금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                    <th>송장번호</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="rj_row">
+                                    <td class="rj_cell">2026-01-17</td>
+                                    <td class="rj_cell">미니원피스 #46537142</td>
+                                    <td class="rj_cell">블랙</td>
+                                    <td class="rj_cell">M</td>
+                                    <td class="rj_cell text-blue font-bold">1</td>
+                                    <td class="rj_cell text-red">12,760</td>
+                                    <td class="rj_cell text-red">12,760</td>
+                                    <td class="rj_cell">위니픽</td>
+                                    <td class="rj_cell">01055070520</td>
+                                    <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                    <td class="rj_cell">-</td>
+                                    <td class="rj_cell to-cart" data-itemcd="46537142" data-op1cd="黑色" data-op2cd="M">
+                                        <i class="ph ph-shopping-cart"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Item 2 Card -->
+                <div class="product-item-card">
+                    <a href="../Goods/Detail.aspx?ITEMCD=46694074">
+                        <div class="pic-image">
+                            <img src="https://img1.vvic.com/upload/1694009837262_824076.jpg" alt="니트">
+                        </div>
+                    </a>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <span class="font-bold">상품명: <a href="../Goods/Detail.aspx?ITEMCD=46694074"
+                                    class="text-blue">니트 #46694074</a></span>
+                            <span class="font-bold">총수량: <span class="text-blue">6</span></span>
+                        </div>
+                        <table class="sub-table rj_table">
+                            <thead>
+                                <tr class="rj_header">
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>상품수량</th>
+                                    <th>상품단가</th>
+                                    <th>상품금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                    <th>송장번호</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="rj_row">
+                                    <td class="rj_cell">2026-01-17</td>
+                                    <td class="rj_cell">니트 #46694074</td>
+                                    <td class="rj_cell">블랙</td>
+                                    <td class="rj_cell">FREE</td>
+                                    <td class="rj_cell text-blue font-bold">5</td>
+                                    <td class="rj_cell text-red">6,710</td>
+                                    <td class="rj_cell text-red">33,550</td>
+                                    <td class="rj_cell">위니픽</td>
+                                    <td class="rj_cell">01055070520</td>
+                                    <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                    <td class="rj_cell">-</td>
+                                    <td class="rj_cell to-cart" data-itemcd="46694074" data-op1cd="黑色" data-op2cd="均码">
+                                        <i class="ph ph-shopping-cart"></i>
+                                    </td>
+                                </tr>
+                                <tr class="rj_row">
+                                    <td class="rj_cell">2026-01-16</td>
+                                    <td class="rj_cell">니트 #46694074</td>
+                                    <td class="rj_cell">블랙</td>
+                                    <td class="rj_cell">FREE</td>
+                                    <td class="rj_cell text-blue font-bold">1</td>
+                                    <td class="rj_cell text-red">6,710</td>
+                                    <td class="rj_cell text-red">6,710</td>
+                                    <td class="rj_cell">위니픽</td>
+                                    <td class="rj_cell">01055070520</td>
+                                    <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                    <td class="rj_cell">-</td>
+                                    <td class="rj_cell to-cart" data-itemcd="46694074" data-op1cd="黑色" data-op2cd="均码">
+                                        <i class="ph ph-shopping-cart"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Item 3 Card -->
+                <div class="product-item-card">
+                    <a href="../Goods/Detail.aspx?ITEMCD=54174929">
+                        <div class="pic-image">
+                            <img src="https://img1.vvic.com/upload/1695296423821_838993.jpg" alt="가디건">
+                        </div>
+                    </a>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <span class="font-bold">상품명: <a href="../Goods/Detail.aspx?ITEMCD=54174929"
+                                    class="text-blue">가디건 #54174929</a></span>
+                            <span class="font-bold">총수량: <span class="text-blue">54</span></span>
+                        </div>
+                        <table class="sub-table rj_table">
+                            <thead>
+                                <tr class="rj_header">
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>상품수량</th>
+                                    <th>상품단가</th>
+                                    <th>상품금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                    <th>송장번호</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="rj_row">
+                                    <td class="rj_cell">2026-01-14</td>
+                                    <td class="rj_cell">가디건 #54174929</td>
+                                    <td class="rj_cell">블랙</td>
+                                    <td class="rj_cell">L</td>
+                                    <td class="rj_cell text-blue font-bold">22</td>
+                                    <td class="rj_cell text-red">14,300</td>
+                                    <td class="rj_cell text-red">314,600</td>
+                                    <td class="rj_cell">위니픽</td>
+                                    <td class="rj_cell">01055070520</td>
+                                    <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                    <td class="rj_cell">-</td>
+                                    <td class="rj_cell to-cart" data-itemcd="54174929" data-op1cd="黑色" data-op2cd="L">
+                                        <i class="ph ph-shopping-cart"></i>
+                                    </td>
+                                </tr>
+                                <tr class="rj_row">
+                                    <td class="rj_cell">2026-01-14</td>
+                                    <td class="rj_cell">가디건 #54174929</td>
+                                    <td class="rj_cell">블랙</td>
+                                    <td class="rj_cell">M</td>
+                                    <td class="rj_cell text-blue font-bold">32</td>
+                                    <td class="rj_cell text-red">14,300</td>
+                                    <td class="rj_cell text-red">457,600</td>
+                                    <td class="rj_cell">위니픽</td>
+                                    <td class="rj_cell">01055070520</td>
+                                    <td class="rj_cell text-left">인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                    <td class="rj_cell">-</td>
+                                    <td class="rj_cell to-cart" data-itemcd="54174929" data-op1cd="黑色" data-op2cd="M">
+                                        <i class="ph ph-shopping-cart"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

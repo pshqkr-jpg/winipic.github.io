@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 상품 오류</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .error-container {
+            max-width: 800px;
+            margin: 120px auto;
+            padding: 40px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .error-icon {
+            font-size: 64px;
+            color: #ef4444;
+            margin-bottom: 24px;
+        }
+
+        .error-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 16px;
+        }
+
+        .error-desc {
+            font-size: 15px;
+            color: #ef4444;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 600;
+            background: #fef2f2;
+            padding: 16px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-action {
+            height: 48px;
+            padding: 0 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-back {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .btn-back:hover {
+            background: #f9f9f9;
+            border-color: #bbb;
+        }
+
+        .btn-soldout {
+            background: #fff;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
+        .btn-soldout:hover {
+            background: #fef2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="error-container">
+        <i class="ph ph-warning-circle error-icon"></i>
+
+        <div class="error-title">
+            오류 발생 : 아직 등록이 완료되지 않은 상품이거나 잘못된 상품코드입니다.
+        </div>
+
+        <div class="error-desc">
+            <i class="ph ph-siren" style="margin-right: 4px;"></i>
+            빠른 처리가 필요한 경우, 위니픽 단톡방에 위니픽 상품 코드와 함께<br>
+            상품 등록 요청을 남겨주시면 확인 후 안내드리겠습니다.
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-action btn-back" onclick="history.back()">
+                <i class="ph ph-arrow-left"></i> 이전화면으로 이동
+            </button>
+            <button class="btn-action btn-soldout" onclick="alert('품절 페이지 기능은 준비중입니다.')">
+                <i class="ph ph-prohibit"></i> 품절페이지로 이동
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>

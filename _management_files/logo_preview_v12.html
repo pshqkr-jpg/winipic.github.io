@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC Logo Concepts V12 (Wordmark Variations)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #111;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        .info-text {
+            color: #666;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 4px;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .logo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo-card h3 {
+            margin-top: 40px;
+            color: #888;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .desc {
+            margin-top: 10px;
+            color: #aaa;
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>WINIPIC LOGO V12<br><span style="font-size: 18px; color:#444; font-weight: 400;">Variations based on Concept
+            2</span></h1>
+    <p class="info-text">
+        'Concept 2' (Inter Italic Wordmark)를 기반으로<br>
+        파란 점(Blue Dot)의 위치를 다양하게 변경한 시안입니다.
+    </p>
+
+    <div class="logo-grid">
+
+        <!-- 1. Original (Dot at End) -->
+        <div class="logo-card">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="45" font-family="'Inter', sans-serif" font-weight="900" font-style="italic"
+                    font-size="36" letter-spacing="-2" fill="#111">WINIPIC</text>
+                <!-- Original Dot Position -->
+                <circle cx="178" cy="23" r="4" fill="#2563eb" />
+            </svg>
+            <h3>1. Original (End Point)</h3>
+            <div class="desc">기존 Concept 2. 문장 끝의 마침표 느낌.</div>
+        </div>
+
+        <!-- 2. Dot above W (Top Right) -->
+        <div class="logo-card">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="45" font-family="'Inter', sans-serif" font-weight="900" font-style="italic"
+                    font-size="36" letter-spacing="-2" fill="#111">WINIPIC</text>
+                <!-- W ends around x=40-45. Top right. -->
+                <circle cx="52" cy="14" r="4" fill="#2563eb" />
+            </svg>
+            <h3>2. W Accent</h3>
+            <div class="desc">W의 우측 상단에 포인트를 주어<br>시작 부분의 시선을 강조</div>
+        </div>
+
+        <!-- 3. Dot above 1st I -->
+        <div class="logo-card">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="45" font-family="'Inter', sans-serif" font-weight="900" font-style="italic"
+                    font-size="36" letter-spacing="-2" fill="#111">WINIPIC</text>
+                <!-- 1st I is after W. Approx x=55 -->
+                <circle cx="60" cy="14" r="4" fill="#2563eb" />
+            </svg>
+            <h3>3. First 'I' Point</h3>
+            <div class="desc">첫 번째 'I' 위에 점을 배치</div>
+        </div>
+
+        <!-- 4. Dot above 2nd I (Center) -->
+        <div class="logo-card">
+            <svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="10" y="45" font-family="'Inter', sans-serif" font-weight="900" font-style="italic"
+                    font-size="36" letter-spacing="-2" fill="#111">WINIPIC</text>
+                <!-- 2nd I is in the middle. Approx x=105 -->
+                <circle cx="124" cy="14" r="4" fill="#2563eb" />
+            </svg>
+            <h3>4. Center 'I' Point</h3>
+            <div class="desc">중앙의 'I'에 포인트를 주어<br>전체적인 균형을 맞춤</div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

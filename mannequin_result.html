@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 마네킹샷 확인</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+
+
+    <style>
+        /* Review Viewer Modal (Popup Style) */
+        .viewer-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .viewer-backdrop.active {
+            display: flex;
+        }
+
+        .viewer-container {
+            width: 900px;
+            max-width: 95%;
+            height: 85vh;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.2s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .viewer-header {
+            height: 60px;
+            background: #111;
+            /* Dark header */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .viewer-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-viewer {
+            height: 36px;
+            padding: 0 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-viewer.confirm {
+            background: #fff;
+            color: #111;
+        }
+
+        .btn-viewer.confirm:hover {
+            background: #e5e5e5;
+        }
+
+        .btn-viewer.cancel {
+            background: #333;
+            color: #fff;
+        }
+
+        .btn-viewer.cancel:hover {
+            background: #444;
+        }
+
+        .btn-viewer-close {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-viewer-close:hover {
+            border-color: #fff;
+        }
+
+        .viewer-body {
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .viewer-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="page-container">
+
+        <!-- Header -->
+        <div class="page-header">
+            <i class="ph ph-t-shirt"></i> 마네킹샷 확인
+        </div>
+
+        <!-- Filter Card -->
+        <div class="w-card" style="padding: 20px;">
+            <div class="filter-row">
+                <span style="font-weight:700; font-size:15px; margin-right:12px;"><i
+                        class="ph-fill ph-shopping-bag"></i> 마네킹샷 확인</span>
+
+                <div class="filter-group">
+                    <span class="filter-label">시작일자:</span>
+                    <input type="date" class="w-input" value="2025-12-20">
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">종료일자:</span>
+                    <input type="date" class="w-input" value="2026-01-20">
+                </div>
+                <div class="filter-group" style="margin-left: 16px;">
+                    <span class="filter-label">상품코드:</span>
+                    <input type="text" class="w-input" style="width: 120px;">
+                </div>
+
+                <div style="flex: 1;"></div>
+
+                <button class="btn-filter btn-black">
+                    <i class="ph ph-magnifying-glass"></i> 주문조회
+                </button>
+                <button class="btn-filter btn-black">
+                    <i class="ph ph-camera"></i> 마네킹샷확인
+                </button>
+            </div>
+        </div>
+
+        <!-- Master Table Card -->
+        <div class="w-card">
+            <div class="w-card-header">
+                <div class="w-card-title"><i class="ph ph-list-bullets"></i> 상세 내역</div>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn"><i class="ph ph-caret-double-left"></i></button>
+                        <button class="page-btn"><i class="ph ph-caret-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn"><i class="ph ph-caret-right"></i></button>
+                        <button class="page-btn"><i class="ph ph-caret-double-right"></i></button>
+                    </div>
+                    <div style="font-size: 13px; color: #555;">
+                        Goto <input type="text" value="1"
+                            style="width: 30px; text-align: center; border:1px solid #ddd; border-radius:4px;"> / 1
+                        <button
+                            style="border:1px solid #ddd; background:#fff; border-radius:4px; margin-left:4px; font-size:12px; padding:2px 6px;">이동</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="master-table-wrapper">
+                <table class="w-data-table">
+                    <thead>
+                        <tr>
+                            <th>주문번호</th>
+                            <th>주문일자</th>
+                            <th>배송방법</th>
+                            <th>진행단계</th>
+                            <th>주문금액</th>
+                            <th>배송금액</th>
+                            <th>배송수량</th>
+                            <th>선금금액</th>
+                            <th>수신인</th>
+                            <th class="text-left">배송주소</th>
+                            <th>Excel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active-row">
+                            <td>232601120012</td>
+                            <td>2026-01-12</td>
+                            <td>오션</td>
+                            <td class="text-blue">중국접수</td>
+                            <td class="text-red font-bold">￦120,560</td>
+                            <td class="text-red">￦0</td>
+                            <td class="text-blue font-bold">0 / 2</td>
+                            <td class="text-red">￦0</td>
+                            <td>위니픽</td>
+                            <td class="text-left">물류</td>
+                            <td><i class="ph ph-file-xls" style="color:#166534;"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mannequin Detail Section -->
+        <div class="w-card">
+            <div class="w-card-header">
+                <div class="w-card-title"><i class="ph ph-camera"></i> 마네킹샷 내역</div>
+            </div>
+
+            <!-- Item 1 -->
+            <div class="product-item-card">
+                <div class="pic-image">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200">
+                </div>
+                <div class="pic-content">
+                    <div class="pic-header">
+                        <div style="font-weight:700; color:#2563eb;">
+                            상품명 <span style="text-decoration:underline;">섹시 #1003567753266</span>
+                        </div>
+                        <div style="font-weight:700; color:#2563eb;">총수량: 3</div>
+                    </div>
+                    <table class="sub-table">
+                        <thead>
+                            <tr>
+                                <th>주문일자</th>
+                                <th>품명</th>
+                                <th>색상</th>
+                                <th>사이즈</th>
+                                <th>순번</th>
+                                <th>단가</th>
+                                <th>주문수량</th>
+                                <th>배송수량</th>
+                                <th>배송금액</th>
+                                <th>진행단계</th>
+                                <th>중국배송일</th>
+                                <th>예상도착일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2026-01-12</td>
+                                <td>섹시 #1003567753266</td>
+                                <td>그레이블루</td>
+                                <td>FREE</td>
+                                <td>1</td>
+                                <td class="text-red font-bold">￦8,280</td>
+                                <td class="text-red font-bold">1</td>
+                                <td>0</td>
+                                <td class="text-red font-bold">￦0</td>
+                                <td>중국접수</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2026-01-12</td>
+                                <td>섹시 #1003567753266</td>
+                                <td>오트 실버</td>
+                                <td>FREE</td>
+                                <td>1</td>
+                                <td class="text-red font-bold">￦8,280</td>
+                                <td class="text-red font-bold">1</td>
+                                <td>0</td>
+                                <td class="text-red font-bold">￦0</td>
+                                <td><button onclick="openReviewModal()"
+                                        style="border:1px solid #999; background:#fff; padding:2px 6px; border-radius:4px; font-size:12px; cursor:pointer;">샘플검사</button>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2026-01-12</td>
+                                <td>섹시 #1003567753266</td>
+                                <td>블랙</td>
+                                <td>FREE</td>
+                                <td>1</td>
+                                <td class="text-red font-bold">￦8,280</td>
+                                <td class="text-red font-bold">1</td>
+                                <td>0</td>
+                                <td class="text-red font-bold">￦0</td>
+                                <td><button onclick="openReviewModal()"
+                                        style="border:1px solid #999; background:#fff; padding:2px 6px; border-radius:4px; font-size:12px; cursor:pointer;">샘플검사</button>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-item-card">
+                <div class="pic-image">
+                    <img src="https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=200">
+                </div>
+                <div class="pic-content">
+                    <div class="pic-header">
+                        <div style="font-weight:700; color:#2563eb;">
+                            상품명 <span style="text-decoration:underline;">원피스세트(S/S) #1010123941380</span>
+                        </div>
+                        <div style="font-weight:700; color:#2563eb;">총수량: 2</div>
+                    </div>
+                    <table class="sub-table">
+                        <thead>
+                            <tr>
+                                <th>주문일자</th>
+                                <th>품명</th>
+                                <th>색상</th>
+                                <th>사이즈</th>
+                                <th>순번</th>
+                                <th>단가</th>
+                                <th>주문수량</th>
+                                <th>배송수량</th>
+                                <th>배송금액</th>
+                                <th>진행단계</th>
+                                <th>중국배송일</th>
+                                <th>예상도착일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2026-01-12</td>
+                                <td>원피스세트(S/S)<br>#1010123941380</td>
+                                <td>오트섹시</td>
+                                <td>FREE</td>
+                                <td>1</td>
+                                <td class="text-red font-bold">￦15,180</td>
+                                <td class="text-red font-bold">1</td>
+                                <td>0</td>
+                                <td class="text-red font-bold">￦0</td>
+                                <td>중국접수</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2026-01-12</td>
+                                <td>원피스세트(S/S)<br>#1010123941380</td>
+                                <td>블랙레이어드<br>스커트</td>
+                                <td>FREE</td>
+                                <td>1</td>
+                                <td class="text-red font-bold">￦16,610</td>
+                                <td class="text-red font-bold">1</td>
+                                <td>0</td>
+                                <td class="text-red font-bold">￦0</td>
+                                <td>한국취소</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-item-card">
+                <div class="pic-image">
+                    <img src="https://plus.unsplash.com/premium_photo-1673356301535-21262cc2919d?w=200">
+                </div>
+                <div class="pic-content">
+                    <div class="pic-header">
+                        <div style="font-weight:700; color:#2563eb;">
+                            상품명 <span style="text-decoration:underline;">원피스단품(S/S) #900319781774</span>
+                        </div>
+                        <div style="font-weight:700; color:#2563eb;">총수량: 2</div>
+                    </div>
+                    <table class="sub-table">
+                        <thead>
+                            <tr>
+                                <th>주문일자</th>
+                                <th>품명</th>
+                                <th>색상</th>
+                                <th>사이즈</th>
+                                <th>순번</th>
+                                <th>단가</th>
+                                <th>주문수량</th>
+                                <th>배송수량</th>
+                                <th>배송금액</th>
+                                <th>진행단계</th>
+                                <th>중국배송일</th>
+                                <th>예상도착일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2026-01-12</td>
+                                <td>원피스단품(S/S)<br>#900319781774</td>
+                                <td>네이비체크<br>상의</td>
+                                <td>S</td>
+                                <td>1</td>
+                                <td class="text-red font-bold">￦12,540</td>
+                                <td class="text-red font-bold">1</td>
+                                <td class="text-red font-bold">1</td>
+                                <td class="text-red font-bold">￦12,540</td>
+                                <td>송금완료</td>
+                                <td>2026-01-17</td>
+                                <td>2026-01-21</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="viewer-backdrop">
+        <div class="viewer-container">
+            <div class="viewer-header">
+                <div class="viewer-actions">
+                    <button class="btn-viewer confirm" onclick="handleReviewAction('confirm')">주문확정</button>
+                    <button class="btn-viewer cancel" onclick="handleReviewAction('cancel')">주문취소</button>
+                </div>
+                <button class="btn-viewer-close" onclick="closeReviewModal()">닫기</button>
+            </div>
+            <div class="viewer-body">
+                <!-- Sample Mannequin Image -->
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1000&auto=format&fit=crop"
+                    class="viewer-img" alt="Sample Review">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openReviewModal() {
+            document.getElementById('reviewModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleReviewAction(action) {
+            if (action === 'confirm') {
+                alert('주문이 확정되었습니다.');
+                closeReviewModal();
+            } else if (action === 'cancel') {
+                if (confirm('정말 주문을 취소하시겠습니까?')) {
+                    alert('주문이 취소되었습니다.');
+                    closeReviewModal();
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

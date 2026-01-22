@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 주문 품절 조회</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="page-container">
+
+        <!-- Header -->
+        <div class="page-header">
+            <i class="ph ph-package"></i> 배송 조회
+        </div>
+
+        <!-- Filter Card (Legacy IDs integrated) -->
+        <div id="MASTER" class="w-card" style="padding: 20px;">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <span class="filter-label">시작일자</span>
+                    <input type="date" id="SDATE" class="w-input" value="2025-10-21">
+                </div>
+                <div class="filter-group" style="margin-left: 16px;">
+                    <span class="filter-label">종료일자</span>
+                    <input type="date" id="EDATE" class="w-input" value="2026-01-21">
+                </div>
+
+                <div style="flex: 1;"></div>
+
+                <a id="BUTTON_SEARCH" class="btn-filter btn-white" onclick="location.href='delivery_tracking.html'">
+                    <i class="ph ph-magnifying-glass"></i> 배송조회
+                </a>
+                <a id="BUTTON_DELAY" class="btn-filter btn-white" onclick="location.href='delivery_delay.html'">
+                    <i class="ph ph-clock"></i> 지연조회
+                </a>
+                <a id="BUTTON_OUT" class="btn-filter btn-black">
+                    <i class="ph ph-x-circle"></i> 주문품절조회
+                </a>
+                <a id="BUTTON_DOWN" class="btn-filter btn-white" onclick="location.href='product_soldout.html'">
+                    <i class="ph ph-warning"></i> 상품품절조회
+                </a>
+            </div>
+        </div>
+
+        <!-- Soldout List Card -->
+        <div class="w-card">
+            <div class="w-card-header">
+                <div class="w-card-title">
+                    <i class="ph ph-x-circle"></i> 주문 품절 목록
+                    <span style="font-weight: 400; color: #666; margin-left: 8px;">
+                        (
+                        <select id="delay_out_daylist" class="select-delay">
+                            <option value="14" selected>14일</option>
+                            <option value="7">7일</option>
+                            <option value="3">3일</option>
+                            <option value="1">1일</option>
+                        </select>
+                        주문건 )
+                    </span>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="btn-filter btn-white" style="gap: 8px;">
+                        <span class="excel-icon"
+                            style="margin-bottom: 0; width: 24px; height: 24px; font-size: 8px;">XLS</span> 엑셀내려받기
+                    </a>
+                </div>
+            </div>
+
+            <div id="OUT_LIST">
+                <!-- Soldout Item 1 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <a href="#">
+                            <img src="https://img1.vvic.com/upload/1680962509273_266982.jpg">
+                        </a>
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">티셔츠 #51794866</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품절일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>주문수량</th>
+                                    <th>주문금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-07</td>
+                                    <td>2026-01-21 05:19:23</td>
+                                    <td>티셔츠 #51794866</td>
+                                    <td>화이트셔츠</td>
+                                    <td>S</td>
+                                    <td class="text-blue font-bold">1</td>
+                                    <td class="text-red font-bold">￦11,660</td>
+                                    <td>위니픽</td>
+                                    <td>01055070520</td>
+                                    <td class="text-left">[] 인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Soldout Item 2 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <a href="#">
+                            <img src="https://img1.vvic.com/upload/1663758483413_314591.jpg">
+                        </a>
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">니트 #35081593</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품절일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>주문수량</th>
+                                    <th>주문금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>2026-01-21 05:09:54</td>
+                                    <td>니트 #35081593</td>
+                                    <td>살구</td>
+                                    <td>FREE</td>
+                                    <td class="text-blue font-bold">1</td>
+                                    <td class="text-red font-bold">￦9,900</td>
+                                    <td>위니픽</td>
+                                    <td>01055070520</td>
+                                    <td class="text-left">[] 인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Soldout Item 3 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <a href="#">
+                            <img src="https://img1.vvic.com/upload/1700581355366_253904.jpg">
+                        </a>
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">스웨트 #52568774</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품절일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>주문수량</th>
+                                    <th>주문금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-20</td>
+                                    <td>2026-01-20 11:31:23</td>
+                                    <td>스웨트 #52568774</td>
+                                    <td>오렌지</td>
+                                    <td>FREE</td>
+                                    <td class="text-blue font-bold">1</td>
+                                    <td class="text-red font-bold">￦19,910</td>
+                                    <td>위니픽</td>
+                                    <td>01055070520</td>
+                                    <td class="text-left">[] 인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Soldout Item 4 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <a href="#">
+                            <img src="https://img1.vvic.com/upload/1731997610331_304099.jpg">
+                        </a>
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">스웨트 #53482555</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품절일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>주문수량</th>
+                                    <th>주문금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>2026-01-20</td>
+                                    <td>스웨트 #53482555</td>
+                                    <td>상의</td>
+                                    <td>FREE</td>
+                                    <td class="text-blue font-bold">1</td>
+                                    <td class="text-red font-bold">￦22,990</td>
+                                    <td>위니픽</td>
+                                    <td>01055070520</td>
+                                    <td class="text-left">[] 인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Soldout Item 5 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <a href="#">
+                            <img src="https://img1.vvic.com/upload/1714571076830_824750.jpg">
+                        </a>
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">미니원피스 #44670698</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품절일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>주문수량</th>
+                                    <th>주문금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-19</td>
+                                    <td>2026-01-19 20:33:17</td>
+                                    <td>미니원피스 #44670698</td>
+                                    <td>화이트</td>
+                                    <td>M</td>
+                                    <td class="text-blue font-bold">1</td>
+                                    <td class="text-red font-bold">￦20,790</td>
+                                    <td>위니픽</td>
+                                    <td>01055070520</td>
+                                    <td class="text-left">[] 인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Soldout Item 6 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <a href="#">
+                            <img src="http://item-img.vvic.com/prod/24060/1761496233791_EjUIAW.jpg">
+                        </a>
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">무스탕 #53439891</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품절일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>주문수량</th>
+                                    <th>주문금액</th>
+                                    <th>수신인</th>
+                                    <th>전화번호</th>
+                                    <th class="text-left">배송지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-09</td>
+                                    <td>2026-01-12 14:23:53</td>
+                                    <td>무스탕 #53439891</td>
+                                    <td></td>
+                                    <td>FREE</td>
+                                    <td class="text-blue font-bold">1</td>
+                                    <td class="text-red font-bold">￦26,400</td>
+                                    <td>위니픽</td>
+                                    <td>01055070520</td>
+                                    <td class="text-left">[] 인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

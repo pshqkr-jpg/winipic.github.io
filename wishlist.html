@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 관심상품</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .page-container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        /* Modern Grid Layout matching Product List */
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .wish-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .wish-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Image Area */
+        .wc-thumb {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: #f4f4f5;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .wc-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content Area */
+        .wc-info {
+            padding: 0 4px;
+        }
+
+        .wc-brand {
+            font-size: 11px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .wc-title {
+            font-size: 15px;
+            color: #111;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .wc-date {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .wc-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        /* Delete Action */
+        .btn-remove {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #ef4444;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-remove:hover {
+            background: #ef4444;
+            color: #fff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="page-container">
+        <!-- Header -->
+        <div class="page-header">
+            <i class="ph ph-heart" style="color: #ef4444;"></i> 관심상품
+            <span style="font-size: 14px; color: #888; font-weight: 400; margin-left: auto;">총 4개</span>
+        </div>
+
+        <div class="wishlist-grid">
+            <!-- Item 1 -->
+            <div class="wish-card">
+                <div class="wc-thumb" style="cursor: pointer;" onclick="location.href='product_detail.html'">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80">
+                    <button class="btn-remove" title="삭제" onclick="event.stopPropagation();"><i
+                            class="ph ph-x"></i></button>
+                </div>
+                <div class="wc-info">
+                    <div class="wc-title" style="cursor: pointer;" onclick="location.href='product_detail.html'">패딩
+                        #53160855</div>
+                    <div class="wc-date">등록일자: 2025-10-28</div>
+                    <div class="wc-price">21,450원</div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="wish-card">
+                <div class="wc-thumb" style="cursor: pointer;" onclick="location.href='product_detail.html'">
+                    <img src="https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=600&q=80">
+                    <button class="btn-remove" title="삭제" onclick="event.stopPropagation();"><i
+                            class="ph ph-x"></i></button>
+                </div>
+                <div class="wc-info">
+                    <div class="wc-title" style="cursor: pointer;" onclick="location.href='product_detail.html'">패딩
+                        #52886344</div>
+                    <div class="wc-date">등록일자: 2025-10-28</div>
+                    <div class="wc-price">20,240원</div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="wish-card">
+                <div class="wc-thumb" style="cursor: pointer;" onclick="location.href='product_detail.html'">
+                    <img src="https://plus.unsplash.com/premium_photo-1673356301535-21262cc2919d?w=600&q=80">
+                    <button class="btn-remove" title="삭제" onclick="event.stopPropagation();"><i
+                            class="ph ph-x"></i></button>
+                </div>
+                <div class="wc-info">
+                    <div class="wc-title" style="cursor: pointer;" onclick="location.href='product_detail.html'">패딩
+                        #52667082</div>
+                    <div class="wc-date">등록일자: 2025-10-28</div>
+                    <div class="wc-price">20,240원</div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="wish-card">
+                <div class="wc-thumb" style="cursor: pointer;" onclick="location.href='product_detail.html'">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80">
+                    <button class="btn-remove" title="삭제" onclick="event.stopPropagation();"><i
+                            class="ph ph-x"></i></button>
+                </div>
+                <div class="wc-info">
+                    <div class="wc-title" style="cursor: pointer;" onclick="location.href='product_detail.html'">니트
+                        #48915460</div>
+                    <div class="wc-date">등록일자: 2025-10-03</div>
+                    <div class="wc-price">10,450원</div>
+                </div>
+            </div>
+
+            <!-- Add an empty state example if filtered or none (Hidden for now, just cards) -->
+        </div>
+
+    </div>
+</body>
+
+</html>

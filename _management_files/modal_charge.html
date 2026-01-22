@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 충전 요청</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Backdrop simulation */
+        body {
+            background: #333;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .w-modal {
+            background: #fff;
+            width: 520px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: modalFadeIn 0.2s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .btn-close {
+            border: none;
+            background: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .btn-close:hover {
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #444;
+            letter-spacing: -0.3px;
+        }
+
+        .input,
+        .select {
+            width: 100%;
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input:focus,
+        .select:focus {
+            border-color: #111;
+        }
+
+        .input-with-unit {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-unit input {
+            padding-right: 30px;
+            text-align: right;
+        }
+
+        .unit {
+            position: absolute;
+            right: 12px;
+            font-size: 14px;
+            color: #666;
+            pointer-events: none;
+        }
+
+        /* Notice Box */
+        .notice-box {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+        }
+
+        .notice-item {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #b45309;
+            margin-bottom: 6px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .notice-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .notice-num {
+            font-weight: 700;
+            min-width: 12px;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        /* Footer */
+        .modal-footer {
+            padding: 16px 24px;
+            background: #f9fafb;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 0 20px;
+            height: 40px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-confirm {
+            background: #111;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-confirm:hover {
+            background: #333;
+        }
+
+        .btn-cancel {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .btn-cancel:hover {
+            background: #f3f3f3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="w-modal">
+        <div class="modal-header">
+            <div class="modal-title">충전 요청</div>
+            <button class="btn-close" onclick="history.back()"><i class="ph ph-x"></i></button>
+        </div>
+
+        <div class="modal-body">
+            <!-- 계좌 선택 -->
+            <div class="form-group">
+                <label class="label">입금계좌</label>
+                <select class="select">
+                    <option>KB국민은행 850101-00-117728 주식회사 씨엘로</option>
+                </select>
+            </div>
+
+            <!-- 송금은행 & 보내는분 -->
+            <div class="form-row">
+                <div class="form-col">
+                    <label class="label">송금은행</label>
+                    <input type="text" class="input" placeholder="은행명 입력">
+                </div>
+                <div class="form-col">
+                    <label class="label">보내는분</label>
+                    <input type="text" class="input" value="위니픽">
+                </div>
+            </div>
+
+            <!-- 충전금액 -->
+            <div class="form-group">
+                <label class="label">충전금액</label>
+                <div class="input-with-unit">
+                    <input type="text" class="input" placeholder="0">
+                    <span class="unit">원</span>
+                </div>
+            </div>
+
+            <!-- 비고 -->
+            <div class="form-group">
+                <label class="label">비고</label>
+                <input type="text" class="input" placeholder="">
+            </div>
+
+            <!-- 안내 문구 (이미지 내용 반영) -->
+            <div class="notice-box">
+                <div class="notice-item">
+                    <span class="notice-num">1.</span>
+                    <span>충전 신청 시 입력한 <strong class="highlight">보내는 분 성함과 금액이 실제 입금 정보와 일치</strong>해야 자동 승인됩니다.</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-num">2.</span>
+                    <span>입금은 충전 신청 후 <strong class="highlight">1시간 이내</strong>에 진행해주셔야 하며, 이후 입금 건은 자동 처리되지 않으니 재신청 후
+                        입금바랍니다.</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-num">3.</span>
+                    <span>입금 후 <strong class="highlight">5분 이내</strong> 자동 충전되며 완료되지 않을 경우 카카오톡으로 문의해주세요.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-confirm">
+                <i class="ph-bold ph-floppy-disk"></i> 저장
+            </button>
+            <button class="btn btn-cancel" onclick="history.back()">
+                <i class="ph-bold ph-x"></i> 취소
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>

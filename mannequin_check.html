@@ -1,0 +1,532 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 마네킹샷 확인</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <div class="page-container">
+
+        <!-- Header -->
+        <div class="page-header">
+            <i class="ph ph-t-shirt"></i> 마네킹샷 확인
+        </div>
+
+        <!-- Filter Card (Legacy IDs integrated) -->
+        <div id="MASTER" class="w-card" style="padding: 20px;">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <span class="filter-label">주문일자</span>
+                    <input type="date" id="SDATE" class="w-input" value="2025-12-21">
+                    <span>~</span>
+                    <input type="date" id="EDATE" class="w-input" value="2026-01-21">
+                </div>
+                <div class="filter-group" style="margin-left: 16px;">
+                    <span class="filter-label">상품코드</span>
+                    <input type="text" id="ITEMCD" class="w-input" style="width: 160px;">
+                </div>
+
+                <div style="flex: 1;"></div>
+
+                <a id="BUTTON_SEARCH" class="btn-filter btn-black">
+                    <i class="ph ph-magnifying-glass"></i> 주문조회
+                </a>
+                <a id="BUTTON_SAMPLE" class="btn-filter btn-white" onclick="location.href='mannequin_result.html'">
+                    <i class="ph ph-camera"></i> 마네킹샷확인
+                </a>
+            </div>
+        </div>
+
+        <!-- Master Table Card -->
+        <div class="w-card">
+            <div class="w-card-header">
+                <div class="w-card-title"><i class="ph ph-list-bullets"></i> 상세 내역</div>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn"><i class="ph ph-caret-double-left"></i></button>
+                        <button class="page-btn"><i class="ph ph-caret-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn"><i class="ph ph-caret-right"></i></button>
+                        <button class="page-btn"><i class="ph ph-caret-double-right"></i></button>
+                    </div>
+                    <div style="font-size: 13px; color: #555;">
+                        Goto <input id="gotoPageNo" type="text" value="1"
+                            style="width: 30px; text-align: center; border:1px solid #ddd; border-radius:4px;"> / 2
+                        <button id="gotoPage"
+                            style="border:1px solid #ddd; background:#fff; border-radius:4px; margin-left:4px; font-size:12px; padding:2px 6px; cursor:pointer;">이동</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="master-table-wrapper">
+                <table id="ORDER_LIST" class="w-data-table">
+                    <thead>
+                        <tr>
+                            <th>주문번호</th>
+                            <th>주문일자</th>
+                            <th>배송방법</th>
+                            <th>진행단계</th>
+                            <th>주문금액</th>
+                            <th>배송금액</th>
+                            <th>배송수량</th>
+                            <th>선금금액</th>
+                            <th>수신인</th>
+                            <th class="text-left">배송주소</th>
+                            <th>Excel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Row 1 - Active/Selected -->
+                        <tr class="active-row" style="cursor: pointer;">
+                            <!-- Hidden data fields for legacy compatibility -->
+                            <td class="ODRSTT" style="display:none;">210</td>
+                            <td class="ODRAMT" style="display:none;">106590.00</td>
+                            <td class="CMTAMT" style="display:none;">54120.00</td>
+                            <td class="ADVAMT" style="display:none;">0</td>
+                            <td class="ADVRMK" style="display:none;"></td>
+                            <td class="POSTCODE" style="display:none;"></td>
+                            <td class="ADDRMAJOR" style="display:none;">인천광역시 연수구 송도과학로 80</td>
+                            <td class="ADDRMINOR" style="display:none;">AIT 101동 2205호</td>
+                            <td class="RECVMOBILE" style="display:none;">010-2469-8238</td>
+                            <!-- Visible fields -->
+                            <td class="SALHKEY">232601150015</td>
+                            <td class="SALDATE">2026-01-15</td>
+                            <td class="SALTYPENM">오션</td>
+                            <td class="ODRSTTNM text-blue">중국접수</td>
+                            <td class="FM_ODRAMT text-red font-bold">￦106,590</td>
+                            <td class="FM_CMTAMT text-red">￦54,120</td>
+                            <td class="CMTQTY text-blue font-bold">3 / 7</td>
+                            <td class="FM_ADVAMT text-red">￦0</td>
+                            <td class="RECVNM">위니픽</td>
+                            <td class="RECVADDR text-left">인천광역시 연수구 송도과학로 80 AIT 101동 2205호</td>
+                            <td class="OrderExcel"><i class="ph ph-file-xls" style="color:#166534; cursor:pointer;"></i>
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr style="cursor: pointer;">
+                            <td class="ODRSTT" style="display:none;">920</td>
+                            <td class="ODRAMT" style="display:none;">18590.00</td>
+                            <td class="CMTAMT" style="display:none;">0.00</td>
+                            <td class="ADVAMT" style="display:none;">0</td>
+                            <td class="SALHKEY">232601130001</td>
+                            <td class="SALDATE">2026-01-13</td>
+                            <td class="SALTYPENM">오션</td>
+                            <td class="ODRSTTNM">중국취소</td>
+                            <td class="FM_ODRAMT text-red font-bold">￦18,590</td>
+                            <td class="FM_CMTAMT text-red">￦0</td>
+                            <td class="CMTQTY text-blue font-bold">0 / 1</td>
+                            <td class="FM_ADVAMT text-red">￦0</td>
+                            <td class="RECVNM">위니픽</td>
+                            <td class="RECVADDR text-left">무 인천광역시 연수구 인천타워대로 231번길 97 2002-201</td>
+                            <td class="OrderExcel"><i class="ph ph-file-xls" style="color:#166534; cursor:pointer;"></i>
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr style="cursor: pointer;">
+                            <td class="SALHKEY">232601110009</td>
+                            <td class="SALDATE">2026-01-11</td>
+                            <td class="SALTYPENM">오션</td>
+                            <td class="ODRSTTNM text-blue">중국접수</td>
+                            <td class="FM_ODRAMT text-red font-bold">￦15,950</td>
+                            <td class="FM_CMTAMT text-red">￦0</td>
+                            <td class="CMTQTY text-blue font-bold">0 / 1</td>
+                            <td class="FM_ADVAMT text-red">￦0</td>
+                            <td class="RECVNM">위니픽</td>
+                            <td class="RECVADDR text-left">무 인천광역시 연수구 인천타워대로 231번길 97 2002-201</td>
+                            <td class="OrderExcel"><i class="ph ph-file-xls" style="color:#166534; cursor:pointer;"></i>
+                            </td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr style="cursor: pointer;">
+                            <td class="SALHKEY">232601060018</td>
+                            <td class="SALDATE">2026-01-06</td>
+                            <td class="SALTYPENM">오션</td>
+                            <td class="ODRSTTNM">수금완료</td>
+                            <td class="FM_ODRAMT text-red font-bold">￦16,170</td>
+                            <td class="FM_CMTAMT text-red">￦16,170</td>
+                            <td class="CMTQTY text-blue font-bold">1 / 1</td>
+                            <td class="FM_ADVAMT text-red">￦0</td>
+                            <td class="RECVNM">위니픽</td>
+                            <td class="RECVADDR text-left">무 인천광역시 연수구 인천타워대로 231번길 97 2002-201</td>
+                            <td class="OrderExcel"><i class="ph ph-file-xls" style="color:#166534; cursor:pointer;"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mannequin Detail Section -->
+        <div class="w-card">
+            <div class="w-card-header">
+                <div class="w-card-title"><i class="ph ph-camera"></i> 마네킹샷 내역</div>
+            </div>
+
+            <div id="ORDER_DETAIL">
+                <!-- Detail Item 1 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <img src="https://img1.vvic.com/upload/1741111059025_134460.jpg">
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">티셔츠 #49718682</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>순번</th>
+                                    <th>단가</th>
+                                    <th>주문수량</th>
+                                    <th>배송수량</th>
+                                    <th>배송금액</th>
+                                    <th>진행단계</th>
+                                    <th>중국배송일</th>
+                                    <th>예상도착일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>티셔츠 #49718682</td>
+                                    <td>ONE COLOR</td>
+                                    <td>2XL</td>
+                                    <td>1</td>
+                                    <td class="text-red font-bold">￦11,000</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">0</td>
+                                    <td class="text-red font-bold">￦0</td>
+                                    <td>중국접수</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detail Item 2 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <img src="https://img1.vvic.com/upload/1742232867807_117279.jpg">
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">티셔츠 #50013263</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>순번</th>
+                                    <th>단가</th>
+                                    <th>주문수량</th>
+                                    <th>배송수량</th>
+                                    <th>배송금액</th>
+                                    <th>진행단계</th>
+                                    <th>중국배송일</th>
+                                    <th>예상도착일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>티셔츠 #50013263</td>
+                                    <td>블랙</td>
+                                    <td>2XL</td>
+                                    <td>1</td>
+                                    <td class="text-red font-bold">￦10,120</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">0</td>
+                                    <td class="text-red font-bold">￦0</td>
+                                    <td>중국접수</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detail Item 3 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <img src="http://item-img.vvic.com/prod/33670/1747935999391_HZtjYJ.jpg">
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">티셔츠 #51213707</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>순번</th>
+                                    <th>단가</th>
+                                    <th>주문수량</th>
+                                    <th>배송수량</th>
+                                    <th>배송금액</th>
+                                    <th>진행단계</th>
+                                    <th>중국배송일</th>
+                                    <th>예상도착일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>티셔츠 #51213707</td>
+                                    <td>화이트</td>
+                                    <td>2XL</td>
+                                    <td>1</td>
+                                    <td class="text-red font-bold">￦11,000</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">0</td>
+                                    <td class="text-red font-bold">￦0</td>
+                                    <td>중국접수</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detail Item 4 - With Shipping Info -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <img src="http://item-img.vvic.com/prod/33670/1757513291262_SpNGXt.jpg">
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">티셔츠 #52755806</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>순번</th>
+                                    <th>단가</th>
+                                    <th>주문수량</th>
+                                    <th>배송수량</th>
+                                    <th>배송금액</th>
+                                    <th>진행단계</th>
+                                    <th>중국배송일</th>
+                                    <th>예상도착일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>티셔츠 #52755806</td>
+                                    <td>네이비</td>
+                                    <td>2XL</td>
+                                    <td>1</td>
+                                    <td class="text-red font-bold">￦14,520</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">￦14,520</td>
+                                    <td class="text-blue">한국배송</td>
+                                    <td>2026-01-19</td>
+                                    <td>2026-01-23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detail Item 5 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <img src="https://img1.vvic.com/upload/1739327694277_9883.jpg">
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">롱원피스 #54090112</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>순번</th>
+                                    <th>단가</th>
+                                    <th>주문수량</th>
+                                    <th>배송수량</th>
+                                    <th>배송금액</th>
+                                    <th>진행단계</th>
+                                    <th>중국배송일</th>
+                                    <th>예상도착일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>롱원피스 #54090112</td>
+                                    <td>3617 원피스</td>
+                                    <td>XL</td>
+                                    <td>1</td>
+                                    <td class="text-red font-bold">￦20,350</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">0</td>
+                                    <td class="text-red font-bold">￦0</td>
+                                    <td style="color:#dc2626;">한국취소</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detail Item 6 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <img src="https://img1.vvic.com/upload/1740365071658_73513.jpg">
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">롱원피스 #54101549</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>순번</th>
+                                    <th>단가</th>
+                                    <th>주문수량</th>
+                                    <th>배송수량</th>
+                                    <th>배송금액</th>
+                                    <th>진행단계</th>
+                                    <th>중국배송일</th>
+                                    <th>예상도착일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>롱원피스 #54101549</td>
+                                    <td>퍼플원피스</td>
+                                    <td>XL</td>
+                                    <td>1</td>
+                                    <td class="text-red font-bold">￦17,490</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">￦17,490</td>
+                                    <td class="text-blue">한국배송</td>
+                                    <td>2026-01-19</td>
+                                    <td>2026-01-23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detail Item 7 -->
+                <div class="product-item-card">
+                    <div class="pic-image">
+                        <img src="https://img1.vvic.com/upload/1736307935849_958821.jpg">
+                    </div>
+                    <div class="pic-content">
+                        <div class="pic-header">
+                            <div class="pic-title">
+                                <span style="color:#333;">상품명:</span>
+                                <a href="#" style="color:#2563eb; text-decoration:underline;">투피스 단품(F/W) #54136734</a>
+                            </div>
+                            <div style="font-weight:700; color:#2563eb;">총수량: <span class="text-blue">1</span></div>
+                        </div>
+                        <table class="sub-table">
+                            <thead>
+                                <tr>
+                                    <th>주문일자</th>
+                                    <th>품명</th>
+                                    <th>색상</th>
+                                    <th>사이즈</th>
+                                    <th>순번</th>
+                                    <th>단가</th>
+                                    <th>주문수량</th>
+                                    <th>배송수량</th>
+                                    <th>배송금액</th>
+                                    <th>진행단계</th>
+                                    <th>중국배송일</th>
+                                    <th>예상도착일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-01-15</td>
+                                    <td>투피스 단품(F/W) #54136734</td>
+                                    <td>원피스</td>
+                                    <td>XL</td>
+                                    <td>1</td>
+                                    <td class="text-red font-bold">￦22,110</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">1</td>
+                                    <td class="text-red font-bold">￦22,110</td>
+                                    <td class="text-blue">한국배송</td>
+                                    <td>2026-01-19</td>
+                                    <td>2026-01-23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

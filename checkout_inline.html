@@ -1,0 +1,935 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINIPIC 2.0 - 주문 등록</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        .checkout-layout {
+            max-width: 1280px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* Left Column: Forms & List */
+        .col-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Right Column: Sticky Summary */
+        .col-side {
+            width: 380px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Card Style */
+        .chk-card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Address Form Grid */
+        .addr-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .addr-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .addr-input {
+            width: 100%;
+            height: 44px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 0 14px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .addr-input:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .addr-input[readonly] {
+            background: #f9fafb;
+            color: #555;
+        }
+
+        /* Buttons Row in Form */
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-form {
+            height: 44px;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-update {
+            background: #fff;
+            border: 1px solid #111;
+            color: #111;
+        }
+
+        .btn-update:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .btn-new {
+            background: #f3f4f6;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .btn-new:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-delete {
+            background: #fff;
+            border: 1px solid #fecaca;
+            color: #ef4444;
+            margin-left: auto;
+        }
+
+        .btn-delete:hover {
+            background: #fef2f2;
+        }
+
+        /* Saved Address List Table */
+        .addr-list-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .addr-list-table th {
+            background: #f9fafb;
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .addr-list-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .addr-list-table tr.selected {
+            background: #eff6ff;
+        }
+
+        .addr-list-table tr:hover:not(.selected) {
+            background: #fafafa;
+        }
+
+        .btn-select {
+            padding: 8px 16px;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 70px;
+            white-space: nowrap;
+        }
+
+        .btn-select.inactive {
+            background: #fff;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        .btn-select.inactive:hover {
+            border-color: #111;
+            color: #111;
+        }
+
+        /* Item List Table */
+        .item-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .item-table th {
+            border-bottom: 2px solid #111;
+            padding: 16px 12px;
+            text-align: center;
+            font-weight: 700;
+            color: #111;
+            background: #fafafa;
+        }
+
+        .item-table td {
+            padding: 20px 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .item-table tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .td-left {
+            text-align: left !important;
+        }
+
+        .td-right {
+            text-align: right !important;
+        }
+
+        .code-badge {
+            background: #f1f5f9;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 12px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #111;
+        }
+
+        /* Sidebar Styles */
+        .side-card {
+            background: #fff;
+            border: 2px solid #111;
+            border-radius: 16px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .side-header {
+            background: #111;
+            color: #fff;
+            padding: 18px 22px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-date {
+            font-size: 13px;
+            font-weight: 500;
+            color: #888;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .side-body {
+            padding: 20px 22px;
+        }
+
+        .side-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        /* Shipping Method Radio Cards */
+        .ship-method-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .ship-radio-label {
+            display: block;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ship-radio-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .ship-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 14px;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ship-card:hover {
+            border-color: #cbd5e1;
+        }
+
+        .ship-card-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .ship-name {
+            font-weight: 700;
+            font-size: 15px;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ship-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .ship-check {
+            font-size: 20px;
+            color: #ddd;
+            transition: all 0.2s;
+        }
+
+        /* Selected States - Ocean (Green) */
+        .ship-radio-input.ship-ocean:checked+.ship-card {
+            border-color: #059669;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .ship-radio-input.ship-ocean:checked+.ship-card .ship-name {
+            color: #059669;
+        }
+
+        .ship-radio-input.ship-ocean:checked+.ship-card .ship-check {
+            color: #059669;
+        }
+
+        /* Selected States - Air (Blue) */
+        .ship-radio-input.ship-air:checked+.ship-card {
+            border-color: #2563eb;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+
+        .ship-radio-input.ship-air:checked+.ship-card .ship-name {
+            color: #2563eb;
+        }
+
+        .ship-radio-input.ship-air:checked+.ship-card .ship-check {
+            color: #2563eb;
+        }
+
+        .ship-warning {
+            font-size: 12px;
+            color: #dc2626;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #fecaca;
+            line-height: 1.5;
+        }
+
+        /* Custom Order */
+        .custom-order-box {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .chk-custom-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .chk-custom-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #111;
+        }
+
+        /* Totals */
+        .total-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+            margin: 16px 0;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .total-row-final {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 2px solid #111;
+        }
+
+        .final-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .final-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ea580c;
+        }
+
+        .final-price-unit {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ea580c;
+        }
+
+        .btn-final-submit {
+            width: 100%;
+            height: 52px;
+            background: linear-gradient(135deg, #111 0%, #333 100%);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            margin-top: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-final-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Notice Banner */
+        .notice-banner {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1e40af;
+        }
+
+        .notice-banner i {
+            font-size: 20px;
+        }
+
+        /* Modal Popup */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 16px;
+            width: 600px;
+            max-width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: #111;
+            color: #fff;
+            padding: 20px 24px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            background: #f9fafb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-btn-save {
+            background: #111;
+            color: #fff;
+            border: none;
+        }
+
+        .modal-btn-save:hover {
+            background: #333;
+        }
+
+        .modal-btn-cancel {
+            background: #fff;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #f5f5f5;
+        }
+
+        /* Modal Form */
+        .modal-form-row {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-form-row:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="w-header"></header>
+
+    <!-- MASTER Container (Legacy ID) -->
+    <div id="MASTER" class="checkout-layout">
+
+        <!-- Left: Forms -->
+        <div class="col-main">
+
+            <!-- Address Form (Legacy: FORM_RECV) -->
+            <div class="section-title">
+                <i class="ph ph-map-pin"></i> 배송지 정보
+            </div>
+
+            <div id="FORM_RECV" class="chk-card">
+                <input class="ADDRKEY" type="hidden" value="2502130004">
+
+                <div class="addr-grid">
+                    <div class="addr-label">배송지명</div>
+                    <div>
+                        <input type="text" class="addr-input ADDRNM" value="가입주소" readonly style="width: 200px;">
+                    </div>
+                </div>
+
+                <div class="addr-grid">
+                    <div class="addr-label">수신인</div>
+                    <div style="display:flex; gap:16px; align-items: center;">
+                        <input type="text" class="addr-input RECVNM" value="위니픽" readonly style="width: 160px;">
+                        <div class="addr-label" style="margin-left: 16px;">휴대번호</div>
+                        <input type="text" class="addr-input RECVMOBILE" value="01055070520" readonly
+                            style="width: 180px;">
+                    </div>
+                </div>
+
+                <div class="addr-grid">
+                    <div class="addr-label">주요주소</div>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <input type="text" class="addr-input ADDRMAJOR" value="인천광역시 연수구 송도과학로 80" readonly
+                            style="flex: 1;">
+                        <div class="addr-label">우편번호</div>
+                        <input type="text" class="addr-input POSTCODE" value="" readonly style="width: 100px;">
+                    </div>
+                </div>
+
+                <div class="addr-grid">
+                    <div class="addr-label">상세주소</div>
+                    <div>
+                        <input type="text" class="addr-input ADDRMINOR" value="AIT센터 101동 2205호" readonly>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="BUTTON_EDIT" class="btn-form btn-update">
+                        <i class="ph ph-pencil-simple"></i> 수정
+                    </button>
+                    <button id="BUTTON_NEW" class="btn-form btn-new">
+                        <i class="ph ph-plus"></i> 새주소
+                    </button>
+                    <button id="BUTTON_DEL" class="btn-form btn-delete">
+                        <i class="ph ph-trash"></i> 삭제
+                    </button>
+                </div>
+            </div>
+
+            <!-- Address Selection List (Legacy: RECV_LIST) -->
+            <div class="section-title">
+                <i class="ph ph-list-bullets"></i> 배송지 선택
+            </div>
+            <div id="RECV_LIST" class="chk-card" style="padding: 0; overflow: hidden;">
+                <table class="addr-list-table">
+                    <thead>
+                        <tr>
+                            <th width="80" style="text-align: center;">선택</th>
+                            <th width="100">배송지명</th>
+                            <th width="100">수신인</th>
+                            <th width="140">휴대폰번호</th>
+                            <th width="80">우편번호</th>
+                            <th>주소지</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Row Template for Legacy JS -->
+                        <tr class="rj_row selected">
+                            <td style="text-align: center">
+                                <a class="btn-select rj_button">선택중</a>
+                            </td>
+                            <td class="ADDRNM">가입주소</td>
+                            <td class="RECVNM">위니픽</td>
+                            <td class="RECVMOBILE">01055070520</td>
+                            <td class="POSTCODE"></td>
+                            <td>인천광역시 연수구 송도과학로 80 AIT센터 101동 2205호</td>
+                            <div class="ADDRKEY" style="display:none;">2502130004</div>
+                            <div class="ADDRMAJOR" style="display:none;">인천광역시 연수구 송도과학로 80</div>
+                            <div class="ADDRMINOR" style="display:none;">AIT센터 101동 2205호</div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Order Items (Legacy: rj_table) -->
+            <div class="section-title">
+                <i class="ph ph-package"></i> 주문 상품 내역
+            </div>
+            <div class="chk-card" style="padding: 0; overflow: hidden;">
+                <table class="item-table rj_table">
+                    <thead>
+                        <tr class="rj_header">
+                            <th width="100">상품코드</th>
+                            <th>상품명</th>
+                            <th width="100">색상</th>
+                            <th width="80">사이즈</th>
+                            <th width="100">단가</th>
+                            <th width="60">수량</th>
+                            <th width="120">금액</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rj_row">
+                            <td class="rj_cell"><span class="code-badge">48915460</span></td>
+                            <td class="rj_cell td-left item-name">니트 #48915460</td>
+                            <td class="rj_cell">블랙</td>
+                            <td class="rj_cell">FREE</td>
+                            <td class="rj_cell price td-right" id="ITEMPRICE1" data-itemcd="48915460" data-op1cd="黑色"
+                                data-op2cd="均码" data-odrqty="2">￦10,450</td>
+                            <td class="rj_cell">2</td>
+                            <td class="rj_cell amt td-right" style="font-weight:700; color:#ea580c;">￦20,900</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell"><span class="code-badge">48915460</span></td>
+                            <td class="rj_cell td-left item-name">니트 #48915460</td>
+                            <td class="rj_cell">베이지</td>
+                            <td class="rj_cell">FREE</td>
+                            <td class="rj_cell price td-right" id="ITEMPRICE2" data-itemcd="48915460" data-op1cd="米色"
+                                data-op2cd="均码" data-odrqty="2">￦10,450</td>
+                            <td class="rj_cell">2</td>
+                            <td class="rj_cell amt td-right" style="font-weight:700; color:#ea580c;">￦20,900</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell"><span class="code-badge">48915460</span></td>
+                            <td class="rj_cell td-left item-name">니트 #48915460</td>
+                            <td class="rj_cell">인디퍼플</td>
+                            <td class="rj_cell">FREE</td>
+                            <td class="rj_cell price td-right" id="ITEMPRICE3" data-itemcd="48915460" data-op1cd="灰紫色"
+                                data-op2cd="均码" data-odrqty="1">￦10,450</td>
+                            <td class="rj_cell">1</td>
+                            <td class="rj_cell amt td-right" style="font-weight:700; color:#ea580c;">￦10,450</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell"><span class="code-badge">52886344</span></td>
+                            <td class="rj_cell td-left item-name">패딩 #52886344</td>
+                            <td class="rj_cell">아이보리</td>
+                            <td class="rj_cell">M</td>
+                            <td class="rj_cell price td-right" id="ITEMPRICE4" data-itemcd="52886344" data-op1cd="米白色"
+                                data-op2cd="M" data-odrqty="2">￦20,240</td>
+                            <td class="rj_cell">2</td>
+                            <td class="rj_cell amt td-right" style="font-weight:700; color:#ea580c;">￦40,480</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell"><span class="code-badge">52886344</span></td>
+                            <td class="rj_cell td-left item-name">패딩 #52886344</td>
+                            <td class="rj_cell">그레이</td>
+                            <td class="rj_cell">M</td>
+                            <td class="rj_cell price td-right" id="ITEMPRICE5" data-itemcd="52886344" data-op1cd="灰色"
+                                data-op2cd="M" data-odrqty="1">￦20,240</td>
+                            <td class="rj_cell">1</td>
+                            <td class="rj_cell amt td-right" style="font-weight:700; color:#ea580c;">￦20,240</td>
+                        </tr>
+                        <tr class="rj_row">
+                            <td class="rj_cell"><span class="code-badge">918909655436</span></td>
+                            <td class="rj_cell td-left item-name">미니원피스 #918909655436</td>
+                            <td class="rj_cell">원피스</td>
+                            <td class="rj_cell">S</td>
+                            <td class="rj_cell price td-right" id="ITEMPRICE6" data-itemcd="918909655436"
+                                data-op1cd="连衣裙" data-op2cd="S" data-odrqty="2">￦20,240</td>
+                            <td class="rj_cell">2</td>
+                            <td class="rj_cell amt td-right" style="font-weight:700; color:#ea580c;">￦40,480</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- Right: Shipping & Payment Summary -->
+        <div class="col-side">
+            <div class="side-card">
+                <div class="side-header">
+                    <div><i class="ph ph-shopping-bag"></i> 신규 주문 등록</div>
+                    <div class="order-date">2026-01-21</div>
+                </div>
+                <div class="side-body">
+                    <div class="side-section-title">배송 방법 선택</div>
+
+                    <div class="ship-method-group">
+                        <!-- Ocean Shipping (Legacy: delivery_sea) -->
+                        <label class="ship-radio-label">
+                            <input type="radio" name="shipping" id="delivery_sea" class="ship-radio-input ship-ocean"
+                                checked>
+
+                            <div class="ship-card">
+                                <div class="ship-card-left">
+                                    <span class="ship-name">
+                                        <i class="ph-fill ph-anchor"></i> 오션배송
+                                    </span>
+                                    <span class="ship-desc">물류/관세 포함 · 5~7일 소요</span>
+                                </div>
+                                <i class="ph-fill ph-check-circle ship-check"></i>
+                            </div>
+                        </label>
+
+                        <!-- Air Shipping (Legacy: delivery_air) -->
+                        <label class="ship-radio-label">
+                            <input type="radio" name="shipping" id="delivery_air" class="ship-radio-input ship-air">
+                            <div class="ship-card" style="display: block;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div class="ship-card-left">
+                                        <span class="ship-name">
+                                            <i class="ph-fill ph-airplane-tilt"></i> 에어배송
+                                        </span>
+                                        <span class="ship-desc">빠른 배송 · 3일 소요</span>
+                                    </div>
+                                    <i class="ph-fill ph-check-circle ship-check"></i>
+                                </div>
+                                <div class="ship-warning">
+                                    <i class="ph ph-warning"></i>
+                                    물류비 1kg당 6,000원의 배송비가 추가 청구됩니다.<br>
+                                    사전 접수 후 주문바랍니다.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Custom Order (Legacy: MADEYN) -->
+                    <div id="MADEYN" data-check="N" class="custom-order-box">
+                        <label class="chk-custom-label">
+                            <input type="checkbox">
+                            <span>주문 제작 (Custom Order)</span>
+                        </label>
+                    </div>
+
+                    <div class="total-divider"></div>
+
+                    <!-- Totals -->
+                    <div class="total-row">
+                        <span>상품 합계</span>
+                        <span style="font-weight: 600;">￦<span id="total_amt">153,450</span></span>
+                    </div>
+                    <div class="total-row">
+                        <span>배송비</span>
+                        <span style="font-weight: 600; color: #059669;">포함</span>
+                    </div>
+
+                    <div class="total-row-final">
+                        <span class="final-label">총 합계</span>
+                        <div>
+                            <span class="final-price">￦153,450</span>
+                            <span class="final-price-unit">원</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button (Legacy: ToOrder) -->
+                    <button id="ToOrder" class="btn-final-submit" onclick="toggleLackBalanceModal(true)">
+                        <i class="ph-bold ph-paper-plane-tilt"></i> 주문 등록하기
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Address Edit/New Popup (Legacy: POP_NEW_RECV) -->
+    <div id="POP_NEW_RECV" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>배송지 수정 / 삭제</span>
+                <button class="modal-close"
+                    onclick="document.getElementById('POP_NEW_RECV').classList.remove('active')">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input class="ADDRKEY" type="hidden">
+
+                <div class="modal-form-row">
+                    <div class="addr-label">배송지명</div>
+                    <input type="text" class="addr-input ADDRNM">
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="addr-label">수취인</div>
+                    <div style="display: flex; gap: 12px;">
+                        <input type="text" class="addr-input RECVNM" style="width: 150px;">
+                        <div class="addr-label" style="margin-left: 8px;">휴대번호</div>
+                        <input type="text" class="addr-input RECVMOBILE" style="flex: 1;">
+                    </div>
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="addr-label">주요주소</div>
+                    <div style="display: flex; gap: 12px;">
+                        <input type="text" class="addr-input ADDRMAJOR" style="flex: 1;">
+                        <div class="addr-label">우편번호</div>
+                        <input type="text" class="addr-input POSTCODE" style="width: 100px;">
+                        <button id="BUTTON_POST" class="btn-form btn-new" style="display: none;">
+                            <i class="ph ph-magnifying-glass"></i> 조회
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="addr-label">상세주소</div>
+                    <input type="text" class="addr-input ADDRMINOR">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="POP_NEW_RECV_Cancel" class="modal-btn modal-btn-cancel">
+                    <i class="ph ph-x"></i> 취소
+                </button>
+                <button id="POP_NEW_RECV_Save" class="modal-btn modal-btn-save">
+                    <i class="ph ph-floppy-disk"></i> 저장
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden iframe for form submit (Legacy) -->
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Points Modal</title>
+    <link rel="stylesheet" href="global.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            background: #333;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+        }
+
+        .w-modal {
+            transform: scale(1) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            width: 600px;
+            max-width: 90%;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-modal">
+        <div class="w-modal-header">
+            <div style="display:flex; align-items:center; gap: 12px;">
+                <div class="w-modal-title">적립금 사용명세표</div>
+                <button
+                    style="background:#111; color:#fff; border:none; padding:8px 16px; border-radius:6px; font-size:14px; font-weight:700; cursor:pointer;">
+                    + 적립금 충전
+                </button>
+            </div>
+            <div class="w-modal-close">
+                <i class="ph ph-x" style="font-size: 20px;"></i>
+            </div>
+        </div>
+        <div class="w-modal-body">
+            <!-- 필터 영역 -->
+            <div class="points-filter">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:13px; font-weight:600;">시작일자:</span>
+                    <input type="date" class="date-input" value="2025-10-19">
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:13px; font-weight:600;">종료일자:</span>
+                    <input type="date" class="date-input" value="2026-01-19">
+                </div>
+                <button class="btn-search">
+                    <i class="ph ph-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <!-- 데이터 테이블 -->
+            <div style="max-height: 400px; overflow-y: auto;">
+                <table class="points-table">
+                    <thead>
+                        <tr>
+                            <th>적립일자</th>
+                            <th style="text-align:right;">추가적립금</th>
+                            <th style="text-align:right;">사용적립금</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="points-row row-highlight">
+                            <td style="font-weight:700;">사입진행중</td>
+                            <td style="text-align:right;">0</td>
+                            <td style="text-align:right;" class="text-use">-1,976,920</td>
+                        </tr>
+                        <tr class="points-row">
+                            <td>2025-10-20</td>
+                            <td style="text-align:right;">0</td>
+                            <td style="text-align:right;" class="text-use">-2,671,350</td>
+                        </tr>
+                        <tr class="points-row">
+                            <td>2025-10-20</td>
+                            <td style="text-align:right;" class="text-earn">+4,000,000</td>
+                            <td style="text-align:right;">0</td>
+                        </tr>
+                        <tr class="points-row">
+                            <td>2025-10-20</td>
+                            <td style="text-align:right;">0</td>
+                            <td style="text-align:right;" class="text-use">-2,337,280</td>
+                        </tr>
+                        <tr class="points-row">
+                            <td>2025-10-21</td>
+                            <td style="text-align:right;">0</td>
+                            <td style="text-align:right;" class="text-use">-914,760</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
