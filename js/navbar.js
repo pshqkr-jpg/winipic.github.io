@@ -27,8 +27,6 @@ const navConfig = {
                 '팬츠', '가방', '신발'
             ]
         },
-        { label: 'My Products', id: 'my', href: 'product_list.html?cat=my&sub=전체' },
-        { label: '이용가이드', href: 'guide.html' },
         { label: '고객센터', href: 'notice.html' }
     ]
 };
@@ -254,10 +252,9 @@ function renderNavbar() {
     if (isLoggedIn) {
         toolsHTML = `
             <div class="w-tools">
-                <!-- 카카오 상담톡 -->
-                <button class="btn-icon" onclick="openKakaoChat()" title="카카오톡 상담" style="background:#fee500; border:none; margin-right:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:50%;">
-                    <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px; color:#3c1e1e;"></i>
-                </button>
+                <!-- 자주 사용하는 메뉴 (로그인 시 노출) -->
+                <a href="product_list.html?cat=my&sub=전체" class="w-nav-item" style="font-size:14px; font-weight:600; margin-right:16px;">My Products</a>
+                <a href="order_history.html" class="w-nav-item" style="font-size:14px; font-weight:600; margin-right:24px;">주문조회</a>
 
                 <!-- 적립금 배지 -->
                 <div class="w-points-badge" onclick="togglePointsModal(true)">
@@ -273,7 +270,6 @@ function renderNavbar() {
                     </button>
                 </div>
 
-                <!-- 관심 상품 -->
                 <!-- 관심 상품 -->
                 <button class="btn-icon" onclick="location.href='wishlist.html'">
                     <i class="ph ph-heart" style="font-size: 20px;"></i>
@@ -303,26 +299,34 @@ function renderNavbar() {
                         <a href="index.html" class="w-dropdown-item" style="color:#e11d48;" onclick="localStorage.removeItem('isLoggedIn');">로그아웃</a>
                     </div>
                 </div>
+
+                <!-- 카카오 상담톡 버튼 (텍스트 포함, 우측 끝) -->
+                <button onclick="openKakaoChat()" style="display:flex; align-items:center; gap:6px; background:#fee500; border:none; padding:0 16px; height:40px; border-radius:20px; margin-left:12px; font-weight:600; font-size:14px; color:#3c1e1e; cursor:pointer;">
+                    <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
+                    카톡 상담
+                </button>
             </div>
+        `;
         `;
     } else {
         toolsHTML = `
-            <div class="w-tools">
-                <!-- 카카오 상담톡 -->
-                <button class="btn-icon" onclick="openKakaoChat()" title="카카오톡 상담" style="background:#fee500; border:none; margin-right:16px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:50%;">
-                    <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px; color:#3c1e1e;"></i>
-                </button>
-
+            < div class="w-tools" >
                 <a href="login.html" class="w-nav-item" style="font-size:14px; font-weight:700; margin-right: 0;">로그인</a>
                 <div style="width: 1px; height: 16px; background: #ddd; margin: 0 16px;"></div>
                 <a href="signup.html" class="w-nav-item" style="font-size:14px; font-weight:700;">회원가입</a>
-            </div>
-        `;
+
+                <!--카카오 상담톡 버튼(텍스트 포함, 우측 끝)-- >
+            <button onclick="openKakaoChat()" style="display:flex; align-items:center; gap:6px; background:#fee500; border:none; padding:0 16px; height:40px; border-radius:20px; margin-left:16px; font-weight:600; font-size:14px; color:#3c1e1e; cursor:pointer;">
+                <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
+                카톡 상담
+            </button>
+            </div >
+            `;
     }
 
     header.innerHTML = `
-        <div class="w-header-container">
-            <!-- 로고 -->
+            < div class="w-header-container" >
+            < !--로고 -->
             <a href="index.html" class="w-logo">
                 <svg width="220" height="55" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <text x="10" y="45" font-family="'Inter', sans-serif" font-weight="900" font-style="italic" font-size="36" letter-spacing="-2" fill="#111">WINIPIC</text>
@@ -330,19 +334,19 @@ function renderNavbar() {
                 </svg>
             </a>
 
-            <!-- 네비게이션 -->
+            <!--네비게이션 -->
             <nav class="w-nav">
                 ${navItemsHTML}
             </nav>
 
-            <!-- 우측 도구 -->
-            ${toolsHTML}
-        </div>
-    `;
+            <!--우측 도구-- >
+            ${ toolsHTML }
+        </div >
+            `;
 
     // 퀵 메뉴 HTML (항상 렌더링)
     const quickMenuHTML = `
-        <div class="w-quick-menu">
+            < div class="w-quick-menu" >
             <div class="w-quick-item" onclick="location.href='order_history.html'">
                 <i class="ph ph-receipt w-quick-icon"></i>
                 <span class="w-quick-label">주문내역</span>
@@ -359,8 +363,8 @@ function renderNavbar() {
                 <i class="ph ph-plus-circle w-quick-icon"></i>
                 <span class="w-quick-label">상품요청</span>
             </div>
-        </div>
-    `;
+        </div >
+            `;
 
     // 모달들 HTML을 body 끝에 추가 (중복 방지)
     if (!document.getElementById('pointsModal')) {
@@ -413,15 +417,15 @@ function renderNavbar() {
             ];
 
             const subMenuHTML = `
-                <div class="w-subheader">
-                    <div class="w-subheader-container">
-                        ${subMenuItems.map(item => {
-                const isActive = currentPath.includes(item.href) ||
-                    (item.href === 'mannequin_check.html' && currentPath.includes('mannequin_result.html')); // 예외 처리 (결과 페이지도 활성화)
-                return `<a href="${item.href}" class="w-sub-link ${isActive ? 'active' : ''}">${item.label}</a>`;
-            }).join('')}
-                    </div>
+            < div class="w-subheader" >
+                <div class="w-subheader-container">
+                    ${subMenuItems.map(item => {
+                        const isActive = currentPath.includes(item.href) ||
+                            (item.href === 'mannequin_check.html' && currentPath.includes('mannequin_result.html')); // 예외 처리 (결과 페이지도 활성화)
+                        return `<a href="${item.href}" class="w-sub-link ${isActive ? 'active' : ''}">${item.label}</a>`;
+                    }).join('')}
                 </div>
+                </div >
             `;
 
             header.insertAdjacentHTML('afterend', subMenuHTML);
