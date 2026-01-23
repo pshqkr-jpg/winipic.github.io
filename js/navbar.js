@@ -305,7 +305,7 @@ function renderNavbar() {
                 </div>
 
                 <!-- 카카오 상담톡 버튼 (모바일 아이콘만) -->
-                <button class="btn-kakao" onclick="openKakaoChat()">
+                <button class="btn-kakao mobile-hide" onclick="openKakaoChat()">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
                     <span class="desktop-text">카톡 상담</span>
                 </button>
@@ -319,7 +319,7 @@ function renderNavbar() {
                 <a href="signup.html" class="w-nav-item" style="font-size:14px; font-weight:700;">회원가입</a>
 
                 <!-- 카카오 상담톡 버튼 (모바일 아이콘만) -->
-                <button class="btn-kakao" onclick="openKakaoChat()">
+                <button class="btn-kakao mobile-hide" onclick="openKakaoChat()">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
                     <span class="desktop-text">카톡 상담</span>
                 </button>
@@ -387,14 +387,21 @@ function renderNavbar() {
                     <div style="margin-bottom: 30px;">
                         <div style="font-size: 13px; font-weight: 700; color: #888; margin-bottom: 12px; letter-spacing: 0.5px;">SHOPPING</div>
                         ${navConfig.topMenu.map(item => `
-                            <div style="margin-bottom: 16px;">
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
-                                    <span style="font-weight: 700; font-size: 16px;" onclick="location.href='${item.href}'">${item.label}</span>
+                            <div style="margin-bottom: 12px;">
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <span style="font-weight: 700; font-size: 16px; padding: 8px 0; display:block; flex:1;" onclick="location.href='${item.href}'">${item.label}</span>
+                                    ${item.children ? `
+                                    <button onclick="toggleSubmenu(this)" style="background:none; border:none; padding:8px 4px; cursor:pointer; display:flex; align-items:center;">
+                                        <i class="ph ph-caret-down" style="font-size: 20px; color: #888;"></i>
+                                    </button>
+                                    ` : ''}
                                 </div>
                                 ${item.children ? `
-                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 12px;">
+                                    <div class="mobile-submenu" style="display: none; grid-template-columns: repeat(2, 1fr); gap: 10px 12px; padding: 10px 0 16px 10px; border-top: 1px solid #f5f5f5;">
                                         ${item.children.map(child => `
-                                            <a href="product_list.html?cat=${item.id}&sub=${child}" style="font-size: 14px; color: #666; padding: 4px 0;">${child}</a>
+                                            <a href="product_list.html?cat=${item.id}&sub=${child}" style="font-size: 14px; color: #555; padding: 4px 0; display:flex; align-items:center; gap:6px;">
+                                                <span style="width:4px; height:4px; border-radius:50%; background:#ddd;"></span> ${child}
+                                            </a>
                                         `).join('')}
                                     </div>
                                 ` : ''}
@@ -409,14 +416,12 @@ function renderNavbar() {
                     <div style="margin-bottom: 30px;">
                         <div style="font-size: 13px; font-weight: 700; color: #888; margin-bottom: 12px; letter-spacing: 0.5px;">MY PAGE</div>
                         <div style="display: flex; flex-direction: column; gap: 12px;">
-                            <a href="wishlist.html" style="font-size: 15px; color: #333; font-weight: 500; display:flex; align-items:center; gap:6px;">
-                                <i class="ph ph-heart" style="font-size:18px;"></i> 관심상품
-                            </a>
                             <a href="order_history.html" style="font-size: 15px; color: #333; font-weight: 500;">주문내역</a>
                             <a href="delivery_tracking.html" style="font-size: 15px; color: #333; font-weight: 500;">배송조회</a>
                             <a href="mannequin_check.html" style="font-size: 15px; color: #333; font-weight: 500;">마네킹샷 확인</a>
                             <a href="request_tool.html" style="font-size: 15px; color: #333; font-weight: 500;">상품요청</a>
                             <a href="cart.html" style="font-size: 15px; color: #333; font-weight: 500;">장바구니</a>
+                            <a href="wishlist.html" style="font-size: 15px; color: #333; font-weight: 500;">관심상품</a>
                             <a href="excel_order.html" style="font-size: 15px; color: #333; font-weight: 500;">엑셀주문</a>
                             <a href="user_profile.html" style="font-size: 15px; color: #333; font-weight: 500;">회원정보수정</a>
                         </div>
@@ -523,7 +528,7 @@ function renderNavbar() {
             ];
 
             const subMenuHTML = `
-    <div class="w-subheader">
+    <div class="w-subheader mobile-hide">
         <div class="w-subheader-container">
             ${subMenuItems.map(item => {
                 const isActive = currentPath.includes(item.href) ||
@@ -584,6 +589,26 @@ window.toggleMobileMenu = function (show) {
         drawer.style.transform = 'translateX(100%)';
         setTimeout(() => menu.style.display = 'none', 300);
         document.body.style.overflow = '';
+    }
+}
+
+// Mobile Submenu Toggle
+window.toggleSubmenu = function (btn) {
+    const submenu = btn.parentElement.nextElementSibling;
+    const icon = btn.querySelector('i');
+
+    if (submenu) {
+        if (submenu.style.display === 'none') {
+            submenu.style.display = 'grid';
+            icon.classList.replace('ph-caret-down', 'ph-caret-up');
+            // Optional: Close other submenus
+            // document.querySelectorAll('.mobile-submenu').forEach(el => {
+            //    if (el !== submenu) el.style.display = 'none';
+            // });
+        } else {
+            submenu.style.display = 'none';
+            icon.classList.replace('ph-caret-up', 'ph-caret-down');
+        }
     }
 }
 
