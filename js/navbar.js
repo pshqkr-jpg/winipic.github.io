@@ -425,11 +425,9 @@ function renderNavbar() {
 
                 </div>
 
-                    `}
-                </div >
-                < !--Added right margin to prevent cut - off-- >
-    <div style="padding: 20px; border-top: 1px solid #eee; background: #f9f9f9; padding-right: 30px;">
-        ${isLoggedIn ? `
+                <!-- Footer / Login Actions -->
+                <div style="padding: 20px; border-top: 1px solid #eee; background: #f9f9f9; padding-right: 30px;">
+                    ${isLoggedIn ? `
                         <button onclick="localStorage.removeItem('isLoggedIn'); location.href='index.html';" 
                             style="width: 100%; height: 44px; border: 1px solid #ddd; background: #fff; border-radius: 8px; font-weight: 600; color: #e11d48; cursor: pointer;">
                             로그아웃
