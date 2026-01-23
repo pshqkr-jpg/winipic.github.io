@@ -97,7 +97,140 @@
         </div>
     </div>
 
-    <!-- 4. New Arrivals (Legacy Products) -->
+    <!-- YouTube Channel Intro -->
+    <section class="section-youtube">
+        <div class="w-container youtube-container">
+            <div class="youtube-content">
+                <span class="youtube-tag">WINIPIC YOUTUBE</span>
+                <h2 class="youtube-title">
+                    중국 사입의 생생한 현장,<br>
+                    <span style="color: #ff0000;">위니픽 유튜브</span>에서 확인하세요!
+                </h2>
+                <p class="youtube-desc">
+                    현지 도매 시장의 생생한 모습부터 실무 꿀팁까지.<br>
+                    글로벌 셀러를 꿈꾸는 사장님들을 위해<br>
+                    중국 사입에 관한 모든 이야기를 영상으로 담았습니다.
+                </p>
+                <a href="https://www.youtube.com/@%EC%A4%91%EA%B5%AD%EC%9D%98%EB%A5%98%EC%88%98%EC%9E%85_%EC%9C%84%EB%8B%88%ED%94%BD"
+                    target="_blank" class="btn-youtube">
+                    <i class="ph-fill ph-youtube-logo"></i> 채널 보러가기
+                </a>
+            </div>
+            <div class="youtube-visual">
+                <div class="youtube-embed">
+                    <iframe src="https://www.youtube.com/embed/wUpwkPAVEYg?rel=0&modestbranding=1&playsinline=1"
+                        title="Winipic YouTube Sourcing Story"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .section-youtube {
+            padding: 80px 0;
+            background: #f9fafb;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        .youtube-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .youtube-content {
+            flex: 1;
+        }
+
+        .youtube-tag {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ff0000;
+            margin-bottom: 16px;
+            display: block;
+            letter-spacing: 0.5px;
+            background: #fee2e2;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .youtube-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 24px;
+            line-height: 1.3;
+            word-break: keep-all;
+        }
+
+        .youtube-desc {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 32px;
+            word-break: keep-all;
+        }
+
+        .btn-youtube {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: #ff0000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+        }
+
+        .btn-youtube:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .youtube-visual {
+            flex: 1.2;
+        }
+
+        .youtube-embed {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 Aspect Ratio */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .youtube-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (max-width: 900px) {
+            .youtube-container {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .youtube-visual {
+                width: 100%;
+            }
+        }
+    </style>
     <div class="w-container" style="margin-top: 60px; margin-bottom: 80px;">
         <div
             style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 20px;">
