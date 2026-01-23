@@ -315,8 +315,8 @@ function renderNavbar() {
         toolsHTML = `
             <div class="w-tools">
                 <a href="login.html" class="w-nav-item" style="font-size:14px; font-weight:700; margin-right: 0;">로그인</a>
-                <div style="width: 1px; height: 16px; background: #ddd; margin: 0 16px;"></div>
-                <a href="signup.html" class="w-nav-item" style="font-size:14px; font-weight:700;">회원가입</a>
+                <div class="mobile-hide" style="width: 1px; height: 16px; background: #ddd; margin: 0 16px;"></div>
+                <a href="signup.html" class="w-nav-item mobile-hide" style="font-size:14px; font-weight:700;">회원가입</a>
 
                 <!-- 카카오 상담톡 버튼 (모바일 아이콘만) -->
                 <button class="btn-kakao mobile-hide" onclick="openKakaoChat()">
@@ -346,12 +346,14 @@ function renderNavbar() {
             </div>
 
             <!-- 우측 도구 -->
-            ${toolsHTML}
+            <div style="display:flex; align-items:center;">
+                ${toolsHTML}
 
-            <!-- Mobile Menu Button (Hamburger) - Visible only on mobile via CSS -->
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu(true)">
-                <i class="ph ph-list" style="font-size: 28px; color: #111;"></i>
-            </button>
+                <!-- Mobile Menu Button (Hamburger) - Visible only on mobile via CSS -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu(true)">
+                    <i class="ph ph-list" style="font-size: 28px; color: #111;"></i>
+                </button>
+            </div>
         </div>
     `;
 
