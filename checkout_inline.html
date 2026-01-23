@@ -599,6 +599,144 @@
         .modal-form-row:last-child {
             margin-bottom: 0;
         }
+
+        .modal-form-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* -----------------------------------------------------------------------------
+           MOBILE RESPONSIVENESS (Max-Width: 768px)
+           ----------------------------------------------------------------------------- */
+        @media (max-width: 768px) {
+            .checkout-layout {
+                flex-direction: column;
+                margin: 20px auto 100px;
+                /* Space for sticky button */
+                padding: 0 16px;
+                gap: 24px;
+            }
+
+            .col-main {
+                width: 100%;
+            }
+
+            .col-side {
+                width: 100%;
+                position: static;
+            }
+
+            /* Address Form - Stack Labels & Inputs */
+            .addr-grid {
+                grid-template-columns: 1fr;
+                /* Stack vertically */
+                gap: 8px;
+            }
+
+            .addr-label {
+                color: #333;
+                font-size: 13px;
+            }
+
+            /* Inputs Full Width & Remove fixed widths */
+            .addr-input,
+            .addr-input[style] {
+                width: 100% !important;
+                flex: 1;
+            }
+
+            /* Complex Rows (Name/Phone, Address/Postcode) */
+            .addr-grid>div[style*="display:flex"],
+            .addr-grid>div[style*="display: flex"] {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            /* Remove margins from labels inside flex containers */
+            .addr-grid>div[style*="display"]>.addr-label[style*="margin-left"] {
+                margin-left: 0 !important;
+                margin-top: 4px;
+            }
+
+            /* Form Buttons */
+            .form-actions {
+                flex-wrap: wrap;
+            }
+
+            .btn-form {
+                flex: 1;
+                justify-content: center;
+                padding: 0 12px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            /* Tables - Horizontal Scroll */
+            .chk-card[style*="overflow: hidden"] {
+                overflow-x: auto !important;
+            }
+
+            .addr-list-table,
+            .item-table {
+                min-width: 600px;
+                /* Force scroll */
+            }
+
+            /* Cards Padding */
+            .chk-card {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            /* Section Titles */
+            .section-title {
+                font-size: 18px;
+            }
+
+            /* Sidebar Card Mobile */
+            .side-card {
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+
+            /* Sticky Submit Button */
+            .btn-final-submit {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0;
+                border-radius: 0;
+                height: auto;
+                min-height: 60px;
+                z-index: 1000;
+                padding-bottom: env(safe-area-inset-bottom);
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            /* Modal Mobile */
+            .modal-content {
+                width: 95%;
+                margin: 20px;
+                max-height: 90vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .modal-body {
+                overflow-y: auto;
+            }
+
+            .modal-form-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .modal-form-row input,
+            .modal-form-row select {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
