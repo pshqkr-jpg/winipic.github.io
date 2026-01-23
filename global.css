@@ -2290,6 +2290,20 @@ select {
         gap: 16px;
     }
 
+    /* Small Screen Optimization (< 360px) */
+    @media (max-width: 360px) {
+
+        .w-container,
+        .page-container {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+
+        .w-product-grid {
+            gap: 8px;
+        }
+    }
+
     /* 5. Forms (Stacking) */
     .filter-row {
         flex-direction: column;
