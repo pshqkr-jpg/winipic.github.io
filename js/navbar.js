@@ -351,42 +351,85 @@ function renderNavbar() {
 
         <!-- Mobile Menu Drawer -->
         <div id="mobileMenu" class="mobile-menu-backdrop" style="display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.5);">
-            <div class="mobile-drawer" style="position:absolute; top:0; right:0; width:80%; max-width:300px; height:100%; background:#fff; padding:20px; transition:transform 0.3s; transform:translateX(100%); display:flex; flex-direction:column;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-                    <span style="font-weight:700; font-size:18px;">MENU</span>
+            <div class="mobile-drawer" style="position:absolute; top:0; right:0; width:85%; max-width:320px; height:100%; background:#fff; display:flex; flex-direction:column; overflow:hidden;">
+                
+                <!-- Drawer Header -->
+                <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 800; font-size: 18px;">MENU</span>
                     <button onclick="toggleMobileMenu(false)" style="background:none; border:none; padding:4px; cursor:pointer;">
-                        <i class="ph ph-x" style="font-size:24px;"></i>
+                        <i class="ph ph-x" style="font-size: 24px;"></i>
                     </button>
                 </div>
-                
-                <div class="mobile-nav-list" style="flex:1; overflow-y:auto;">
-                    ${navConfig.topMenu.map(item => `
-                        <div style="margin-bottom:16px;">
-                            <div style="font-weight:700; font-size:16px; margin-bottom:12px;">${item.label}</div>
-                            ${item.children ? `
-                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding-left:10px;">
-                                    ${item.children.map(child => `
-                                        <a href="product_list.html?cat=${item.id}&sub=${child}" style="font-size:14px; color:#555;">${child}</a>
-                                    `).join('')}
-                                </div>
-                            ` : ''}
+
+                <!-- Drawer Content -->
+                <div class="mobile-nav-list" style="flex: 1; overflow-y: auto; padding: 20px;">
+                    
+                    ${isLoggedIn ? `
+                    <!-- 1. Point Badge (Mobile Only) -->
+                    <div onclick="togglePointsModal(true); toggleMobileMenu(false);" 
+                        style="background: #f4f4f5; padding: 12px 16px; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                        <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px;">
+                            <i class="ph-fill ph-coins" style="color: #ea580c;"></i>
+                            <span>보유 적립금</span>
                         </div>
-                    `).join('')}
+                        <span style="font-weight: 700; color: #111;">32,500원</span>
+                    </div>
+                    ` : ''}
+
+                    <!-- 2. Main Categories (Women, Men, My Products) -->
+                    <div style="margin-bottom: 30px;">
+                        <div style="font-size: 13px; font-weight: 700; color: #888; margin-bottom: 12px; letter-spacing: 0.5px;">SHOPPING</div>
+                        ${navConfig.topMenu.map(item => `
+                            <div style="margin-bottom: 16px;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+                                    <span style="font-weight: 700; font-size: 16px;" onclick="location.href='${item.href}'">${item.label}</span>
+                                </div>
+                                ${item.children ? `
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 12px;">
+                                        ${item.children.map(child => `
+                                            <a href="product_list.html?cat=${item.id}&sub=${child}" style="font-size: 14px; color: #666; padding: 4px 0;">${child}</a>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="height: 1px; background: #eee; margin: 0 -20px 30px -20px;"></div>
+
+                    <!-- 3. My Page Links -->
+                    ${isLoggedIn ? `
+                    <div style="margin-bottom: 30px;">
+                        <div style="font-size: 13px; font-weight: 700; color: #888; margin-bottom: 12px; letter-spacing: 0.5px;">MY PAGE</div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <a href="order_history.html" style="font-size: 15px; color: #333; font-weight: 500;">주문내역</a>
+                            <a href="delivery_tracking.html" style="font-size: 15px; color: #333; font-weight: 500;">배송조회</a>
+                            <a href="mannequin_check.html" style="font-size: 15px; color: #333; font-weight: 500;">마네킹샷 확인</a>
+                            <a href="request_tool.html" style="font-size: 15px; color: #333; font-weight: 500;">상품요청</a>
+                            <a href="cart.html" style="font-size: 15px; color: #333; font-weight: 500;">장바구니</a>
+                            <a href="excel_order.html" style="font-size: 15px; color: #333; font-weight: 500;">엑셀주문</a>
+                            <a href="user_profile.html" style="font-size: 15px; color: #333; font-weight: 500;">회원정보수정</a>
+                        </div>
+                    </div>
+                    ` : ''}
+
                 </div>
 
-                ${isLoggedIn ? `
-                    <div style="border-top:1px solid #eee; padding-top:20px;">
-                        <div style="font-weight:700; margin-bottom:12px;">마이페이지</div>
-                        <a href="order_history.html" style="display:block; padding:8px 0; color:#555;">주문내역</a>
-                        <a href="cart.html" style="display:block; padding:8px 0; color:#555;">장바구니</a>
-                        <a href="index.html" onclick="localStorage.removeItem('isLoggedIn');" style="display:block; padding:8px 0; color:#e11d48;">로그아웃</a>
-                    </div>
-                ` : `
-                     <div style="border-top:1px solid #eee; padding-top:20px; display:flex; gap:10px;">
-                        <a href="login.html" style="flex:1; text-align:center; padding:10px; background:#111; color:#fff; border-radius:8px; font-weight:600;">로그인</a>
-                        <a href="signup.html" style="flex:1; text-align:center; padding:10px; border:1px solid #ddd; border-radius:8px; font-weight:600;">회원가입</a>
-                     </div>
-                `}
+                <!-- Footer / Login Actions -->
+                <div style="padding: 20px; border-top: 1px solid #eee; background: #f9f9f9;">
+                    ${isLoggedIn ? `
+                        <button onclick="localStorage.removeItem('isLoggedIn'); location.href='index.html';" 
+                            style="width: 100%; height: 44px; border: 1px solid #ddd; background: #fff; border-radius: 8px; font-weight: 600; color: #e11d48; cursor: pointer;">
+                            로그아웃
+                        </button>
+                    ` : `
+                        <div style="display: flex; gap: 10px;">
+                            <a href="login.html" style="flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; background: #111; color: #fff; border-radius: 8px; font-weight: 600; text-decoration: none;">로그인</a>
+                            <a href="signup.html" style="flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #ddd; color: #111; border-radius: 8px; font-weight: 600; text-decoration: none;">회원가입</a>
+                        </div>
+                    `}
+                </div>
+
             </div>
         </div>
     `;

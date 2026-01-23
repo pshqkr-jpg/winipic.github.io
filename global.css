@@ -2363,4 +2363,46 @@ select {
     .mobile-menu-btn {
         display: block !important;
     }
+
+    /* Fix: Button Text Wrapping */
+    .btn-filter,
+    .btn-black,
+    .btn-white,
+    .btn-outline {
+        white-space: nowrap !important;
+        font-size: 13px !important;
+        padding: 0 12px;
+        height: 40px;
+        /* Slightly taller for touch */
+    }
+
+    /* Fix: YouTube Video Responsiveness */
+    .video-wrapper iframe {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .w-hero-video {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* Fix: Layout Alignment */
+    .filter-row {
+        gap: 10px !important;
+    }
+
+    .filter-group {
+        gap: 6px !important;
+    }
+
+    /* Ensure inputs don't overflow */
+    .w-input {
+        max-width: 100%;
+    }
+
+    /* Prevent text wrapping in badges */
+    .status-badge {
+        white-space: nowrap;
+    }
 }
