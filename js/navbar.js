@@ -342,6 +342,52 @@ function renderNavbar() {
 
             <!-- 우측 도구 -->
             ${toolsHTML}
+
+            <!-- Mobile Menu Button (Hamburger) - Visible only on mobile via CSS -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu(true)" style="display:none; background:none; border:none; padding:8px; cursor:pointer; margin-left:12px;">
+                <i class="ph ph-list" style="font-size: 28px; color: #111;"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="mobile-menu-backdrop" style="display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.5);">
+            <div class="mobile-drawer" style="position:absolute; top:0; right:0; width:80%; max-width:300px; height:100%; background:#fff; padding:20px; transition:transform 0.3s; transform:translateX(100%); display:flex; flex-direction:column;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <span style="font-weight:700; font-size:18px;">MENU</span>
+                    <button onclick="toggleMobileMenu(false)" style="background:none; border:none; padding:4px; cursor:pointer;">
+                        <i class="ph ph-x" style="font-size:24px;"></i>
+                    </button>
+                </div>
+                
+                <div class="mobile-nav-list" style="flex:1; overflow-y:auto;">
+                    ${navConfig.topMenu.map(item => `
+                        <div style="margin-bottom:16px;">
+                            <div style="font-weight:700; font-size:16px; margin-bottom:12px;">${item.label}</div>
+                            ${item.children ? `
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding-left:10px;">
+                                    ${item.children.map(child => `
+                                        <a href="product_list.html?cat=${item.id}&sub=${child}" style="font-size:14px; color:#555;">${child}</a>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+
+                ${isLoggedIn ? `
+                    <div style="border-top:1px solid #eee; padding-top:20px;">
+                        <div style="font-weight:700; margin-bottom:12px;">마이페이지</div>
+                        <a href="order_history.html" style="display:block; padding:8px 0; color:#555;">주문내역</a>
+                        <a href="cart.html" style="display:block; padding:8px 0; color:#555;">장바구니</a>
+                        <a href="index.html" onclick="localStorage.removeItem('isLoggedIn');" style="display:block; padding:8px 0; color:#e11d48;">로그아웃</a>
+                    </div>
+                ` : `
+                     <div style="border-top:1px solid #eee; padding-top:20px; display:flex; gap:10px;">
+                        <a href="login.html" style="flex:1; text-align:center; padding:10px; background:#111; color:#fff; border-radius:8px; font-weight:600;">로그인</a>
+                        <a href="signup.html" style="flex:1; text-align:center; padding:10px; border:1px solid #ddd; border-radius:8px; font-weight:600;">회원가입</a>
+                     </div>
+                `}
+            </div>
         </div>
     `;
 
@@ -464,6 +510,22 @@ window.toggleLackBalanceModal = function (show) {
     if (modal) {
         if (show) modal.classList.add('active');
         else modal.classList.remove('active');
+    }
+}
+
+window.toggleMobileMenu = function (show) {
+    const menu = document.getElementById('mobileMenu');
+    const drawer = menu.querySelector('.mobile-drawer');
+
+    if (show) {
+        menu.style.display = 'block';
+        // Allow slight delay for transition
+        setTimeout(() => drawer.style.transform = 'translateX(0)', 10);
+        document.body.style.overflow = 'hidden';
+    } else {
+        drawer.style.transform = 'translateX(100%)';
+        setTimeout(() => menu.style.display = 'none', 300);
+        document.body.style.overflow = '';
     }
 }
 

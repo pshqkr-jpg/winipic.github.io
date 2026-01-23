@@ -2207,3 +2207,160 @@ select {
     border-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+/* -----------------------------------------------------
+   MEDIA QUERIES (Mobile Responsiveness)
+   ----------------------------------------------------- */
+
+@media (max-width: 1024px) {
+
+    /* Tablet & Small Desktop */
+    .w-container,
+    .page-container {
+        padding: 40px 20px;
+    }
+
+    .w-dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .w-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile */
+
+    /* 1. Header & Nav */
+    .w-header {
+        height: 60px;
+    }
+
+    .w-header-container {
+        padding: 0 16px;
+    }
+
+    .w-nav {
+        display: none;
+        /* Hide PC Nav */
+        /* Will need JS to toggle a mobile menu drawer */
+    }
+
+    .w-logo svg {
+        height: 40px;
+        width: auto;
+    }
+
+    /* 2. Hero Section */
+    .w-hero {
+        height: auto;
+        padding: 40px 0;
+    }
+
+    .w-hero-content {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .w-hero-title {
+        font-size: 32px;
+    }
+
+    /* 3. Dashboard */
+    .w-dashboard-grid {
+        grid-template-columns: 1fr;
+        /* 1 Column */
+        gap: 16px;
+    }
+
+    /* 4. Product Grid */
+    .w-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 Cols on mobile */
+        gap: 16px;
+    }
+
+    /* 5. Forms (Stacking) */
+    .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group .w-input {
+        width: 100% !important;
+    }
+
+    .compact-form {
+        display: flex !important;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cf-label {
+        margin-bottom: 4px;
+    }
+
+    .info-col,
+    .memo-wrapper {
+        width: 100%;
+    }
+
+    .detail-grid {
+        display: block;
+    }
+
+    /* 6. Tables (Horizontal Scroll) */
+    .master-table-wrapper {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 12px;
+        /* Scrollbar space */
+    }
+
+    .w-data-table {
+        min-width: 800px;
+        /* Ensure table keeps its shape but scrolls */
+    }
+
+    /* 7. Modals */
+    .w-modal {
+        width: 95%;
+        margin: 10px;
+    }
+
+    /* 8. Subheader (My Page Menu) */
+    .w-subheader-container {
+        padding: 0 16px;
+        overflow-x: auto;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .w-subheader-container::-webkit-scrollbar {
+        height: 0;
+        /* Hide scrollbar */
+    }
+
+    /* 9. Tools (Hide some tools on mobile to save space) */
+    .w-points-badge {
+        display: none;
+    }
+
+    .w-search-container {
+        display: none;
+        /* Hide search bar for simplicity in V1 responsive */
+    }
+
+    /* Mobile Menu Toggle Button (To be added via JS) */
+    .mobile-menu-btn {
+        display: block !important;
+    }
+}
