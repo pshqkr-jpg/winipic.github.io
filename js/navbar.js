@@ -27,7 +27,7 @@ const navConfig = {
                 '팬츠', '가방', '신발'
             ]
         },
-        { label: '고객센터', href: 'notice.html' }
+        { label: 'My Products', id: 'my', href: 'product_list.html?cat=my&sub=전체' }
     ]
 };
 
@@ -252,10 +252,6 @@ function renderNavbar() {
     if (isLoggedIn) {
         toolsHTML = `
             <div class="w-tools">
-                <!-- 자주 사용하는 메뉴 (로그인 시 노출) -->
-                <a href="product_list.html?cat=my&sub=전체" class="w-nav-item" style="font-size:14px; font-weight:600; margin-right:16px;">My Products</a>
-                <a href="order_history.html" class="w-nav-item" style="font-size:14px; font-weight:600; margin-right:24px;">주문조회</a>
-
                 <!-- 적립금 배지 -->
                 <div class="w-points-badge" onclick="togglePointsModal(true)">
                     <i class="ph-fill ph-coins" style="font-size: 16px;"></i>
@@ -275,13 +271,14 @@ function renderNavbar() {
                     <i class="ph ph-heart" style="font-size: 20px;"></i>
                 </button>
 
-                <div style="width: 1px; height: 24px; background: #eee; margin: 0 8px;"></div>
-
-                <button class="btn-icon" onclick="location.href='cart.html'">
+                <!-- 장바구니 -->
+                <button class="btn-icon" onclick="location.href='cart.html'" style="margin-right: 8px;">
                     <i class="ph ph-shopping-cart" style="font-size: 20px;"></i>
                 </button>
+
+                <div style="width: 1px; height: 24px; background: #eee; margin: 0 8px;"></div>
                 
-                <!-- 마이페이지 (드롭다운 적용) -->
+                <!-- 마이페이지 (드롭다운 적용) + 주문내역 -->
                 <div class="w-tool-item">
                     <button class="btn-icon" onclick="location.href='order_history.html'">
                         <i class="ph ph-user" style="font-size: 20px;"></i>
@@ -293,8 +290,9 @@ function renderNavbar() {
                         <a href="order_cancel_request.html" class="w-dropdown-item">취소요청</a>
                         <a href="request_tool.html" class="w-dropdown-item">상품요청</a>
                         <a href="cart.html" class="w-dropdown-item">장바구니</a>
-                        <a href="user_profile.html" class="w-dropdown-item">회원정보수정</a>
                         <a href="excel_order.html" class="w-dropdown-item">엑셀주문</a>
+                        <a href="notice.html" class="w-dropdown-item">고객센터</a>
+                        <a href="user_profile.html" class="w-dropdown-item">회원정보수정</a>
                         <div style="border-top:1px solid #eee; margin:4px 0;"></div>
                         <a href="index.html" class="w-dropdown-item" style="color:#e11d48;" onclick="localStorage.removeItem('isLoggedIn');">로그아웃</a>
                     </div>
@@ -358,9 +356,9 @@ function renderNavbar() {
                 <i class="ph ph-t-shirt w-quick-icon"></i>
                 <span class="w-quick-label">마네킹샷<br>확인</span>
             </div>
-            <div class="w-quick-item" onclick="location.href='request_tool.html'">
-                <i class="ph ph-plus-circle w-quick-icon"></i>
-                <span class="w-quick-label">상품요청</span>
+            <div class="w-quick-item" onclick="location.href='product_list.html?cat=my&sub=전체'">
+                <i class="ph ph-briefcase w-quick-icon"></i>
+                <span class="w-quick-label">My Products</span>
             </div>
         </div>
     `;
@@ -411,8 +409,9 @@ function renderNavbar() {
                 { label: '취소요청', href: 'order_cancel_request.html' },
                 { label: '상품요청', href: 'request_tool.html' },
                 { label: '장바구니', href: 'cart.html' },
-                { label: '회원정보수정', href: 'user_profile.html' },
-                { label: '엑셀주문', href: 'excel_order.html' }
+                { label: '엑셀주문', href: 'excel_order.html' },
+                { label: '고객센터', href: 'notice.html' },
+                { label: '회원정보수정', href: 'user_profile.html' }
             ];
 
             const subMenuHTML = `
