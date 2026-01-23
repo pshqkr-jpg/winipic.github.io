@@ -173,6 +173,110 @@
             border-color: #111;
             font-weight: 700;
         }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .page-layout {
+                flex-direction: column;
+                gap: 20px;
+                padding-top: 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .sidebar-title {
+                display: none;
+            }
+
+            .side-menu {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .side-item {
+                flex: 1;
+                justify-content: center;
+                text-align: center;
+                padding: 12px;
+                background: #f9f9f9;
+                border: 1px solid #eee;
+            }
+
+            .side-item.active {
+                background: #111;
+                color: #fff;
+                border-color: #111;
+            }
+
+            .side-item i {
+                display: none;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                margin-bottom: 20px;
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+
+            /* Table to Card List transformation */
+            .notice-table,
+            .notice-table tbody,
+            .notice-table tr,
+            .notice-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .notice-table thead {
+                display: none;
+            }
+
+            .notice-row {
+                background: #fff;
+                border: 1px solid #e5e5e5;
+                border-radius: 12px;
+                padding: 16px;
+                margin-bottom: 12px;
+            }
+
+            .notice-table td {
+                padding: 0;
+                border: none;
+                text-align: left !important;
+            }
+
+            /* Badge/Number Row */
+            .notice-table td:nth-child(1) {
+                margin-bottom: 8px;
+                display: inline-block;
+            }
+
+            /* Title Row */
+            .notice-table td:nth-child(2) {
+                margin-bottom: 8px;
+            }
+
+            .notice-title {
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.4;
+            }
+
+            /* Date Row */
+            .notice-table td:nth-child(3) {
+                font-size: 12px;
+                color: #888;
+            }
+        }
     </style>
 </head>
 
@@ -197,10 +301,7 @@
                         자주묻는질문
                         <i class="ph ph-caret-right"></i>
                     </a>
-                    <a class="side-item">
-                        1:1 문의
-                        <i class="ph ph-caret-right"></i>
-                    </a>
+
                 </div>
             </div>
 
