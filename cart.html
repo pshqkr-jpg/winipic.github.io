@@ -691,7 +691,7 @@
             }
 
 
-            /* Sticky Bottom Bar - 2 Rows */
+            /* Sticky Bottom Bar - Button Only */
             .mobile-bottom-bar {
                 display: flex !important;
                 position: fixed;
@@ -702,31 +702,10 @@
                 background: #fff;
                 border-top: 1px solid #e5e5e5;
                 z-index: 1000;
-                flex-direction: column;
                 padding: 12px 16px 20px;
-                /* Extra bottom padding */
+                /* Safe area padding */
                 box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
-                gap: 12px;
-            }
-
-            .m-bar-top-row {
-                display: flex;
-                width: 100%;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .m-bar-info {
-                display: flex;
-                gap: 12px;
-                font-size: 14px;
-                color: #333;
-                align-items: center;
-            }
-
-            .m-qty,
-            .m-amt {
-                font-weight: 700;
+                justify-content: center;
             }
 
             .m-btn-order {
@@ -742,6 +721,33 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                cursor: pointer;
+            }
+
+            /* Mobile Top Summary Section */
+            .mobile-top-summary {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #fff;
+                margin-bottom: 12px;
+                padding: 16px;
+                border-radius: 12px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            }
+
+            .m-summary-info {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .m-summary-divider {
+                width: 1px;
+                height: 12px;
+                background: #e5e5e5;
             }
 
             .desktop-summary {
@@ -763,6 +769,17 @@
 
             <!-- Left: Cart List -->
             <div class="cart-list-section">
+                <!-- Mobile Top Summary -->
+                <div class="mobile-top-summary desktop-hide">
+                    <label class="chk-label">
+                        <input type="checkbox" checked> 전체선택
+                    </label>
+                    <div class="m-summary-info">
+                        <span style="font-weight:600;">수량 <span class="text-orange">2</span></span>
+                        <div class="m-summary-divider"></div>
+                        <span style="font-weight:600;">합계 <span class="text-orange">￦21,000</span></span>
+                    </div>
+                </div>
                 <!-- Header Actions -->
                 <div class="list-header-actions">
                     <label id="all_check" class="chk-label">
@@ -977,17 +994,8 @@
             <div class="cart-summary-section">
 
                 <!-- Mobile Bottom Bar (Sticky) -->
-                <!-- Mobile Bottom Bar (Sticky) - 2 Row Layout -->
+                <!-- Mobile Bottom Bar (Sticky) - Button Only -->
                 <div class="mobile-bottom-bar" style="display: none;">
-                    <div class="m-bar-top-row">
-                        <label class="chk-label">
-                            <input type="checkbox" checked> 전체선택
-                        </label>
-                        <div class="m-bar-info">
-                            <span class="m-qty">수량:<span class="text-orange">0</span></span>
-                            <span class="m-amt">금액:<span class="text-orange">￦0</span></span>
-                        </div>
-                    </div>
                     <button class="m-btn-order" onclick="location.href='checkout_inline.html'">주문등록</button>
                 </div>
 
