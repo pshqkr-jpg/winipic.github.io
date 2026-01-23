@@ -280,8 +280,9 @@ function renderNavbar() {
                 
                 <!-- 마이페이지 (드롭다운 적용) + 주문내역 -->
                 <div class="w-tool-item">
-                    <button class="btn-icon" onclick="location.href='order_history.html'">
+                    <button class="btn-icon" onclick="location.href='order_history.html'" style="width:auto; padding:0 12px; border-radius:8px; gap:6px;">
                         <i class="ph ph-user" style="font-size: 20px;"></i>
+                        <span style="font-size:14px; font-weight:600;">주문내역</span>
                     </button>
                     <div class="w-dropdown right-aligned">
                         <a href="order_history.html" class="w-dropdown-item">주문내역</a>
@@ -323,18 +324,21 @@ function renderNavbar() {
 
     header.innerHTML = `
         <div class="w-header-container">
-            <!-- 로고 -->
-            <a href="index.html" class="w-logo">
-                <svg width="220" height="55" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="10" y="45" font-family="'Inter', sans-serif" font-weight="900" font-style="italic" font-size="36" letter-spacing="-2" fill="#111">WINIPIC</text>
-                    <circle cx="124" cy="14" r="4" fill="#2563eb" />
-                </svg>
-            </a>
+            <!-- 좌측 그룹: 로고 + 네비게이션 -->
+            <div style="display:flex; align-items:center; gap: 40px;">
+                <!-- 로고 -->
+                <a href="index.html" class="w-logo">
+                    <svg width="220" height="55" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="45" font-family="'Inter', sans-serif" font-weight="900" font-style="italic" font-size="36" letter-spacing="-2" fill="#111">WINIPIC</text>
+                        <circle cx="124" cy="14" r="4" fill="#2563eb" />
+                    </svg>
+                </a>
 
-            <!-- 네비게이션 -->
-            <nav class="w-nav">
-                ${navItemsHTML}
-            </nav>
+                <!-- 네비게이션 -->
+                <nav class="w-nav">
+                    ${navItemsHTML}
+                </nav>
+            </div>
 
             <!-- 우측 도구 -->
             ${toolsHTML}
