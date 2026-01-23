@@ -285,6 +285,7 @@
             .capability-row,
             .capability-row.reverse {
                 flex-direction: column;
+                /* Stacks Text (top) -> Image (bottom) for both because HTML order is Text then Image */
                 gap: 40px;
                 margin-bottom: 80px;
             }
@@ -303,8 +304,19 @@
                 gap: 40px;
             }
 
+            .corp-hero {
+                height: 480px;
+                /* Reduced from 70vh */
+            }
+
             .corp-hero-content h1 {
-                font-size: 36px;
+                font-size: 32px;
+                /* Smaller font */
+            }
+
+            .corp-hero-content p {
+                font-size: 16px;
+                padding: 0 20px;
             }
         }
     </style>

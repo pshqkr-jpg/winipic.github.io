@@ -2526,6 +2526,13 @@ select {
         /* Circle like others */
     }
 
+    /* Fix: Prevent text wrapping for auth links in mobile menu or anywhere */
+    .w-nav-item,
+    .w-sub-link,
+    .w-dropdown-item {
+        white-space: nowrap;
+    }
+
     .btn-kakao {
         width: 40px;
         height: 40px;

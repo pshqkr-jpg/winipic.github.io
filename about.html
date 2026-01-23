@@ -12,7 +12,8 @@
     <style>
         body {
             background-color: #fff;
-            overflow-x: hidden;
+            overflow: hidden;
+            /* Prevent double scroll */
             margin: 0;
             padding: 0;
         }
@@ -20,9 +21,12 @@
         /* Iframe Container */
         .iframe-container {
             width: 100%;
-            min-height: 100vh;
+            height: calc(100vh - 60px);
+            /* Fill exact remaining height */
             margin-top: 60px;
             /* Header Height */
+            overflow: hidden;
+            /* Prevent container scroll */
         }
 
         iframe {
