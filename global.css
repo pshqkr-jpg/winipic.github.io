@@ -1360,6 +1360,8 @@ select {
     transition: transform 0.2s;
     text-decoration: none;
     color: inherit;
+    min-width: 0;
+    /* Prevent Grid blowout */
 }
 
 .product-card:hover {
@@ -1369,6 +1371,8 @@ select {
 .p-thumb {
     background: #f4f4f5;
     aspect-ratio: 3/4;
+    width: 100%;
+    /* Ensure it fills container */
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
@@ -2297,6 +2301,10 @@ select {
         .page-container {
             padding-left: 10px !important;
             padding-right: 10px !important;
+        }
+
+        .w-header-container {
+            padding: 0 10px !important;
         }
 
         .w-product-grid {
