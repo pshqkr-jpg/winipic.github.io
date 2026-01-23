@@ -3017,14 +3017,17 @@ select {
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        margin: 0 !important;
+        /* Fix alignment by resetting inline margins */
     }
 
     .filter-group input {
         width: 100%;
         max-width: 280px;
-        height: 44px;
-        font-size: 14px;
-        padding: 10px 14px;
+        height: 36px;
+        /* Reduced height as requested */
+        font-size: 13px;
+        padding: 0 10px;
     }
 
     .filter-label {
