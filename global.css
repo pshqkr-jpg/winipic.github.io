@@ -2554,10 +2554,11 @@ select {
         margin-bottom: 12px;
     }
 
-    .product-item-card>div {
-        display: flex;
-        min-width: 700px;
-        /* Ensure content doesn't break */
+    /* Ensure horizontal layout is maintained */
+    .product-item-card .pic-image,
+    .product-item-card .pic-content {
+        display: inline-block;
+        vertical-align: top;
     }
 
     .pic-image {
@@ -2574,8 +2575,10 @@ select {
     }
 
     .pic-content {
-        flex: 1;
-        min-width: 0;
+        display: inline-block;
+        width: calc(100% - 120px);
+        min-width: 580px;
+        vertical-align: top;
     }
 
     .pic-header {
