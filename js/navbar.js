@@ -255,7 +255,8 @@ function renderNavbar() {
                 <!-- 적립금 배지 -->
                 <div class="w-points-badge" onclick="togglePointsModal(true)">
                     <i class="ph-fill ph-coins" style="font-size: 16px;"></i>
-                    <span>적립금 : 32,500원</span>
+                    <span class="desktop-text">적립금 : 32,500원</span>
+                    <span class="mobile-text">32,500</span>
                 </div>
 
                 <!-- 검색 -->
@@ -264,10 +265,13 @@ function renderNavbar() {
                     <button class="btn-icon w-search-btn" onclick="const p=this.parentElement.querySelector('input'); if(p.value) location.href='search_result.html?q='+p.value; else p.focus();">
                         <i class="ph ph-magnifying-glass" style="font-size: 20px;"></i>
                     </button>
+                    <button class="btn-icon w-search-close-btn" style="display:none;" onclick="document.querySelector('.w-search-input').value=''; document.activeElement.blur();">
+                        <i class="ph ph-x" style="font-size: 20px;"></i>
+                    </button>
                 </div>
 
-                <!-- 관심 상품 -->
-                <button class="btn-icon" onclick="location.href='wishlist.html'">
+                <!-- 관심 상품 (모바일 숨김) -->
+                <button class="btn-icon mobile-hide" onclick="location.href='wishlist.html'">
                     <i class="ph ph-heart" style="font-size: 20px;"></i>
                 </button>
 
@@ -276,13 +280,13 @@ function renderNavbar() {
                     <i class="ph ph-shopping-cart" style="font-size: 20px;"></i>
                 </button>
 
-                <div style="width: 1px; height: 24px; background: #eee; margin: 0 8px;"></div>
+                <div class="divider desktop-only" style="width: 1px; height: 24px; background: #eee; margin: 0 8px;"></div>
                 
-                <!-- 마이페이지 (드롭다운 적용) + 주문내역 -->
+                <!-- 마이페이지 (주문내역) - 모바일에서는 아이콘만 -->
                 <div class="w-tool-item">
-                    <button class="btn-icon" onclick="location.href='order_history.html'" style="width:auto; padding:0 12px; border-radius:8px; gap:6px;">
+                    <button class="btn-icon nav-order-btn" onclick="location.href='order_history.html'">
                         <i class="ph ph-user" style="font-size: 20px;"></i>
-                        <span style="font-size:14px; font-weight:600;">주문내역</span>
+                        <span class="desktop-text">주문내역</span>
                     </button>
                     <div class="w-dropdown right-aligned">
                         <a href="order_history.html" class="w-dropdown-item">주문내역</a>
@@ -292,6 +296,7 @@ function renderNavbar() {
                         <a href="request_tool.html" class="w-dropdown-item">상품요청</a>
                         <a href="cart.html" class="w-dropdown-item">장바구니</a>
                         <a href="excel_order.html" class="w-dropdown-item">엑셀주문</a>
+                        <a href="wishlist.html" class="w-dropdown-item">관심상품</a>
                         <a href="notice.html" class="w-dropdown-item">고객센터</a>
                         <a href="user_profile.html" class="w-dropdown-item">회원정보수정</a>
                         <div style="border-top:1px solid #eee; margin:4px 0;"></div>
@@ -299,10 +304,10 @@ function renderNavbar() {
                     </div>
                 </div>
 
-                <!-- 카카오 상담톡 버튼 (텍스트 포함, 우측 끝) -->
-                <button onclick="openKakaoChat()" style="display:flex; align-items:center; gap:6px; background:#fee500; border:none; padding:0 16px; height:40px; border-radius:20px; margin-left:12px; font-weight:600; font-size:14px; color:#3c1e1e; cursor:pointer;">
+                <!-- 카카오 상담톡 버튼 (모바일 아이콘만) -->
+                <button class="btn-kakao" onclick="openKakaoChat()">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
-                    카톡 상담
+                    <span class="desktop-text">카톡 상담</span>
                 </button>
             </div>
         `;
@@ -313,10 +318,10 @@ function renderNavbar() {
                 <div style="width: 1px; height: 16px; background: #ddd; margin: 0 16px;"></div>
                 <a href="signup.html" class="w-nav-item" style="font-size:14px; font-weight:700;">회원가입</a>
 
-                <!-- 카카오 상담톡 버튼 (텍스트 포함, 우측 끝) -->
-                <button onclick="openKakaoChat()" style="display:flex; align-items:center; gap:6px; background:#fee500; border:none; padding:0 16px; height:40px; border-radius:20px; margin-left:16px; font-weight:600; font-size:14px; color:#3c1e1e; cursor:pointer;">
+                <!-- 카카오 상담톡 버튼 (모바일 아이콘만) -->
+                <button class="btn-kakao" onclick="openKakaoChat()">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
-                    카톡 상담
+                    <span class="desktop-text">카톡 상담</span>
                 </button>
             </div>
         `;
@@ -344,12 +349,14 @@ function renderNavbar() {
             ${toolsHTML}
 
             <!-- Mobile Menu Button (Hamburger) - Visible only on mobile via CSS -->
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu(true)" style="display:none; background:none; border:none; padding:8px; cursor:pointer; margin-left:12px;">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu(true)">
                 <i class="ph ph-list" style="font-size: 28px; color: #111;"></i>
             </button>
         </div>
+    `;
 
-        <!-- Mobile Menu Drawer -->
+    // Mobile Menu Drawer HTML
+    const mobileMenuHTML = `
         <div id="mobileMenu" class="mobile-menu-backdrop" style="display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.5);">
             <div class="mobile-drawer" style="position:absolute; top:0; right:0; width:85%; max-width:320px; height:100%; background:#fff; display:flex; flex-direction:column; overflow:hidden;">
                 
@@ -402,6 +409,9 @@ function renderNavbar() {
                     <div style="margin-bottom: 30px;">
                         <div style="font-size: 13px; font-weight: 700; color: #888; margin-bottom: 12px; letter-spacing: 0.5px;">MY PAGE</div>
                         <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <a href="wishlist.html" style="font-size: 15px; color: #333; font-weight: 500; display:flex; align-items:center; gap:6px;">
+                                <i class="ph ph-heart" style="font-size:18px;"></i> 관심상품
+                            </a>
                             <a href="order_history.html" style="font-size: 15px; color: #333; font-weight: 500;">주문내역</a>
                             <a href="delivery_tracking.html" style="font-size: 15px; color: #333; font-weight: 500;">배송조회</a>
                             <a href="mannequin_check.html" style="font-size: 15px; color: #333; font-weight: 500;">마네킹샷 확인</a>
@@ -433,6 +443,11 @@ function renderNavbar() {
             </div>
         </div>
     `;
+
+    // 모바일 메뉴 body에 추가 (레이어 문제 해결)
+    if (!document.getElementById('mobileMenu')) {
+        document.body.insertAdjacentHTML('beforeend', mobileMenuHTML);
+    }
 
     // 퀵 메뉴 HTML (항상 렌더링)
     const quickMenuHTML = `

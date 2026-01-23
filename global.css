@@ -2405,4 +2405,252 @@ select {
     .status-badge {
         white-space: nowrap;
     }
+
+    /* NEW: Mobile Nav Links for guide_content.html */
+    .nav-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        border-left: none;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        justify-content: center;
+    }
+
+    .nav-link {
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        margin-left: 0;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        width: 33.33%;
+        justify-content: center;
+        font-size: 14px;
+    }
+}
+
+/* -----------------------------------------------------------------------
+   NEW MOBILE NAV BAR & SEARCH (OVERRIDE for Max-Width 1024px)
+   ----------------------------------------------------------------------- */
+
+/* 1. Classes for new Navbar structure */
+.nav-order-btn {
+    width: auto;
+    padding: 0 12px;
+    border-radius: 8px;
+    gap: 6px;
+}
+
+.btn-kakao {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fee500;
+    border: none;
+    padding: 0 16px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #3c1e1e;
+    cursor: pointer;
+}
+
+.desktop-text {
+    display: inline;
+}
+
+.mobile-text {
+    display: none;
+}
+
+.mobile-hide {
+    display: flex;
+}
+
+.desktop-only {
+    display: block;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+/* 2. Responsive Rules (Targeting max-width: 1024px as requested for "mobile/tablet" transition) */
+@media (max-width: 1024px) {
+
+    /* Hide Desktop Nav */
+    .w-nav {
+        display: none !important;
+    }
+
+    /* Show Hamburger */
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
+    /* Hide Desktop Specific Elements */
+    .desktop-text {
+        display: none !important;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .w-points-badge .desktop-text {
+        display: none;
+    }
+
+    .w-points-badge .mobile-text {
+        display: inline;
+    }
+
+    /* Transform Buttons to Icons */
+    .nav-order-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 50%;
+        /* Circle like others */
+    }
+
+    .btn-kakao {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        /* Circle */
+        justify-content: center;
+        margin-left: 0;
+        /* Adjust spacing */
+    }
+
+    /* Override previous hiding of search */
+    .w-search-container {
+        display: flex !important;
+        position: relative;
+    }
+
+    /* SEARCH EXPANSION LOGIC */
+    .w-search-container:focus-within {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2005;
+        /* High z-index */
+        background: #fff;
+        width: auto;
+        height: 50px;
+        padding: 0 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* KILL HOVER EXPANSION ON MOBILE */
+    .w-search-container:hover .w-search-input {
+        width: 0 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        padding: 0 !important;
+    }
+
+    /* ONLY EXPAND ON FOCUS (Click) */
+    .w-search-container:focus-within .w-search-input {
+        width: 100% !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        padding-left: 16px !important;
+        /* Fix squashed look: remove default border styles of the input itself */
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        height: 100%;
+    }
+
+    .w-search-container:focus-within .w-search-close-btn {
+        display: flex !important;
+        margin-left: 8px;
+        /* Add some spacing */
+    }
+
+    /* FIX: Prevent Desktop Hover Effect on Mobile Search Button */
+    /* On desktop, hover expands the pill. On mobile, we don't want that unless focused. */
+    .w-search-container:hover .w-search-btn {
+        border-radius: 50% !important;
+        /* Keep circular */
+        background: #fff !important;
+        /* Reset to default background */
+        border-color: #e5e5e5 !important;
+        /* Reset border */
+        color: inherit !important;
+    }
+
+    /* Re-apply active style ONLY when focused/expanded */
+    .w-search-container:focus-within .w-search-btn {
+        background: transparent !important;
+        border: none !important;
+        color: var(--color-accent) !important;
+    }
+
+    /* ----------------------------------------------------------------
+       PRODUCT DETAIL MOBILE LAYOUT REORDER
+       Order: Thumbnail(Gallery) -> Order Menu(Sticky) -> Detail Info
+       ---------------------------------------------------------------- */
+    .pd-main-wrapper {
+        flex-direction: column;
+    }
+
+    .pd-left-column {
+        display: contents;
+        /* Unwrap to allows children to be reordered with siblings */
+    }
+
+    /* 1. Gallery */
+    .pd-gallery {
+        order: 1;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* 2. Order Menu (Sticky Box) */
+    .pd-info-sticky {
+        order: 2;
+        position: static;
+        /* Remove sticky behavior on mobile */
+        width: 100%;
+        max-height: none;
+        /* Remove height limit */
+        margin-bottom: 40px;
+        box-shadow: none;
+        border: 1px solid #eee;
+    }
+
+    /* 3. Detailed Info */
+    .pd-detailed-info {
+        order: 3;
+        width: 100%;
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+/* Ensure Mobile Menu Backdrop is topmost */
+.mobile-menu-backdrop {
+    z-index: 9999 !important;
 }
