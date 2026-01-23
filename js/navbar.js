@@ -425,9 +425,11 @@ function renderNavbar() {
 
                 </div>
 
-                <!-- Footer / Login Actions -->
-                <div style="padding: 20px; border-top: 1px solid #eee; background: #f9f9f9;">
-                    ${isLoggedIn ? `
+                    `}
+                </div >
+                < !--Added right margin to prevent cut - off-- >
+    <div style="padding: 20px; border-top: 1px solid #eee; background: #f9f9f9; padding-right: 30px;">
+        ${isLoggedIn ? `
                         <button onclick="localStorage.removeItem('isLoggedIn'); location.href='index.html';" 
                             style="width: 100%; height: 44px; border: 1px solid #ddd; background: #fff; border-radius: 8px; font-weight: 600; color: #e11d48; cursor: pointer;">
                             로그아웃
@@ -438,10 +440,10 @@ function renderNavbar() {
                             <a href="signup.html" style="flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #ddd; color: #111; border-radius: 8px; font-weight: 600; text-decoration: none;">회원가입</a>
                         </div>
                     `}
-                </div>
+    </div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     `;
 
     // 모바일 메뉴 body에 추가 (레이어 문제 해결)
@@ -451,7 +453,7 @@ function renderNavbar() {
 
     // 퀵 메뉴 HTML (항상 렌더링)
     const quickMenuHTML = `
-        <div class="w-quick-menu">
+    < div class="w-quick-menu" >
             <div class="w-quick-item" onclick="location.href='order_history.html'">
                 <i class="ph ph-receipt w-quick-icon"></i>
                 <span class="w-quick-label">주문내역</span>
@@ -468,7 +470,7 @@ function renderNavbar() {
                 <i class="ph ph-briefcase w-quick-icon"></i>
                 <span class="w-quick-label">My Products</span>
             </div>
-        </div>
+        </div >
     `;
 
     // 모달들 HTML을 body 끝에 추가 (중복 방지)
@@ -523,16 +525,16 @@ function renderNavbar() {
             ];
 
             const subMenuHTML = `
-                <div class="w-subheader">
-                    <div class="w-subheader-container">
-                        ${subMenuItems.map(item => {
+    < div class="w-subheader" >
+        <div class="w-subheader-container">
+            ${subMenuItems.map(item => {
                 const isActive = currentPath.includes(item.href) ||
                     (item.href === 'mannequin_check.html' && currentPath.includes('mannequin_result.html')); // 예외 처리 (결과 페이지도 활성화)
                 return `<a href="${item.href}" class="w-sub-link ${isActive ? 'active' : ''}">${item.label}</a>`;
             }).join('')}
-                    </div>
-                </div>
-            `;
+        </div>
+                </div >
+    `;
 
             header.insertAdjacentHTML('afterend', subMenuHTML);
         }
