@@ -194,18 +194,26 @@
 
             .nav-links {
                 flex-direction: row;
-                overflow-x: auto;
+                flex-wrap: wrap;
+                /* Wrap on multiple lines */
+                overflow-x: visible;
+                /* CSS Fix: Remove scroll */
                 border-left: none;
                 border-bottom: 2px solid #eee;
-                padding-bottom: 0;
+                padding-bottom: 10px;
+                justify-content: center;
             }
 
             .nav-link {
                 border-left: none;
                 border-bottom: 2px solid transparent;
                 margin-left: 0;
-                margin-bottom: -2px;
+                margin-bottom: 4px;
                 white-space: nowrap;
+                width: 33.33%;
+                /* Grid: 3 items per row */
+                justify-content: center;
+                font-size: 14px;
             }
 
             .nav-link.active {
