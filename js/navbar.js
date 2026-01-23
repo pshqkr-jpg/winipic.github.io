@@ -324,7 +324,7 @@ function renderNavbar() {
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
                     <span class="desktop-text">카톡 상담</span>
                 </button>
-                <button class="btn-icon desktop-hide" onclick="openKakaoChat()">
+                <button class="btn-icon desktop-hide" onclick="openKakaoChat()" style="background: #FEE500; border-color: #FEE500;">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px; color: #371D1E;"></i>
                 </button>
             </div>
@@ -417,14 +417,7 @@ function renderNavbar() {
 
                     <div style="height: 1px; background: #eee; margin: 0 -20px 30px -20px;"></div>
 
-                    <!-- Kakao Chat Button (Logged In, Above MyPage) -->
-                    ${isLoggedIn ? `
-                    <div onclick="openKakaoChat(); toggleMobileMenu(false);" 
-                        style="background: #FAE100; padding: 14px 16px; border-radius: 12px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #371D1E;">
-                        <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
-                        <span style="font-weight: 700; font-size: 15px;">카카오톡 1:1 상담하기</span>
-                    </div>
-                    ` : ''}
+
 
                     <!-- 3. My Page Links -->
                     ${isLoggedIn ? `
@@ -449,9 +442,15 @@ function renderNavbar() {
                 <div style="padding: 20px; border-top: 1px solid #eee; background: #f9f9f9; padding-right: 30px;">
                     ${isLoggedIn ? `
                         <button onclick="localStorage.removeItem('isLoggedIn'); location.href='index.html';" 
-                            style="width: 100%; height: 44px; border: 1px solid #ddd; background: #fff; border-radius: 8px; font-weight: 600; color: #e11d48; cursor: pointer;">
+                            style="width: 100%; height: 44px; border: 1px solid #ddd; background: #fff; border-radius: 8px; font-weight: 600; color: #e11d48; cursor: pointer; margin-bottom: 12px;">
                             로그아웃
                         </button>
+                        <!-- Kakao Chat (Moved to bottom) -->
+                        <div onclick="openKakaoChat(); toggleMobileMenu(false);" 
+                            style="width: 100%; height: 44px; background: #FAE100; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #371D1E;">
+                            <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
+                            <span style="font-weight: 700; font-size: 15px;">카카오톡 1:1 상담하기</span>
+                        </div>
                     ` : `
                         <div style="display: flex; gap: 10px;">
                             <a href="login.html" style="flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; background: #111; color: #fff; border-radius: 8px; font-weight: 600; text-decoration: none;">로그인</a>
