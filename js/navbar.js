@@ -424,7 +424,7 @@ function renderNavbar() {
                             <a href="request_tool.html" style="font-size: 15px; color: #333; font-weight: 500;">상품요청</a>
                             <a href="cart.html" style="font-size: 15px; color: #333; font-weight: 500;">장바구니</a>
                             <a href="wishlist.html" style="font-size: 15px; color: #333; font-weight: 500;">관심상품</a>
-                            <a href="excel_order.html" style="font-size: 15px; color: #333; font-weight: 500;">엑셀주문</a>
+                            <a href="notice.html" style="font-size: 15px; color: #333; font-weight: 500;">고객센터</a>
                             <a href="user_profile.html" style="font-size: 15px; color: #333; font-weight: 500;">회원정보수정</a>
                         </div>
                     </div>

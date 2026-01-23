@@ -3264,3 +3264,16 @@ select {
         padding: 4px 8px !important;
     }
 }
+
+/* Visibility Utilities */
+@media (max-width: 768px) {
+    .mobile-hide {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .desktop-hide {
+        display: none !important;
+    }
+}
