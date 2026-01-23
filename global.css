@@ -3358,6 +3358,24 @@ select {
         font-size: 10px !important;
         padding: 4px 8px !important;
     }
+
+    /* Order Summary Pic Header Optimization */
+    .pic-header {
+        padding: 4px 8px !important;
+        display: flex;
+        align-items: center;
+        min-height: 36px;
+    }
+
+    .pic-title {
+        margin: 0 !important;
+        font-size: 13px !important;
+    }
+
+    /* Hide mini stats on mobile to remove whitespace */
+    .order-mini-stats {
+        display: none !important;
+    }
 }
 
 /* Visibility Utilities */
