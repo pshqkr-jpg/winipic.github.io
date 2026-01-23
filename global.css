@@ -3226,6 +3226,86 @@ select {
     }
 }
 
+/* Detail Section Mobile Optimization */
+.detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-col,
+.memo-wrapper {
+    width: 100%;
+}
+
+.header-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.finance-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+    height: auto;
+    padding: 16px;
+    flex-wrap: wrap;
+}
+
+/* Hide vertical dividers */
+.finance-bar>div[style*="width:1px"],
+.finance-bar>div[style*="width: 1px"] {
+    display: none;
+}
+
+.fin-item {
+    align-items: flex-start;
+}
+
+/* Status Item (Last one) - Full width */
+.fin-item[style*="align-items: flex-end"] {
+    grid-column: 1 / -1;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    margin-top: 4px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center !important;
+    width: 100%;
+}
+
+/* Compact Form - Single Column */
+.compact-form {
+    grid-template-columns: 100px 1fr !important;
+    /* Label + Input */
+    display: grid;
+    gap: 12px;
+    align-items: center;
+}
+
+/* For even smaller screens, stack label and input */
+@media (max-width: 480px) {
+    .compact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .compact-form .cf-label {
+        margin-bottom: 2px;
+        color: #555;
+        font-weight: 600;
+    }
+}
+
+.compact-form>div[style*="grid-column: span 3"] {
+    grid-column: 1 / -1 !important;
+}
+}
+
 /* Extra small screens (320px) - Order History specific */
 @media (max-width: 360px) {
     .pagination {
