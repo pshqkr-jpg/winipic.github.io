@@ -2488,13 +2488,14 @@ select {
     }
 
     /* 9. Tools (Hide some tools on mobile to save space) */
-    .w-points-badge {
-        display: none;
-    }
-
-    .w-search-container {
-        display: none;
-        /* Hide search bar for simplicity in V1 responsive */
+    /* Fix: Consolidate Mobile Nav Cleanup */
+    .w-nav,
+    .w-points-badge,
+    .w-search-container,
+    .w-subheader,
+    /* Explicitly hide subheader container */
+    .desktop-only {
+        display: none !important;
     }
 
     /* Mobile Menu Toggle Button (To be added via JS) */
