@@ -3359,7 +3359,11 @@ select {
         padding: 4px 8px !important;
     }
 
-    /* Order Summary Pic Header Optimization */
+
+}
+
+/* Order Summary Mobile Optimization (For all mobile devices) */
+@media (max-width: 768px) {
     .pic-header {
         padding: 4px 8px !important;
         display: flex;
@@ -3372,7 +3376,6 @@ select {
         font-size: 13px !important;
     }
 
-    /* Hide mini stats on mobile to remove whitespace */
     .order-mini-stats {
         display: none !important;
     }
