@@ -319,9 +319,13 @@ function renderNavbar() {
                 <a href="signup.html" class="w-nav-item mobile-hide" style="font-size:14px; font-weight:700;">회원가입</a>
 
                 <!-- 카카오 상담톡 버튼 (모바일 아이콘만) -->
+                <!-- 카카오 상담톡 버튼 (PC: 텍스트 포함, 모바일: 아이콘만) -->
                 <button class="btn-kakao mobile-hide" onclick="openKakaoChat()">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
                     <span class="desktop-text">카톡 상담</span>
+                </button>
+                <button class="btn-icon desktop-hide" onclick="openKakaoChat()">
+                    <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px; color: #371D1E;"></i>
                 </button>
             </div>
         `;
@@ -412,6 +416,15 @@ function renderNavbar() {
                     </div>
 
                     <div style="height: 1px; background: #eee; margin: 0 -20px 30px -20px;"></div>
+
+                    <!-- Kakao Chat Button (Logged In, Above MyPage) -->
+                    ${isLoggedIn ? `
+                    <div onclick="openKakaoChat(); toggleMobileMenu(false);" 
+                        style="background: #FAE100; padding: 14px 16px; border-radius: 12px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #371D1E;">
+                        <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
+                        <span style="font-weight: 700; font-size: 15px;">카카오톡 1:1 상담하기</span>
+                    </div>
+                    ` : ''}
 
                     <!-- 3. My Page Links -->
                     ${isLoggedIn ? `
