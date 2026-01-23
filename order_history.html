@@ -151,9 +151,12 @@
         </div>
 
         <!-- Detail Section -->
-        <div class="w-card">
-            <div class="w-card-header">
-                <div class="w-card-title"><i class="ph ph-info"></i> 주문 상세 내역</div>
+        <div class="w-card" id="detailCard">
+            <div class="w-card-header" onclick="toggleDetailCard()" style="cursor: pointer;">
+                <div class="w-card-title">
+                    <i class="ph ph-info"></i> 주문 상세 내역
+                    <i class="ph ph-caret-down toggle-icon mobile-only" style="margin-left: 8px;"></i>
+                </div>
                 <div class="header-actions">
                     <button class="btn-filter btn-white" onclick="toggleModal('advanceModal')"><i
                             class="ph ph-money"></i> 선금등록</button>
@@ -433,6 +436,12 @@
                     document.body.style.overflow = 'hidden';
                 }
             }
+        }
+
+        function toggleDetailCard() {
+            if (window.innerWidth > 768) return; // PC에서는 동작 안 함
+            const card = document.getElementById('detailCard');
+            card.classList.toggle('expanded');
         }
     </script>
 </body>
