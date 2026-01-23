@@ -384,258 +384,393 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
+
+        /* -----------------------------------------------------------------------------
+           MOBILE RESPONSIVENESS (Max-Width: 768px)
+           ----------------------------------------------------------------------------- */
+        @media (max-width: 768px) {
+            .cart-container {
+                margin: 20px auto 100px;
+                /* Bottom padding for sticky button */
+                padding: 0 16px;
+            }
+
+            .cart-page-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            /* Layout Stacking */
+            .cart-layout-wrapper {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .cart-list-section {
+                width: 100%;
+            }
+
+            .cart-summary-section {
+                width: 100%;
+                position: static;
+                order: 2;
+                /* Move to bottom */
+            }
+
+            /* Product Group Card Mobile */
+            .product-group-card {
+                flex-direction: column;
+            }
+
+            /* Image Area turned into Header-like row */
+            .pg-image-area {
+                width: 100%;
+                flex-direction: row;
+                border-right: none;
+                border-bottom: 1px solid #f0f0f0;
+                padding: 12px;
+                align-items: flex-start;
+                gap: 16px;
+                background: #fff;
+            }
+
+            .pg-thumb {
+                width: 80px;
+                height: 100px;
+                /* Fixed height for consistency */
+            }
+
+            /* Actions inside Image Area */
+            .pg-actions {
+                flex-direction: column;
+                width: auto;
+                margin-top: 0;
+                gap: 6px;
+            }
+
+            .btn-pg {
+                padding: 6px 12px;
+                font-size: 11px;
+                width: 70px;
+                /* Fixed width for nice buttons */
+                flex: none;
+            }
+
+            /* Checkbox & Labels next to image */
+            .pg-image-area .chk-label {
+                margin-top: 0 !important;
+                font-size: 13px;
+                flex: 1;
+                /* Take remaining space */
+                align-self: center;
+            }
+
+            /* Options Area Mobile */
+            .opt-row {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px;
+                gap: 12px;
+                position: relative;
+            }
+
+            .opt-chk {
+                position: absolute;
+                top: 16px;
+                left: 16px;
+            }
+
+            .opt-info {
+                width: 100%;
+                padding-left: 28px;
+                /* Space for checkbox */
+            }
+
+            .opt-name {
+                font-size: 14px;
+                line-height: 1.4;
+                margin-bottom: 8px;
+            }
+
+            .opt-spec {
+                flex-wrap: wrap;
+            }
+
+            /* Price and Controls Row */
+            .opt-price {
+                width: 100%;
+                text-align: left;
+                padding-left: 28px;
+                font-size: 15px;
+                margin-bottom: 4px;
+            }
+
+            /* Qty and Actions Row */
+            .opt-qty {
+                width: 100%;
+                justify-content: space-between;
+                /* Qty left, Delete right */
+                padding-left: 28px;
+                align-items: center;
+            }
+
+            .opt-actions {
+                width: auto;
+                align-items: center;
+                flex-direction: row;
+            }
+
+            .btn-opt-del {
+                padding: 6px 10px;
+                background: #f3f4f6;
+                border: none;
+            }
+
+            /* Summary Section Mobile */
+            .summary-card {
+                padding: 20px;
+                border-radius: 12px;
+                background: #f9fafb;
+                border: 1px solid #eee;
+            }
+
+            /* Sticky Checkout Button */
+            .btn-order-submit {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                z-index: 1000;
+                padding-bottom: env(safe-area-inset-bottom);
+                height: auto;
+                min-height: 60px;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Add padding to wrapper to prevent content being hidden behind sticky button */
+            .cart-layout-wrapper {
+                padding-bottom: 60px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <header class="w-header"></header>
-
     <div class="cart-container">
-        <div class="cart-page-title">
-            <i class="ph ph-shopping-bag"></i> 장바구니
-        </div>
-
+        <div class="cart-page-title"><i class="ph ph-shopping-bag"></i>장바구니 </div>
         <div class="cart-layout-wrapper">
-
-            <!-- Left: Cart List -->
-            <div class="cart-list-section">
-                <!-- Header Actions -->
-                <div class="list-header-actions">
-                    <label id="all_check" class="chk-label">
-                        <input type="checkbox" checked>
-                        전체 선택 (6/6)
-                    </label>
-                    <button id="all_delete" class="btn-text-action">선택 삭제</button>
+            < !-- Left: Cart List -->
+                <div class="cart-list-section">
+                    < !-- Header Actions -->
+                        <div class="list-header-actions"><label id="all_check" class="chk-label"><input type="checkbox"
+                                    checked>전체 선택 (6/6) </label><button id="all_delete" class="btn-text-action">선택
+                                삭제</button></div>
+                        < !-- Product Group 1 -->
+                            <div class="product-group-card">
+                                < !-- Image Side -->
+                                    <div class="pg-image-area"><img
+                                            src="https://img1.vvic.com/upload/1735001654379_659003.jpg"
+                                            class="pg-thumb"><label class="chk-label"
+                                            style="font-size: 13px; margin-top: 4px;"><input type="checkbox"
+                                                checked>전체선택 </label>
+                                        <div class="pg-actions"><button class="btn-pg MoveFollow"
+                                                data-itemcd="48915460"><i class="ph ph-heart"></i>관심</button><button
+                                                class="btn-pg DeleteItem" data-itemcd="48915460"><i
+                                                    class="ph ph-trash"></i>삭제</button></div>
+                                    </div>
+                                    < !-- Options Side -->
+                                        <div class="pg-options-area">
+                                            < !-- Option 1 -->
+                                                <div class="opt-row item_row" data-itemcd="48915460"
+                                                    data-itemnm="니트 #48915460" data-op1cd="黑色" data-op2cd="均码"
+                                                    data-op1en="블랙" data-op2en="FREE" data-price="10450" data-qty="2">
+                                                    <div class="opt-chk item_check"><input type="checkbox" checked>
+                                                    </div>
+                                                    <div class="opt-info">
+                                                        <div class="opt-name">니트 #48915460</div>
+                                                        <div class="opt-spec"><span class="spec-badge">블랙</span><span
+                                                                class="spec-badge">FREE</span></div>
+                                                    </div>
+                                                    <div class="opt-price item_price">￦10,
+                                                        450</div>
+                                                    <div class="opt-qty">
+                                                        <div class="qty-controls item_qty"><button
+                                                                class="btn-qty item_minus">-</button><input type="text"
+                                                                class="input-qty rj_number" data-oldvalue="2"
+                                                                value="2"><button class="btn-qty item_plus">+</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opt-actions"><button class="btn-opt-del item_delete"><i
+                                                                class="ph ph-trash"></i>삭제</button></div>
+                                                </div>
+                                                < !-- Option 2 -->
+                                                    <div class="opt-row item_row" data-itemcd="48915460"
+                                                        data-itemnm="니트 #48915460" data-op1cd="米色" data-op2cd="均码"
+                                                        data-op1en="베이지" data-op2en="FREE" data-price="10450"
+                                                        data-qty="2">
+                                                        <div class="opt-chk item_check"><input type="checkbox" checked>
+                                                        </div>
+                                                        <div class="opt-info">
+                                                            <div class="opt-name">니트 #48915460</div>
+                                                            <div class="opt-spec"><span
+                                                                    class="spec-badge">베이지</span><span
+                                                                    class="spec-badge">FREE</span></div>
+                                                        </div>
+                                                        <div class="opt-price item_price">￦10,
+                                                            450</div>
+                                                        <div class="opt-qty">
+                                                            <div class="qty-controls item_qty"><button
+                                                                    class="btn-qty item_minus">-</button><input
+                                                                    type="text" class="input-qty rj_number"
+                                                                    data-oldvalue="2" value="2"><button
+                                                                    class="btn-qty item_plus">+</button></div>
+                                                        </div>
+                                                        <div class="opt-actions"><button
+                                                                class="btn-opt-del item_delete"><i
+                                                                    class="ph ph-trash"></i>삭제</button></div>
+                                                    </div>
+                                                    < !-- Option 3 -->
+                                                        <div class="opt-row item_row" data-itemcd="48915460"
+                                                            data-itemnm="니트 #48915460" data-op1cd="灰紫色" data-op2cd="均码"
+                                                            data-op1en="인디퍼플" data-op2en="FREE" data-price="10450"
+                                                            data-qty="1">
+                                                            <div class="opt-chk item_check"><input type="checkbox"
+                                                                    checked></div>
+                                                            <div class="opt-info">
+                                                                <div class="opt-name">니트 #48915460</div>
+                                                                <div class="opt-spec"><span
+                                                                        class="spec-badge">인디퍼플</span><span
+                                                                        class="spec-badge">FREE</span></div>
+                                                            </div>
+                                                            <div class="opt-price item_price">￦10,
+                                                                450</div>
+                                                            <div class="opt-qty">
+                                                                <div class="qty-controls item_qty"><button
+                                                                        class="btn-qty item_minus">-</button><input
+                                                                        type="text" class="input-qty rj_number"
+                                                                        data-oldvalue="1" value="1"><button
+                                                                        class="btn-qty item_plus">+</button></div>
+                                                            </div>
+                                                            <div class="opt-actions"><button
+                                                                    class="btn-opt-del item_delete"><i
+                                                                        class="ph ph-trash"></i>삭제</button></div>
+                                                        </div>
+                                        </div>
+                            </div>
+                            < !-- Product Group 2 -->
+                                <div class="product-group-card">
+                                    <div class="pg-image-area"><img
+                                            src="http://item-img.vvic.com/prod/22152/1758174885250_3ZpSfg.jpg"
+                                            class="pg-thumb"><label class="chk-label"
+                                            style="font-size: 13px; margin-top: 4px;"><input type="checkbox"
+                                                checked>전체선택 </label>
+                                        <div class="pg-actions"><button class="btn-pg MoveFollow"
+                                                data-itemcd="52886344"><i class="ph ph-heart"></i>관심</button><button
+                                                class="btn-pg DeleteItem" data-itemcd="52886344"><i
+                                                    class="ph ph-trash"></i>삭제</button></div>
+                                    </div>
+                                    <div class="pg-options-area">
+                                        < !-- Item 2 Option 1 -->
+                                            <div class="opt-row item_row" data-itemcd="52886344"
+                                                data-itemnm="패딩 #52886344" data-op1cd="米白色" data-op2cd="M"
+                                                data-op1en="아이보리" data-op2en="M" data-price="20240" data-qty="2">
+                                                <div class="opt-chk item_check"><input type="checkbox" checked></div>
+                                                <div class="opt-info">
+                                                    <div class="opt-name">패딩 #52886344</div>
+                                                    <div class="opt-spec"><span class="spec-badge">아이보리</span><span
+                                                            class="spec-badge">M</span></div>
+                                                </div>
+                                                <div class="opt-price item_price">￦20,
+                                                    240</div>
+                                                <div class="opt-qty">
+                                                    <div class="qty-controls item_qty"><button
+                                                            class="btn-qty item_minus">-</button><input type="text"
+                                                            class="input-qty rj_number" data-oldvalue="2"
+                                                            value="2"><button class="btn-qty item_plus">+</button></div>
+                                                </div>
+                                                <div class="opt-actions"><button class="btn-opt-del item_delete"><i
+                                                            class="ph ph-trash"></i>삭제</button></div>
+                                            </div>
+                                            < !-- Item 2 Option 2 (Added) -->
+                                                <div class="opt-row item_row" data-itemcd="52886344"
+                                                    data-itemnm="패딩 #52886344" data-op1cd="灰色" data-op2cd="M"
+                                                    data-op1en="그레이" data-op2en="M" data-price="20240" data-qty="1">
+                                                    <div class="opt-chk item_check"><input type="checkbox" checked>
+                                                    </div>
+                                                    <div class="opt-info">
+                                                        <div class="opt-name">패딩 #52886344</div>
+                                                        <div class="opt-spec"><span class="spec-badge">그레이</span><span
+                                                                class="spec-badge">M</span></div>
+                                                    </div>
+                                                    <div class="opt-price item_price">￦20,
+                                                        240</div>
+                                                    <div class="opt-qty">
+                                                        <div class="qty-controls item_qty"><button
+                                                                class="btn-qty item_minus">-</button><input type="text"
+                                                                class="input-qty rj_number" data-oldvalue="1"
+                                                                value="1"><button class="btn-qty item_plus">+</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opt-actions"><button class="btn-opt-del item_delete"><i
+                                                                class="ph ph-trash"></i>삭제</button></div>
+                                                </div>
+                                    </div>
+                                </div>
+                                < !-- Product Group 3 (Added) -->
+                                    <div class="product-group-card">
+                                        <div class="pg-image-area"><img
+                                                src="https://cbu01.alicdn.com/img/ibank/O1CN01Z1dohM1Er53xaGqwA_!!2218317190404-0-cib.jpg"
+                                                class="pg-thumb"><label class="chk-label"
+                                                style="font-size: 13px; margin-top: 4px;"><input type="checkbox"
+                                                    checked>전체선택 </label>
+                                            <div class="pg-actions"><button class="btn-pg MoveFollow"
+                                                    data-itemcd="918909655436"><i
+                                                        class="ph ph-heart"></i>관심</button><button
+                                                    class="btn-pg DeleteItem" data-itemcd="918909655436"><i
+                                                        class="ph ph-trash"></i>삭제</button></div>
+                                        </div>
+                                        <div class="pg-options-area">
+                                            <div class="opt-row item_row" data-itemcd="918909655436"
+                                                data-itemnm="미니원피스 #918909655436" data-op1cd="连衣裙" data-op2cd="S"
+                                                data-op1en="원피스" data-op2en="S" data-price="20240" data-qty="2">
+                                                <div class="opt-chk item_check"><input type="checkbox" checked></div>
+                                                <div class="opt-info">
+                                                    <div class="opt-name">미니원피스 #918909655436</div>
+                                                    <div class="opt-spec"><span class="spec-badge">원피스</span><span
+                                                            class="spec-badge">S</span></div>
+                                                </div>
+                                                <div class="opt-price item_price">￦20,
+                                                    240</div>
+                                                <div class="opt-qty">
+                                                    <div class="qty-controls item_qty"><button
+                                                            class="btn-qty item_minus">-</button><input type="text"
+                                                            class="input-qty rj_number" data-oldvalue="2"
+                                                            value="2"><button class="btn-qty item_plus">+</button></div>
+                                                </div>
+                                                <div class="opt-actions"><button class="btn-opt-del item_delete"><i
+                                                            class="ph ph-trash"></i>삭제</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
                 </div>
-
-                <!-- Product Group 1 -->
-                <div class="product-group-card">
-                    <!-- Image Side -->
-                    <div class="pg-image-area">
-                        <img src="https://img1.vvic.com/upload/1735001654379_659003.jpg" class="pg-thumb">
-                        <label class="chk-label" style="font-size: 13px; margin-top: 4px;">
-                            <input type="checkbox" checked> 전체선택
-                        </label>
-                        <div class="pg-actions">
-                            <button class="btn-pg MoveFollow" data-itemcd="48915460"><i class="ph ph-heart"></i>
-                                관심</button>
-                            <button class="btn-pg DeleteItem" data-itemcd="48915460"><i class="ph ph-trash"></i>
-                                삭제</button>
+                < !-- Right: Summary (Sticky) -->
+                    <div class="cart-summary-section">
+                        <div class="summary-card">
+                            <div class="sc-header">주문 정보</div>
+                            <div class="sc-row"><span>주문일자</span><span class="sc-val"><span
+                                        id="ORDER_DATE">2026-01-21</span></span></div>
+                            <div class="sc-row"><span>총 수량</span><span class="sc-val"><span
+                                        id="total_qty">6</span>개</span></div>
+                            <div class="sc-row"><span>총 상품금액</span><span class="sc-val price">￦<span id="total_amt">101,
+                                        860</span></span></div><button id="ToOrder" class="btn-order-submit"
+                                onclick="location.href='checkout_inline.html'"><i class="ph ph-check-circle"></i>주문 등록하기
+                            </button>
                         </div>
                     </div>
-
-                    <!-- Options Side -->
-                    <div class="pg-options-area">
-                        <!-- Option 1 -->
-                        <div class="opt-row item_row" data-itemcd="48915460" data-itemnm="니트 #48915460" data-op1cd="黑色"
-                            data-op2cd="均码" data-op1en="블랙" data-op2en="FREE" data-price="10450" data-qty="2">
-                            <div class="opt-chk item_check"><input type="checkbox" checked></div>
-                            <div class="opt-info">
-                                <div class="opt-name">니트 #48915460</div>
-                                <div class="opt-spec">
-                                    <span class="spec-badge">블랙</span>
-                                    <span class="spec-badge">FREE</span>
-                                </div>
-                            </div>
-                            <div class="opt-price item_price">￦10,450</div>
-                            <div class="opt-qty">
-                                <div class="qty-controls item_qty">
-                                    <button class="btn-qty item_minus">-</button>
-                                    <input type="text" class="input-qty rj_number" data-oldvalue="2" value="2">
-                                    <button class="btn-qty item_plus">+</button>
-                                </div>
-                            </div>
-                            <div class="opt-actions">
-                                <button class="btn-opt-del item_delete"><i class="ph ph-trash"></i> 삭제</button>
-                            </div>
-                        </div>
-
-                        <!-- Option 2 -->
-                        <div class="opt-row item_row" data-itemcd="48915460" data-itemnm="니트 #48915460" data-op1cd="米色"
-                            data-op2cd="均码" data-op1en="베이지" data-op2en="FREE" data-price="10450" data-qty="2">
-                            <div class="opt-chk item_check"><input type="checkbox" checked></div>
-                            <div class="opt-info">
-                                <div class="opt-name">니트 #48915460</div>
-                                <div class="opt-spec">
-                                    <span class="spec-badge">베이지</span>
-                                    <span class="spec-badge">FREE</span>
-                                </div>
-                            </div>
-                            <div class="opt-price item_price">￦10,450</div>
-                            <div class="opt-qty">
-                                <div class="qty-controls item_qty">
-                                    <button class="btn-qty item_minus">-</button>
-                                    <input type="text" class="input-qty rj_number" data-oldvalue="2" value="2">
-                                    <button class="btn-qty item_plus">+</button>
-                                </div>
-                            </div>
-                            <div class="opt-actions">
-                                <button class="btn-opt-del item_delete"><i class="ph ph-trash"></i> 삭제</button>
-                            </div>
-                        </div>
-
-                        <!-- Option 3 -->
-                        <div class="opt-row item_row" data-itemcd="48915460" data-itemnm="니트 #48915460" data-op1cd="灰紫色"
-                            data-op2cd="均码" data-op1en="인디퍼플" data-op2en="FREE" data-price="10450" data-qty="1">
-                            <div class="opt-chk item_check"><input type="checkbox" checked></div>
-                            <div class="opt-info">
-                                <div class="opt-name">니트 #48915460</div>
-                                <div class="opt-spec">
-                                    <span class="spec-badge">인디퍼플</span>
-                                    <span class="spec-badge">FREE</span>
-                                </div>
-                            </div>
-                            <div class="opt-price item_price">￦10,450</div>
-                            <div class="opt-qty">
-                                <div class="qty-controls item_qty">
-                                    <button class="btn-qty item_minus">-</button>
-                                    <input type="text" class="input-qty rj_number" data-oldvalue="1" value="1">
-                                    <button class="btn-qty item_plus">+</button>
-                                </div>
-                            </div>
-                            <div class="opt-actions">
-                                <button class="btn-opt-del item_delete"><i class="ph ph-trash"></i> 삭제</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Group 2 -->
-                <div class="product-group-card">
-                    <div class="pg-image-area">
-                        <img src="http://item-img.vvic.com/prod/22152/1758174885250_3ZpSfg.jpg" class="pg-thumb">
-                        <label class="chk-label" style="font-size: 13px; margin-top: 4px;">
-                            <input type="checkbox" checked> 전체선택
-                        </label>
-                        <div class="pg-actions">
-                            <button class="btn-pg MoveFollow" data-itemcd="52886344"><i class="ph ph-heart"></i>
-                                관심</button>
-                            <button class="btn-pg DeleteItem" data-itemcd="52886344"><i class="ph ph-trash"></i>
-                                삭제</button>
-                        </div>
-                    </div>
-                    <div class="pg-options-area">
-                        <!-- Item 2 Option 1 -->
-                        <div class="opt-row item_row" data-itemcd="52886344" data-itemnm="패딩 #52886344" data-op1cd="米白色"
-                            data-op2cd="M" data-op1en="아이보리" data-op2en="M" data-price="20240" data-qty="2">
-                            <div class="opt-chk item_check"><input type="checkbox" checked></div>
-                            <div class="opt-info">
-                                <div class="opt-name">패딩 #52886344</div>
-                                <div class="opt-spec">
-                                    <span class="spec-badge">아이보리</span>
-                                    <span class="spec-badge">M</span>
-                                </div>
-                            </div>
-                            <div class="opt-price item_price">￦20,240</div>
-                            <div class="opt-qty">
-                                <div class="qty-controls item_qty">
-                                    <button class="btn-qty item_minus">-</button>
-                                    <input type="text" class="input-qty rj_number" data-oldvalue="2" value="2">
-                                    <button class="btn-qty item_plus">+</button>
-                                </div>
-                            </div>
-                            <div class="opt-actions">
-                                <button class="btn-opt-del item_delete"><i class="ph ph-trash"></i> 삭제</button>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 Option 2 (Added) -->
-                        <div class="opt-row item_row" data-itemcd="52886344" data-itemnm="패딩 #52886344" data-op1cd="灰色"
-                            data-op2cd="M" data-op1en="그레이" data-op2en="M" data-price="20240" data-qty="1">
-                            <div class="opt-chk item_check"><input type="checkbox" checked></div>
-                            <div class="opt-info">
-                                <div class="opt-name">패딩 #52886344</div>
-                                <div class="opt-spec">
-                                    <span class="spec-badge">그레이</span>
-                                    <span class="spec-badge">M</span>
-                                </div>
-                            </div>
-                            <div class="opt-price item_price">￦20,240</div>
-                            <div class="opt-qty">
-                                <div class="qty-controls item_qty">
-                                    <button class="btn-qty item_minus">-</button>
-                                    <input type="text" class="input-qty rj_number" data-oldvalue="1" value="1">
-                                    <button class="btn-qty item_plus">+</button>
-                                </div>
-                            </div>
-                            <div class="opt-actions">
-                                <button class="btn-opt-del item_delete"><i class="ph ph-trash"></i> 삭제</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Product Group 3 (Added) -->
-                <div class="product-group-card">
-                    <div class="pg-image-area">
-                        <img src="https://cbu01.alicdn.com/img/ibank/O1CN01Z1dohM1Er53xaGqwA_!!2218317190404-0-cib.jpg"
-                            class="pg-thumb">
-                        <label class="chk-label" style="font-size: 13px; margin-top: 4px;">
-                            <input type="checkbox" checked> 전체선택
-                        </label>
-                        <div class="pg-actions">
-                            <button class="btn-pg MoveFollow" data-itemcd="918909655436"><i class="ph ph-heart"></i>
-                                관심</button>
-                            <button class="btn-pg DeleteItem" data-itemcd="918909655436"><i class="ph ph-trash"></i>
-                                삭제</button>
-                        </div>
-                    </div>
-                    <div class="pg-options-area">
-                        <div class="opt-row item_row" data-itemcd="918909655436" data-itemnm="미니원피스 #918909655436"
-                            data-op1cd="连衣裙" data-op2cd="S" data-op1en="원피스" data-op2en="S" data-price="20240"
-                            data-qty="2">
-                            <div class="opt-chk item_check"><input type="checkbox" checked></div>
-                            <div class="opt-info">
-                                <div class="opt-name">미니원피스 #918909655436</div>
-                                <div class="opt-spec">
-                                    <span class="spec-badge">원피스</span>
-                                    <span class="spec-badge">S</span>
-                                </div>
-                            </div>
-                            <div class="opt-price item_price">￦20,240</div>
-                            <div class="opt-qty">
-                                <div class="qty-controls item_qty">
-                                    <button class="btn-qty item_minus">-</button>
-                                    <input type="text" class="input-qty rj_number" data-oldvalue="2" value="2">
-                                    <button class="btn-qty item_plus">+</button>
-                                </div>
-                            </div>
-                            <div class="opt-actions">
-                                <button class="btn-opt-del item_delete"><i class="ph ph-trash"></i> 삭제</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right: Summary (Sticky) -->
-            <div class="cart-summary-section">
-                <div class="summary-card">
-                    <div class="sc-header">주문 정보</div>
-
-                    <div class="sc-row">
-                        <span>주문일자</span>
-                        <span class="sc-val"><span id="ORDER_DATE">2026-01-21</span></span>
-                    </div>
-                    <div class="sc-row">
-                        <span>총 수량</span>
-                        <span class="sc-val"><span id="total_qty">6</span>개</span>
-                    </div>
-                    <div class="sc-row">
-                        <span>총 상품금액</span>
-                        <span class="sc-val price">￦<span id="total_amt">101,860</span></span>
-                    </div>
-
-
-                    <button id="ToOrder" class="btn-order-submit" onclick="location.href='checkout_inline.html'">
-                        <i class="ph ph-check-circle"></i> 주문 등록하기
-                    </button>
-
-
-                </div>
-            </div>
-
         </div>
 </body>
 
