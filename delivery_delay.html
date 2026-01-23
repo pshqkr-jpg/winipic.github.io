@@ -33,26 +33,32 @@
 
                 <div class="filter-group">
                     <span class="filter-label">시작일자:</span>
-                    <input type="date" class="w-input" value="2025-10-20">
+                    <!-- Legacy: #SDATE -->
+                    <input type="date" id="SDATE" class="w-input rj_datetime" value="2025-10-20">
                 </div>
                 <div class="filter-group">
                     <span class="filter-label">종료일자:</span>
-                    <input type="date" class="w-input" value="2026-01-20">
+                    <!-- Legacy: #EDATE -->
+                    <input type="date" id="EDATE" class="w-input rj_datetime" value="2026-01-20">
                 </div>
 
                 <div style="flex: 1;"></div>
 
+                <!-- Legacy: #BUTTON_SEARCH, #BUTTON_DELAY, #BUTTON_OUT, #BUTTON_DOWN -->
                 <div class="filter-btn-group">
-                    <button class="btn-filter btn-white search-type" onclick="location.href='delivery_tracking.html'">
+                    <button id="BUTTON_SEARCH" class="btn-filter btn-white search-type"
+                        onclick="location.href='delivery_tracking.html'">
                         <i class="ph ph-magnifying-glass"></i> 배송조회
                     </button>
-                    <button class="btn-filter btn-black search-type-select">
+                    <button id="BUTTON_DELAY" class="btn-filter btn-black search-type-select">
                         <i class="ph ph-clock"></i> 지연조회
                     </button>
-                    <button class="btn-filter btn-white search-type" onclick="location.href='order_soldout.html'">
+                    <button id="BUTTON_OUT" class="btn-filter btn-white search-type"
+                        onclick="location.href='order_soldout.html'">
                         <i class="ph ph-prohibit"></i> 주문품절조회
                     </button>
-                    <button class="btn-filter btn-white search-type" onclick="location.href='product_soldout.html'">
+                    <button id="BUTTON_DOWN" class="btn-filter btn-white search-type"
+                        onclick="location.href='product_soldout.html'">
                         <i class="ph ph-prohibit"></i> 상품품절조회
                     </button>
                 </div>
