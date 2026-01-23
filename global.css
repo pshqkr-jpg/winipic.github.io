@@ -3092,3 +3092,155 @@ select {
         font-size: 12px;
     }
 }
+
+/* -----------------------------------------------------------------------
+   ORDER HISTORY PAGE STYLES
+   ----------------------------------------------------------------------- */
+
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.page-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.page-btn.active {
+    background: #1f2937;
+    color: #fff;
+    border-color: #1f2937;
+}
+
+/* Master Table Wrapper */
+.master-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile Optimization for Order History */
+@media (max-width: 768px) {
+
+    /* Card Header - Stack elements vertically */
+    .w-card-header {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 12px;
+    }
+
+    .w-card-header>div {
+        width: 100%;
+    }
+
+    /* Pagination wrapper */
+    .w-card-header>div[style*="display: flex"] {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* Pagination controls */
+    .pagination {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .page-btn {
+        min-width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    /* Go to page input */
+    .w-card-header>div>div[style*="font-size: 13px"] {
+        text-align: center;
+        font-size: 12px !important;
+    }
+
+    /* Excel button in header */
+    .w-card-header .btn-filter {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Filter inputs - reduce width and center */
+    .filter-group input[type="date"],
+    .filter-group input[type="text"] {
+        max-width: 140px;
+        margin: 0 auto;
+    }
+
+    .filter-group {
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Date range group */
+    .filter-group:has(input[type="date"]) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-group span {
+        margin: 0 4px;
+    }
+}
+
+/* Extra small screens (320px) - Order History specific */
+@media (max-width: 360px) {
+    .pagination {
+        gap: 2px;
+    }
+
+    .page-btn {
+        min-width: 24px;
+        height: 24px;
+        padding: 0 4px;
+        font-size: 11px;
+    }
+
+    .page-btn i {
+        font-size: 12px;
+    }
+
+    /* Further reduce filter input widths */
+    .filter-group input[type="date"],
+    .filter-group input[type="text"] {
+        max-width: 120px;
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    .filter-label {
+        font-size: 11px;
+    }
+
+    /* Go to page controls */
+    .w-card-header input[type="text"] {
+        width: 24px !important;
+        font-size: 11px !important;
+        padding: 2px !important;
+    }
+
+    .w-card-header button {
+        font-size: 10px !important;
+        padding: 4px 8px !important;
+    }
+}
