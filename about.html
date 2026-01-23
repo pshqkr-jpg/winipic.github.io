@@ -51,23 +51,29 @@
 
         function resizeIframe() {
             try {
-                // Same Origin (local test) or Cross Origin with postMessage needed for production
                 if (iframe.contentWindow.document.body) {
-                    const height = iframe.contentWindow.document.body.scrollHeight;
+                    const body = iframe.contentWindow.document.body;
+                    const html = iframe.contentWindow.document.documentElement;
+
+                    const height = Math.max(
+                        body.scrollHeight, body.offsetHeight,
+                        html.clientHeight, html.scrollHeight, html.offsetHeight
+                    );
+
                     iframe.style.height = height + 'px';
                 }
             } catch (e) {
-                console.log('Frame access restricted or error:', e);
-                // Fallback for cross-origin if needed, but local usage assumes same-origin or working environment
-                // iframe.style.height = '100vh'; 
+                console.warn('Frame access restricted. Ensure same-origin policy or use postMessage.', e);
+                // Fallback: Set to viewport height to ensure visibility
+                iframe.style.height = '100vh';
             }
         }
 
         iframe.onload = resizeIframe;
         window.addEventListener('resize', resizeIframe);
 
-        // Periodic check for content loading (like images)
-        setInterval(resizeIframe, 500);
+        // Continuous check for dynamic content loading
+        setInterval(resizeIframe, 200);
     </script>
 </body>
 
