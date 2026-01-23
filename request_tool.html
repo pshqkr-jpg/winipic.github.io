@@ -339,15 +339,185 @@
             box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 600px) {
+        /* Mobile Responsive & Optimization */
+        @media (max-width: 768px) {
+            .tool-layout {
+                max-width: 100%;
+                margin: 40px auto;
+                padding: 0 16px;
+            }
+
+            .req-hero {
+                margin-bottom: 40px;
+            }
+
+            .req-title {
+                font-size: 24px;
+            }
+
+            .req-subtitle {
+                font-size: 14px;
+                margin-bottom: 30px;
+                word-break: keep-all;
+            }
+
+            /* Responsive Input Form */
+            .input-wrapper {
+                flex-direction: column;
+                background: #fff;
+                border-radius: 20px;
+                padding: 16px;
+                gap: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            .input-wrapper i {
+                display: none;
+                /* Hide link icon to save space */
+            }
+
+            .req-input {
+                width: 100%;
+                text-align: center;
+                padding: 0;
+                height: 40px;
+                border-bottom: 1px solid #eee;
+                border-radius: 0;
+            }
+
+            .req-input:focus {
+                border-color: #111;
+            }
+
+            .btn-req-submit {
+                width: 100%;
+                height: 48px;
+                justify-content: center;
+                margin-top: 4px;
+            }
+
+            /* Extension Card Mobile */
+            .extension-card {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
             .ext-content {
                 flex-direction: column;
+                gap: 16px;
                 text-align: center;
+            }
+
+            .ext-icon-area {
+                margin: 0 auto;
             }
 
             .ext-text {
                 text-align: center;
+                margin: 0;
+            }
+
+            .btn-install {
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
+
+            /* History Table -> Card List Transformation */
+            .history-section {
+                margin-top: 50px;
+            }
+
+            .req-table,
+            .req-table tbody,
+            .req-table tr,
+            .req-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .req-table thead {
+                display: none;
+                /* Hide header */
+            }
+
+            .req-table tr {
+                background: #fff;
+                border: 1px solid #eee;
+                border-radius: 16px;
+                margin-bottom: 16px;
+                padding: 16px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+                position: relative;
+            }
+
+            .req-table td {
+                padding: 4px 0;
+                border: none;
+                text-align: left;
+            }
+
+            /* 1. Link (Product Path) */
+            .req-table td:nth-child(1) {
+                margin-bottom: 12px;
+            }
+
+            .cell-link {
+                background: #f9fafb;
+                padding: 8px 12px;
+                border-radius: 8px;
+            }
+
+            .link-text {
+                font-size: 13px;
+            }
+
+            /* 2. Code */
+            .req-table td:nth-child(2) {
+                display: inline-block;
+                width: auto;
+                margin-right: 8px;
+            }
+
+            /* 3. Req Time */
+            .req-table td:nth-child(3) {
+                display: inline-block;
+                width: auto;
+                color: #888;
+                font-size: 12px;
+            }
+
+            .time-group {
+                flex-direction: row;
+                gap: 6px;
+                display: inline-flex;
+            }
+
+            /* 4. Status & Result Time */
+            .req-table td:nth-child(4) {
+                margin-top: 12px;
+                padding-top: 12px;
+                border-top: 1px solid #f0f0f0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            /* 5. View Button */
+            .req-table td:nth-child(5) {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                width: auto;
+                padding: 0;
+            }
+
+            .btn-view {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+                background: #f0f0f0;
+                border-color: transparent;
             }
         }
     </style>
