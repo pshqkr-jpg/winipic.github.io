@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="global.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
     <style>
         body {
             background-color: #fff;
-            /* overflow: hidden; Removed to allow scrolling */
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
         }
@@ -19,10 +20,9 @@
         /* Iframe Container */
         .iframe-container {
             width: 100%;
-            /* height: calc(100vh - 60px); Removed to allow full content height */
+            min-height: 100vh;
             margin-top: 60px;
             /* Header Height */
-            /* overflow: hidden; Removed to allow content display */
         }
 
         iframe {
@@ -30,8 +30,6 @@
             height: 100%;
             border: none;
             display: block;
-            overflow: hidden;
-            /* Hide iframe scrollbar */
         }
     </style>
 </head>
@@ -40,9 +38,8 @@
     <header class="w-header"></header>
 
     <div class="iframe-container">
-
-        <iframe id="aboutFrame" src="https://pshqkr-jpg.github.io/winipic.github.io/about_content.html"
-            title="About Content" scrolling="no"></iframe>
+        <iframe id="aboutFrame" src="https://pshqkr-jpg.github.io/winipic.github.io/about_content"
+            title="About Content"></iframe>
     </div>
 
     <!-- Iframe Auto Height Script -->
@@ -51,29 +48,21 @@
 
         function resizeIframe() {
             try {
+                // Same Origin (local test)
                 if (iframe.contentWindow.document.body) {
-                    const body = iframe.contentWindow.document.body;
-                    const html = iframe.contentWindow.document.documentElement;
-
-                    const height = Math.max(
-                        body.scrollHeight, body.offsetHeight,
-                        html.clientHeight, html.scrollHeight, html.offsetHeight
-                    );
-
-                    iframe.style.height = height + 'px';
+                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
                 }
             } catch (e) {
-                console.warn('Frame access restricted. Ensure same-origin policy or use postMessage.', e);
-                // Fallback: Set to viewport height to ensure visibility
-                iframe.style.height = '100vh';
+                // Cross Origin (GitHub Pages)시 메시지 수신 방식으로 높이 조절 필요
+                // 이 부분은 추후 배포 환경에서 postMessage 구현이 필요할 수 있음
+                // 일단은 충분히 긴 높이로 설정하거나, 100vh로 설정
+                console.log('Cross-origin frame access restricted. Set fixed height or implement postMessage.');
+                iframe.style.height = 'calc(100vh - 60px)';
             }
         }
 
         iframe.onload = resizeIframe;
-        window.addEventListener('resize', resizeIframe);
-
-        // Continuous check for dynamic content loading
-        setInterval(resizeIframe, 200);
+        window.onresize = resizeIframe;
     </script>
 </body>
 
