@@ -283,7 +283,7 @@ function renderNavbar() {
                 <div class="divider desktop-only" style="width: 1px; height: 24px; background: #eee; margin: 0 8px;"></div>
                 
                 <!-- 마이페이지 (주문내역) - 모바일에서는 아이콘만 -->
-                <div class="w-tool-item">
+                <div class="w-tool-item mobile-hide">
                     <button class="btn-icon nav-order-btn" onclick="location.href='order_history.html'">
                         <i class="ph ph-user" style="font-size: 20px;"></i>
                         <span class="desktop-text">주문내역</span>
@@ -451,7 +451,7 @@ function renderNavbar() {
 
     // 퀵 메뉴 HTML (항상 렌더링)
     const quickMenuHTML = `
-    < div class="w-quick-menu" >
+    <div class="w-quick-menu">
             <div class="w-quick-item" onclick="location.href='order_history.html'">
                 <i class="ph ph-receipt w-quick-icon"></i>
                 <span class="w-quick-label">주문내역</span>
@@ -468,7 +468,7 @@ function renderNavbar() {
                 <i class="ph ph-briefcase w-quick-icon"></i>
                 <span class="w-quick-label">My Products</span>
             </div>
-        </div >
+        </div>
     `;
 
     // 모달들 HTML을 body 끝에 추가 (중복 방지)
@@ -523,7 +523,7 @@ function renderNavbar() {
             ];
 
             const subMenuHTML = `
-    < div class="w-subheader" >
+    <div class="w-subheader">
         <div class="w-subheader-container">
             ${subMenuItems.map(item => {
                 const isActive = currentPath.includes(item.href) ||
@@ -531,7 +531,7 @@ function renderNavbar() {
                 return `<a href="${item.href}" class="w-sub-link ${isActive ? 'active' : ''}">${item.label}</a>`;
             }).join('')}
         </div>
-                </div >
+                </div>
     `;
 
             header.insertAdjacentHTML('afterend', subMenuHTML);

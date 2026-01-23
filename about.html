@@ -8,12 +8,10 @@
     <link rel="stylesheet" href="global.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="js/navbar.js" defer></script>
-    <script src="js/footer.js" defer></script>
     <style>
         body {
             background-color: #fff;
-            overflow: hidden;
-            /* Prevent double scroll */
+            /* overflow: hidden; Removed to allow scrolling */
             margin: 0;
             padding: 0;
         }
@@ -21,12 +19,10 @@
         /* Iframe Container */
         .iframe-container {
             width: 100%;
-            height: calc(100vh - 60px);
-            /* Fill exact remaining height */
+            /* height: calc(100vh - 60px); Removed to allow full content height */
             margin-top: 60px;
             /* Header Height */
-            overflow: hidden;
-            /* Prevent container scroll */
+            /* overflow: hidden; Removed to allow content display */
         }
 
         iframe {
@@ -34,6 +30,8 @@
             height: 100%;
             border: none;
             display: block;
+            overflow: hidden;
+            /* Hide iframe scrollbar */
         }
     </style>
 </head>
@@ -47,8 +45,7 @@
             아래 iframe src 주소를 고객님이 배포하신 GitHub Pages URL로 변경해주세요.
             예: https://username.github.io/repository-name/about_content.html
         -->
-        <iframe id="aboutFrame" src="https://pshqkr-jpg.github.io/winipic.github.io/about_content"
-            title="About Content"></iframe>
+        <iframe id="aboutFrame" src="about_content.html" title="About Content" scrolling="no"></iframe>
     </div>
 
     <!-- Iframe Auto Height Script -->
@@ -57,21 +54,23 @@
 
         function resizeIframe() {
             try {
-                // Same Origin (local test)
+                // Same Origin (local test) or Cross Origin with postMessage needed for production
                 if (iframe.contentWindow.document.body) {
-                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+                    const height = iframe.contentWindow.document.body.scrollHeight;
+                    iframe.style.height = height + 'px';
                 }
             } catch (e) {
-                // Cross Origin (GitHub Pages)시 메시지 수신 방식으로 높이 조절 필요
-                // 이 부분은 추후 배포 환경에서 postMessage 구현이 필요할 수 있음
-                // 일단은 충분히 긴 높이로 설정하거나, 100vh로 설정
-                console.log('Cross-origin frame access restricted. Set fixed height or implement postMessage.');
-                iframe.style.height = 'calc(100vh - 60px)';
+                console.log('Frame access restricted or error:', e);
+                // Fallback for cross-origin if needed, but local usage assumes same-origin or working environment
+                // iframe.style.height = '100vh'; 
             }
         }
 
         iframe.onload = resizeIframe;
-        window.onresize = resizeIframe;
+        window.addEventListener('resize', resizeIframe);
+
+        // Periodic check for content loading (like images)
+        setInterval(resizeIframe, 500);
     </script>
 </body>
 
