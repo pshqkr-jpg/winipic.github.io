@@ -137,6 +137,178 @@
             object-fit: contain;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
+        /* Mobile Optimization for Mannequin Result (Table to Card) */
+        @media (max-width: 768px) {
+
+            /* Product Item Card Wrapper */
+            .product-item-card {
+                flex-direction: column;
+                padding: 16px;
+                gap: 16px;
+            }
+
+            .pic-image {
+                width: 100%;
+                height: 200px;
+                margin-bottom: 8px;
+            }
+
+            .pic-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .pic-content {
+                width: 100%;
+                overflow: visible;
+                /* Prevent clipping */
+            }
+
+            .pic-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                margin-bottom: 16px;
+                padding-bottom: 12px;
+                border-bottom: 2px solid #f0f0f0;
+            }
+
+            /* --- Table to Card Transformation --- */
+            .sub-table,
+            .sub-table tbody,
+            .sub-table tr,
+            .sub-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .sub-table thead {
+                display: none;
+            }
+
+            /* Row -> Card */
+            .sub-table tbody tr {
+                background: #fcfcfc;
+                border: 1px solid #e1e1e1;
+                border-radius: 12px;
+                margin-bottom: 16px;
+                padding: 16px;
+                position: relative;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            }
+
+            .sub-table td {
+                padding: 6px 0;
+                border: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: right;
+                font-size: 14px;
+                color: #333;
+            }
+
+            /* Hide unnecessary columns */
+            .sub-table td:nth-child(1),
+            /* Date */
+            .sub-table td:nth-child(2),
+            /* Name (redundant) */
+            .sub-table td:nth-child(5),
+            /* Seq */
+            .sub-table td:nth-child(8),
+            /* Deliv Qty */
+            .sub-table td:nth-child(9),
+            /* Deliv Amt */
+            .sub-table td:nth-child(11),
+            /* China Date */
+            .sub-table td:nth-child(12)
+
+            /* Est Date */
+                {
+                display: none;
+            }
+
+            /* Labels */
+            .sub-table td:nth-child(3)::before {
+                content: "색상";
+                color: #888;
+                font-weight: 500;
+            }
+
+            .sub-table td:nth-child(4)::before {
+                content: "사이즈";
+                color: #888;
+                font-weight: 500;
+            }
+
+            .sub-table td:nth-child(6)::before {
+                content: "단가";
+                color: #888;
+                font-weight: 500;
+            }
+
+            .sub-table td:nth-child(7)::before {
+                content: "수량";
+                color: #888;
+                font-weight: 500;
+            }
+
+            /* Highlight Price & Qty group */
+            .sub-table td:nth-child(6),
+            .sub-table td:nth-child(7) {
+                border-bottom: 1px dashed #eee;
+                padding-bottom: 8px;
+            }
+
+            .sub-table td:nth-child(7) {
+                margin-bottom: 12px;
+            }
+
+            /* 10. Status / Button Column (The Key Part) */
+            .sub-table td:nth-child(10) {
+                display: block;
+                margin-top: 8px;
+                padding-top: 0;
+                text-align: center;
+            }
+
+            .sub-table td:nth-child(10)::before {
+                display: none;
+                /* No label for status row in card view */
+            }
+
+            /* Style the button inside td:nth-child(10) */
+            .sub-table td:nth-child(10) button {
+                width: 100%;
+                height: 48px !important;
+                /* Touch friendly */
+                background-color: #111 !important;
+                color: #fff !important;
+                border: none !important;
+                border-radius: 8px !important;
+                font-size: 15px !important;
+                font-weight: 700 !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.1s;
+            }
+
+            .sub-table td:nth-child(10) button:active {
+                transform: scale(0.98);
+            }
+
+            /* Status Text Styling (When not a button) */
+            .sub-table td:nth-child(10) {
+                font-weight: 700;
+                color: #2563eb;
+            }
+        }
     </style>
     </style>
 </head>
