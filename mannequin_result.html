@@ -182,7 +182,9 @@
             .sub-table tr,
             .sub-table td {
                 display: block;
-                width: 100%;
+                /* Removed width: 100% to prevent overflow with padding */
+                width: auto;
+                box-sizing: border-box;
             }
 
             .sub-table thead {
