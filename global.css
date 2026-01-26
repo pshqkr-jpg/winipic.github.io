@@ -2340,294 +2340,7 @@ select {
     }
 }
 
-@media (max-width: 768px) {
-    /* Mobile */
 
-    /* 1. Header & Nav */
-    .w-header {
-        height: 60px;
-    }
-
-    .w-header-container {
-        padding: 0 16px;
-    }
-
-    /* Fix: Content starting too far down on mobile */
-    .page-container {
-        margin: 10px auto 20px !important;
-        padding-top: 10px !important;
-    }
-
-    .w-container {
-        padding-top: 10px !important;
-    }
-
-    .page-header {
-        margin-top: 0 !important;
-        margin-bottom: 16px !important;
-    }
-
-    .w-nav {
-        display: none;
-        /* Hide PC Nav */
-        /* Will need JS to toggle a mobile menu drawer */
-    }
-
-    .w-logo svg {
-        height: 40px;
-        width: auto;
-    }
-
-    /* 2. Hero Section */
-    .w-hero {
-        height: auto;
-        padding: 40px 0;
-    }
-
-    .w-hero-content {
-        padding: 0 20px;
-        text-align: center;
-    }
-
-    .w-hero-title {
-        font-size: 32px;
-    }
-
-    /* 3. Dashboard */
-    .w-dashboard-grid {
-        grid-template-columns: 1fr;
-        /* 1 Column */
-        gap: 16px;
-    }
-
-    /* 4. Product Grid */
-    .w-product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 Cols on mobile */
-        gap: 16px;
-    }
-
-    /* Small Screen Optimization (< 360px) */
-    @media (max-width: 360px) {
-
-        .w-container,
-        .page-container {
-            padding-left: 10px !important;
-            padding-right: 10px !important;
-        }
-
-        .w-header-container {
-            padding: 0 10px !important;
-        }
-
-        .w-product-grid {
-            gap: 8px;
-        }
-    }
-
-    /* 5. Forms (Stacking) */
-    .filter-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .filter-group {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .filter-group .w-input {
-        width: 100% !important;
-    }
-
-    .compact-form {
-        display: flex !important;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .cf-label {
-        margin-bottom: 4px;
-    }
-
-    .info-col,
-    .memo-wrapper {
-        width: 100%;
-    }
-
-    .detail-grid {
-        display: block;
-    }
-
-    /* 6. Tables (Horizontal Scroll) */
-    .master-table-wrapper {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 12px;
-        /* Scrollbar space */
-    }
-
-    .w-data-table {
-        min-width: 800px;
-        /* Ensure table keeps its shape but scrolls */
-    }
-
-    /* 7. Modals */
-    .w-modal {
-        width: 95%;
-        margin: 10px;
-    }
-
-    /* 8. Subheader (My Page Menu) */
-    .w-subheader-container {
-        padding: 0 16px;
-        overflow-x: auto;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .w-subheader-container::-webkit-scrollbar {
-        height: 0;
-        /* Hide scrollbar */
-    }
-
-    /* 9. Tools (Hide some tools on mobile to save space) */
-    /* Fix: Consolidate Mobile Nav Cleanup */
-    .w-nav,
-    .w-points-badge,
-    .w-search-container,
-    .w-subheader,
-    /* Explicitly hide subheader container */
-    .desktop-only {
-        display: none !important;
-    }
-
-    /* Mobile Menu Toggle Button (To be added via JS) */
-    .mobile-menu-btn {
-        display: block !important;
-    }
-
-    /* Fix: Button Text Wrapping */
-    .btn-filter,
-    .btn-black,
-    .btn-white,
-    .btn-outline {
-        white-space: nowrap !important;
-        font-size: 13px !important;
-        padding: 0 12px;
-        height: 40px;
-        /* Slightly taller for touch */
-    }
-
-    /* Fix: YouTube Video Responsiveness */
-    .video-wrapper iframe {
-        width: 100% !important;
-        height: 100% !important;
-    }
-
-    .w-hero-video {
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    /* Fix: Layout Alignment */
-    .filter-row {
-        gap: 10px !important;
-    }
-
-    .filter-group {
-        gap: 6px !important;
-    }
-
-    /* Ensure inputs don't overflow */
-    .w-input {
-        max-width: 100%;
-    }
-
-    /* Product Item Card Mobile Optimization */
-    .product-item-card {
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin-bottom: 12px;
-    }
-
-    /* Ensure horizontal layout is maintained */
-    .product-item-card .pic-image,
-    .product-item-card .pic-content {
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .pic-image {
-        width: 120px;
-        min-width: 120px;
-        height: 160px;
-        flex-shrink: 0;
-    }
-
-    .pic-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .pic-content {
-        display: inline-block;
-        width: calc(100% - 120px);
-        min-width: 580px;
-        vertical-align: top;
-    }
-
-    .pic-header {
-        padding: 8px 12px;
-    }
-
-    .pic-title {
-        font-size: 12px;
-    }
-
-    .sub-table {
-        font-size: 11px;
-    }
-
-    .sub-table th,
-    .sub-table td {
-        padding: 6px 8px;
-    }
-
-    /* Touch-friendly controls */
-    .sub-table input,
-    .sub-table select,
-    .sub-table button {
-        min-height: 32px;
-        font-size: 11px;
-    }
-
-    /* NEW: Mobile Nav Links for guide_content.html */
-    .nav-links {
-        flex-direction: row;
-        flex-wrap: wrap;
-        overflow-x: visible;
-        border-left: none;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-        justify-content: center;
-    }
-
-    .nav-link {
-        border-left: none;
-        border-bottom: 2px solid transparent;
-        margin-left: 0;
-        margin-bottom: 4px;
-        white-space: nowrap;
-        width: 33.33%;
-        justify-content: center;
-        font-size: 14px;
-    }
-}
 
 /* -----------------------------------------------------------------------
    NEW MOBILE NAV BAR & SEARCH (OVERRIDE for Max-Width 1024px)
@@ -3004,8 +2717,266 @@ select {
     white-space: nowrap;
 }
 
-/* Mobile Optimization for Order Summary */
+/* -----------------------------------------------------------------------
+   ORDER HISTORY PAGE STYLES
+   ----------------------------------------------------------------------- */
+
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.page-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.page-btn.active {
+    background: #1f2937;
+    color: #fff;
+    border-color: #1f2937;
+}
+
+/* Master Table Wrapper */
+.master-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* -----------------------------------------------------------------------
+   통합 모바일 최적화 (max-width: 768px)
+   ----------------------------------------------------------------------- */
 @media (max-width: 768px) {
+
+    /* [General Layout] */
+    /* 1. Header & Nav */
+    .w-header {
+        height: 60px;
+    }
+
+    .w-header-container {
+        padding: 0 16px;
+    }
+
+    /* Fix: Content starting too far down on mobile */
+    .page-container {
+        margin: 10px auto 20px !important;
+        padding-top: 10px !important;
+    }
+
+    .w-container {
+        padding-top: 10px !important;
+    }
+
+    .page-header {
+        margin-top: 0 !important;
+        margin-bottom: 16px !important;
+    }
+
+    .w-nav {
+        display: none;
+        /* Hide PC Nav */
+    }
+
+    .w-logo svg {
+        height: 40px;
+        width: auto;
+    }
+
+    /* 2. Hero Section */
+    .w-hero {
+        height: auto;
+        padding: 40px 0;
+    }
+
+    .w-hero-content {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .w-hero-title {
+        font-size: 32px;
+    }
+
+    /* 3. Dashboard */
+    .w-dashboard-grid {
+        grid-template-columns: 1fr;
+        /* 1 Column */
+        gap: 16px;
+    }
+
+    /* 4. Product Grid */
+    .w-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 Cols on mobile */
+        gap: 16px;
+    }
+
+    /* 5. Forms (Compact) */
+    .compact-form {
+        display: flex !important;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cf-label {
+        margin-bottom: 4px;
+    }
+
+    /* 6. Tables (Horizontal Scroll) */
+    .master-table-wrapper {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 12px;
+    }
+
+    .w-data-table {
+        min-width: 800px;
+    }
+
+    /* 7. Modals */
+    .w-modal {
+        width: 95%;
+        margin: 10px;
+    }
+
+    /* 8. Subheader (My Page Menu) */
+    .w-subheader-container {
+        padding: 0 16px;
+        overflow-x: auto;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .w-subheader-container::-webkit-scrollbar {
+        height: 0;
+    }
+
+    /* 9. Tools & Buttons */
+    .w-points-badge,
+    .w-search-container,
+    .w-subheader,
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
+    .btn-filter,
+    .btn-black,
+    .btn-white,
+    .btn-outline {
+        white-space: nowrap !important;
+        font-size: 13px !important;
+        padding: 0 12px;
+        height: 40px;
+    }
+
+    /* 10. Video */
+    .video-wrapper iframe {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .w-hero-video {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* 11. Product Item Card */
+    .product-item-card {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 12px;
+    }
+
+    .product-item-card .pic-image,
+    .product-item-card .pic-content {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .pic-image {
+        width: 120px;
+        min-width: 120px;
+        height: 160px;
+        flex-shrink: 0;
+    }
+
+    .pic-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .pic-content {
+        display: inline-block;
+        width: calc(100% - 120px);
+        min-width: 580px;
+        vertical-align: top;
+    }
+
+    /* 12. Sub Table & Nav Links */
+    .sub-table {
+        font-size: 11px;
+    }
+
+    .sub-table th,
+    .sub-table td {
+        padding: 6px 8px;
+    }
+
+    .sub-table input,
+    .sub-table select,
+    .sub-table button {
+        min-height: 32px;
+        font-size: 11px;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        border-left: none;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        justify-content: center;
+    }
+
+    .nav-link {
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        margin-left: 0;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        width: 33.33%;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    /* [Order Summary] */
     .filter-row {
         flex-direction: column;
         align-items: stretch;
@@ -3078,10 +3049,185 @@ select {
         flex-direction: column;
         gap: 6px;
     }
+
+    /* [Order History] */
+    /* Card Header - Stack elements vertically */
+    .w-card-header {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 12px;
+    }
+
+    .w-card-header>div {
+        width: 100%;
+    }
+
+    /* Pagination wrapper */
+    .w-card-header>div[style*="display: flex"] {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* 페이지네이션 컨트롤 */
+    .pagination {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .page-btn {
+        min-width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    /* 페이지 이동 입력창 */
+    .w-card-header>div>div[style*="font-size: 13px"] {
+        text-align: center;
+        font-size: 12px !important;
+    }
+
+    /* 헤더 내 엑셀 버튼 */
+    .w-card-header .btn-filter {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 상세 섹션 모바일 최적화 */
+    .detail-grid {
+        display: none;
+        /* 기본값: 접힘 */
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .w-card.expanded .detail-grid {
+        display: flex;
+    }
+
+    .toggle-icon {
+        transition: transform 0.3s;
+    }
+
+    .w-card.expanded .toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    .info-col,
+    .memo-wrapper {
+        width: 100%;
+    }
+
+    .header-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        width: 100%;
+    }
+
+    .finance-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+        height: auto;
+        padding: 16px;
+        flex-wrap: wrap;
+    }
+
+    /* 수직 구분선 숨김 */
+    .finance-bar>div[style*="width:1px"],
+    .finance-bar>div[style*="width: 1px"] {
+        display: none;
+    }
+
+    .fin-item {
+        align-items: flex-start;
+    }
+
+    /* 상태 아이템 (마지막 항목) - 전체 너비 */
+    .fin-item[style*="align-items: flex-end"] {
+        grid-column: 1 / -1;
+        border-top: 1px solid #eee;
+        padding-top: 12px;
+        margin-top: 4px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center !important;
+        width: 100%;
+    }
+
+    /* 컴팩트 폼 - 단일 컬럼 */
+    .compact-form {
+        grid-template-columns: 100px 1fr !important;
+        /* 라벨 + 입력창 */
+        display: grid;
+        gap: 12px;
+        align-items: center;
+    }
+
+    /* 더 작은 화면에서는 라벨과 입력창을 세로로 배치 */
+    @media (max-width: 480px) {
+        .compact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        .compact-form .cf-label {
+            margin-bottom: 2px;
+            color: #555;
+            font-weight: 600;
+        }
+    }
+
+    .compact-form>div[style*="grid-column: span 3"] {
+        grid-column: 1 / -1 !important;
+    }
+
+    /* [Detail Page Others] */
+    .pic-header {
+        padding: 4px 8px !important;
+        display: flex;
+        align-items: center;
+        min-height: 36px;
+    }
+
+    .pic-title {
+        margin: 0 !important;
+        font-size: 13px !important;
+    }
+
+    .order-mini-stats {
+        display: none !important;
+    }
+
+    /* [Utilities] */
+    .mobile-hide {
+        display: none !important;
+    }
 }
 
-/* Extra small screens (320px) */
+/* -----------------------------------------------------------------------
+   통합 모바일 최적화 (max-width: 360px)
+   ----------------------------------------------------------------------- */
 @media (max-width: 360px) {
+
+    /* [General Layout] */
+    .w-container,
+    .page-container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .w-header-container {
+        padding: 0 10px !important;
+    }
+
+    .w-product-grid {
+        gap: 8px;
+    }
+
+    /* [Order Summary] */
     .filter-row {
         padding: 0;
         gap: 14px;
@@ -3136,190 +3282,8 @@ select {
     .stat-card-unit {
         font-size: 12px;
     }
-}
 
-/* -----------------------------------------------------------------------
-   ORDER HISTORY PAGE STYLES
-   ----------------------------------------------------------------------- */
-
-/* Pagination */
-.pagination {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.page-btn {
-    min-width: 32px;
-    height: 32px;
-    padding: 0 8px;
-    border: 1px solid #e5e5e5;
-    background: #fff;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.page-btn:hover {
-    background: #f9fafb;
-    border-color: #d1d5db;
-}
-
-.page-btn.active {
-    background: #1f2937;
-    color: #fff;
-    border-color: #1f2937;
-}
-
-/* Master Table Wrapper */
-.master-table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Mobile Optimization for Order History */
-@media (max-width: 768px) {
-
-    /* Card Header - Stack elements vertically */
-    .w-card-header {
-        flex-direction: column;
-        align-items: stretch !important;
-        gap: 12px;
-    }
-
-    .w-card-header>div {
-        width: 100%;
-    }
-
-    /* Pagination wrapper */
-    .w-card-header>div[style*="display: flex"] {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    /* Pagination controls */
-    .pagination {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .page-btn {
-        min-width: 28px;
-        height: 28px;
-        font-size: 12px;
-    }
-
-    /* Go to page input */
-    .w-card-header>div>div[style*="font-size: 13px"] {
-        text-align: center;
-        font-size: 12px !important;
-    }
-
-    /* Excel button in header */
-    .w-card-header .btn-filter {
-        width: 100%;
-        justify-content: center;
-    }
-
-    /* Detail Section Mobile Optimization */
-    .detail-grid {
-        display: none;
-        /* Collapsed by default */
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .w-card.expanded .detail-grid {
-        display: flex;
-    }
-
-    .toggle-icon {
-        transition: transform 0.3s;
-    }
-
-    .w-card.expanded .toggle-icon {
-        transform: rotate(180deg);
-    }
-
-    .info-col,
-    .memo-wrapper {
-        width: 100%;
-    }
-
-    .header-actions {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        width: 100%;
-    }
-
-    .finance-bar {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px 16px;
-        height: auto;
-        padding: 16px;
-        flex-wrap: wrap;
-    }
-
-    /* Hide vertical dividers */
-    .finance-bar>div[style*="width:1px"],
-    .finance-bar>div[style*="width: 1px"] {
-        display: none;
-    }
-
-    .fin-item {
-        align-items: flex-start;
-    }
-
-    /* Status Item (Last one) - Full width */
-    .fin-item[style*="align-items: flex-end"] {
-        grid-column: 1 / -1;
-        border-top: 1px solid #eee;
-        padding-top: 12px;
-        margin-top: 4px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center !important;
-        width: 100%;
-    }
-
-    /* Compact Form - Single Column */
-    .compact-form {
-        grid-template-columns: 100px 1fr !important;
-        /* Label + Input */
-        display: grid;
-        gap: 12px;
-        align-items: center;
-    }
-
-    /* For even smaller screens, stack label and input */
-    @media (max-width: 480px) {
-        .compact-form {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 8px;
-        }
-
-        .compact-form .cf-label {
-            margin-bottom: 2px;
-            color: #555;
-            font-weight: 600;
-        }
-    }
-
-    .compact-form>div[style*="grid-column: span 3"] {
-        grid-column: 1 / -1 !important;
-    }
-}
-
-/* Extra small screens (320px) - Order History specific */
-@media (max-width: 360px) {
+    /* [Order History] */
     .pagination {
         gap: 2px;
     }
@@ -3335,7 +3299,7 @@ select {
         font-size: 12px;
     }
 
-    /* Further reduce filter input widths */
+    /* 필터 입력창 너비 추가 축소 */
     .filter-group input[type="date"],
     .filter-group input[type="text"] {
         max-width: 120px;
@@ -3343,11 +3307,7 @@ select {
         padding: 6px 8px;
     }
 
-    .filter-label {
-        font-size: 11px;
-    }
-
-    /* Go to page controls */
+    /* 페이지 이동 컨트롤 */
     .w-card-header input[type="text"] {
         width: 24px !important;
         font-size: 11px !important;
@@ -3358,36 +3318,11 @@ select {
         font-size: 10px !important;
         padding: 4px 8px !important;
     }
-
-
 }
 
-/* Order Summary Mobile Optimization (For all mobile devices) */
-@media (max-width: 768px) {
-    .pic-header {
-        padding: 4px 8px !important;
-        display: flex;
-        align-items: center;
-        min-height: 36px;
-    }
-
-    .pic-title {
-        margin: 0 !important;
-        font-size: 13px !important;
-    }
-
-    .order-mini-stats {
-        display: none !important;
-    }
-}
-
-/* Visibility Utilities */
-@media (max-width: 768px) {
-    .mobile-hide {
-        display: none !important;
-    }
-}
-
+/* -----------------------------------------------------------------------
+   PC 전용 (min-width: 769px)
+   ----------------------------------------------------------------------- */
 @media (min-width: 769px) {
     .desktop-hide {
         display: none !important;

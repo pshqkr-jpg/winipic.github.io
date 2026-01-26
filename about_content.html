@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="global.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        /* Corporate White Theme */
+        /* 기업용 화이트 테마 */
         body {
             background-color: #fff;
             color: #333;
@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. Corporate Hero */
+        /* 1. 기업 히어로 섹션 */
         .corp-hero {
             height: 70vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero_about_main.png') no-repeat center center/cover;
@@ -32,7 +32,7 @@
             text-align: center;
             color: #fff;
             margin-top: 0px;
-            /* Header Height */
+            /* 헤더 높이 */
         }
 
         .corp-hero-content h1 {
@@ -53,7 +53,7 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* 2. Mission & Vison (Text Focused) */
+        /* 2. 미션 & 비전 (텍스트 중심) */
         .section-mission {
             padding: 120px 20px;
             text-align: center;
@@ -108,6 +108,7 @@
             margin-bottom: 10px;
             background: linear-gradient(45deg, #111, #444);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -118,7 +119,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* 3. Core Capabilities (Zig-Zag Layout) */
+        /* 3. 핵심 역량 (지그재그 레이아웃) */
         .section-capabilities {
             padding: 80px 20px;
             background: #f9fafb;
@@ -208,7 +209,7 @@
             font-size: 20px;
         }
 
-        /* 4. Global Network */
+        /* 4. 글로벌 네트워크 */
         .section-global {
             background: #111;
             color: #fff;
@@ -278,13 +279,13 @@
             font-weight: 400;
         }
 
-        /* Responsive */
+        /* 반응형 */
         @media (max-width: 1000px) {
 
             .capability-row,
             .capability-row.reverse {
                 flex-direction: column;
-                /* Stacks Text (top) -> Image (bottom) */
+                /* 텍스트(위) -> 이미지(아래) 스택 */
                 gap: 40px;
                 margin-bottom: 80px;
             }
@@ -292,7 +293,7 @@
             .cap-image {
                 width: 100%;
                 height: 300px;
-                /* Force height for video visibility */
+                /* 비디오 가시성을 위한 높이 강제 설정 */
                 min-height: 300px;
             }
 
@@ -328,7 +329,7 @@
 
             .corp-hero {
                 height: 480px;
-                /* Reduced from 70vh */
+                /* 70vh에서 줄임 */
             }
 
             .corp-hero-content h1 {
@@ -341,170 +342,7 @@
                 padding: 0 20px;
             }
         }
-    </style>
-</head>
 
-<body>
-
-
-    <div class="about-container">
-
-        <!-- 1. Corporate Hero -->
-        <section class="corp-hero">
-            <div class="corp-hero-content">
-                <h1>글로벌 패션 소싱 파트너</h1>
-                <p>
-                    동대문보다 빠른 글로벌 패션 소싱,<br>
-                    위니픽이 사장님의 비즈니스 성장을 함께합니다.
-                </p>
-            </div>
-        </section>
-
-        <!-- 2. Mission -->
-        <section class="section-mission">
-            <span class="mission-badge">위니픽 미션</span>
-            <h2 class="mission-title">
-                복잡한 해외 소싱을<br>
-                <span style="color: #2563eb;">가장 쉽고 투명하게</span> 혁신합니다.
-            </h2>
-            <p class="mission-desc">
-                "해외 사입은 왜 비싸고 어려울까?"<br>
-                위니픽은 이 문제를 해결하기 위해 중간 단계를 싹 없앴습니다.
-                중국 현지에서 직접 보고 보내주니까 가격은 정직하고 배송은 안전합니다.
-                누구나 쉽고 편하게 옷장사를 할 수 있도록 돕는 것이 우리의 목표입니다.
-            </p>
-
-            <div class="stats-row">
-                <div class="stat-item">
-                    <h3>0%</h3>
-                    <p>불량률 0% 목표</p>
-                </div>
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>책임 보상제</p>
-                </div>
-                <div class="stat-item">
-                    <h3>No.1</h3>
-                    <p>소싱 플랫폼</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Core Capabilities (Zig-Zag) -->
-        <section class="section-capabilities">
-            <!-- Row 1: Sourcing (Text Left, Image Right) -->
-            <div class="capability-row">
-                <div class="cap-text">
-                    <span class="cap-num">01. 다이렉트 소싱 (Direct Sourcing)</span>
-                    <h2 class="cap-title">중간 유통 없는<br>압도적인 가격 경쟁력</h2>
-                    <p class="cap-desc">
-                        VVIC, 1688 등 중국 주요 도매처와 직접 연결됩니다.<br>
-                        복잡한 에이전시 구조를 혁신하여 수수료를 최소화했습니다.
-                    </p>
-                    <ul class="cap-features">
-                        <li><i class="ph-fill ph-check-circle"></i> VVIC / 1688 실시간 연동</li>
-                        <li><i class="ph-fill ph-check-circle"></i> 현지 도매시장 직사입</li>
-                        <li><i class="ph-fill ph-check-circle"></i> 투명한 가격 정책</li>
-                    </ul>
-                </div>
-                <div class="cap-image">
-                    <article
-                        style="position:relative;width:100%;height:100%;border-radius:0px;transform:unset;cursor:pointer;overflow:hidden"
-                        role="presentation">
-                        <link rel="preconnect" href="https://www.youtube.com">
-                        <link rel="preconnect" href="https://www.google.com">
-                        <iframe style="position:absolute;top:0;left:0;height:100%;width:100%" title="Youtube Video"
-                            allow="presentation; fullscreen; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            src="https://www.youtube.com/embed/r7HCfFKwrbM?iv_load_policy=3&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=r7HCfFKwrbM"
-                            frameborder="0"></iframe>
-                    </article>
-                </div>
-            </div>
-
-            <!-- Row 2: QC (Image Left, Text Right) -->
-            <div class="capability-row reverse">
-                <div class="cap-text">
-                    <span class="cap-num">02. 전문가 정밀 검수 (Professional QC)</span>
-                    <h2 class="cap-title">타협하지 않는<br>완벽한 검수 프로세스</h2>
-                    <p class="cap-desc">
-                        현지 전문 검수팀이 원단, 봉제, 사이즈를 꼼꼼하게 확인합니다.<br>
-                        불량 발생 시 현지에서 즉시 교환하여 리스크를 차단합니다.
-                    </p>
-                    <ul class="cap-features">
-                        <li><i class="ph-fill ph-check-circle"></i> 전문 검수팀 1차 검수</li>
-                        <li><i class="ph-fill ph-check-circle"></i> 불량률 0% 도전</li>
-                        <li><i class="ph-fill ph-check-circle"></i> 오염/이염/파손 정밀 체크</li>
-                    </ul>
-                </div>
-                <div class="cap-image">
-                    <!-- Framer-style Autoplay Video -->
-                    <article
-                        style="position:relative;width:100%;height:100%;border-radius:0px;transform:unset;cursor:pointer;overflow:hidden"
-                        role="presentation">
-                        <link rel="preconnect" href="https://www.youtube.com">
-                        <link rel="preconnect" href="https://www.google.com">
-                        <iframe style="position:absolute;top:0;left:0;height:100%;width:100%" title="Youtube Video"
-                            allow="presentation; fullscreen; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            src="https://www.youtube.com/embed/wUpwkPAVEYg?iv_load_policy=3&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=wUpwkPAVEYg"
-                            frameborder="0"></iframe>
-                    </article>
-                </div>
-            </div>
-
-            <!-- Row 3: Logistics (Text Left, Image Right) -->
-            <div class="capability-row">
-                <div class="cap-text">
-                    <span class="cap-num">03. 스마트 물류 시스템 (Smart Logistics)</span>
-                    <h2 class="cap-title">실시간으로 추적되는<br>안심 물류 시스템</h2>
-                    <p class="cap-desc">
-                        자체 물류 시스템을 통해 주문부터 도착까지 전 과정을 추적합니다.<br>
-                        최적의 운송 루트를 통해 가장 빠르고 안전하게 배송합니다.
-                    </p>
-                    <ul class="cap-features">
-                        <li><i class="ph-fill ph-check-circle"></i> 실시간 배송 조회</li>
-                        <li><i class="ph-fill ph-check-circle"></i> 해상/항공 최적 루트 제안</li>
-                        <li><i class="ph-fill ph-check-circle"></i> 빠르고 안전한 통관 처리</li>
-                    </ul>
-                </div>
-                <div class="cap-image">
-                    <img src="images/img_logistics.png" alt="Logistics Center">
-                </div>
-            </div>
-        </section>
-
-
-        <!-- 4. YouTube Channel -->
-        <section class="section-youtube">
-            <div class="youtube-container">
-                <div class="youtube-content">
-                    <span class="youtube-tag">WINIPIC YOUTUBE</span>
-                    <h2 class="youtube-title">
-                        중국 사입의 생생한 이야기,<br>
-                        <span style="color: #ff0000;">위니픽 유튜브</span>에서 만나보세요!
-                    </h2>
-                    <p class="youtube-desc">
-                        현지 도매 시장의 생생한 현장부터 사입 실무 꿀팁까지.<br>
-                        글로벌 셀러를 꿈꾸는 사장님들을 위해<br>
-                        중국 사입에 관한 모든 이야기를 영상으로 담았습니다.
-                    </p>
-                    <a href="https://www.youtube.com/@%EC%A4%91%EA%B5%AD%EC%9D%98%EB%A5%98%EC%88%98%EC%9E%85_%EC%9C%84%EB%8B%88%ED%94%BD"
-                        target="_blank" class="btn-youtube">
-                        <i class="ph-fill ph-youtube-logo"></i> 채널 바로가기
-                    </a>
-                </div>
-                <div class="youtube-visual">
-                    <!-- Embedded Video (Manual Play) -->
-                    <div class="youtube-embed">
-                        <iframe src="https://www.youtube.com/embed/1tfsS63WMy0?rel=0&modestbranding=1&playsinline=1"
-                            title="Winipic YouTube Sourcing Story"
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-    </div>
-
-    <style>
         .section-youtube {
             padding: 120px 20px;
             background: #fff;
@@ -590,8 +428,6 @@
             border: 0;
         }
 
-
-
         @media (max-width: 1000px) {
             .youtube-container {
                 flex-direction: column;
@@ -610,7 +446,169 @@
             }
         }
     </style>
-    </section>
+</head>
+
+<body>
+
+
+    <div class="about-container">
+
+        <!-- 1. 기업 히어로 섹션 -->
+        <section class="corp-hero">
+            <div class="corp-hero-content">
+                <h1>글로벌 패션 소싱 파트너</h1>
+                <p>
+                    동대문보다 빠른 글로벌 패션 소싱,<br>
+                    위니픽이 사장님의 비즈니스 성장을 함께합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. 미션 -->
+        <section class="section-mission">
+            <span class="mission-badge">위니픽 미션</span>
+            <h2 class="mission-title">
+                복잡한 해외 소싱을<br>
+                <span style="color: #2563eb;">가장 쉽고 투명하게</span> 혁신합니다.
+            </h2>
+            <p class="mission-desc">
+                "해외 사입은 왜 비싸고 어려울까?"<br>
+                위니픽은 이 문제를 해결하기 위해 중간 단계를 싹 없앴습니다.
+                중국 현지에서 직접 보고 보내주니까 가격은 정직하고 배송은 안전합니다.
+                누구나 쉽고 편하게 옷장사를 할 수 있도록 돕는 것이 우리의 목표입니다.
+            </p>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h3>0%</h3>
+                    <p>불량률 0% 목표</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>책임 보상제</p>
+                </div>
+                <div class="stat-item">
+                    <h3>No.1</h3>
+                    <p>소싱 플랫폼</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 핵심 역량 (지그재그) -->
+        <section class="section-capabilities">
+            <!-- Row 1: 소싱 (텍스트 왼쪽, 이미지 오른쪽) -->
+            <div class="capability-row">
+                <div class="cap-text">
+                    <span class="cap-num">01. 다이렉트 소싱 (Direct Sourcing)</span>
+                    <h2 class="cap-title">중간 유통 없는<br>압도적인 가격 경쟁력</h2>
+                    <p class="cap-desc">
+                        VVIC, 1688 등 중국 주요 도매처와 직접 연결됩니다.<br>
+                        복잡한 에이전시 구조를 혁신하여 수수료를 최소화했습니다.
+                    </p>
+                    <ul class="cap-features">
+                        <li><i class="ph-fill ph-check-circle"></i> VVIC / 1688 실시간 연동</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 현지 도매시장 직사입</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 투명한 가격 정책</li>
+                    </ul>
+                </div>
+                <div class="cap-image">
+                    <article
+                        style="position:relative;width:100%;height:100%;border-radius:0px;transform:unset;cursor:pointer;overflow:hidden"
+                        role="presentation">
+                        <link rel="preconnect" href="https://www.youtube.com">
+                        <link rel="preconnect" href="https://www.google.com">
+                        <iframe style="position:absolute;top:0;left:0;height:100%;width:100%" title="Youtube Video"
+                            allow="presentation; fullscreen; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            src="https://www.youtube.com/embed/r7HCfFKwrbM?iv_load_policy=3&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=r7HCfFKwrbM"
+                            frameborder="0"></iframe>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Row 2: 품질관리 (이미지 왼쪽, 텍스트 오른쪽) -->
+            <div class="capability-row reverse">
+                <div class="cap-text">
+                    <span class="cap-num">02. 전문가 정밀 검수 (Professional QC)</span>
+                    <h2 class="cap-title">타협하지 않는<br>완벽한 검수 프로세스</h2>
+                    <p class="cap-desc">
+                        현지 전문 검수팀이 원단, 봉제, 사이즈를 꼼꼼하게 확인합니다.<br>
+                        불량 발생 시 현지에서 즉시 교환하여 리스크를 차단합니다.
+                    </p>
+                    <ul class="cap-features">
+                        <li><i class="ph-fill ph-check-circle"></i> 전문 검수팀 1차 검수</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 불량률 0% 도전</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 오염/이염/파손 정밀 체크</li>
+                    </ul>
+                </div>
+                <div class="cap-image">
+                    <!-- Framer 스타일 자동생성 비디오 -->
+                    <article
+                        style="position:relative;width:100%;height:100%;border-radius:0px;transform:unset;cursor:pointer;overflow:hidden"
+                        role="presentation">
+                        <link rel="preconnect" href="https://www.youtube.com">
+                        <link rel="preconnect" href="https://www.google.com">
+                        <iframe style="position:absolute;top:0;left:0;height:100%;width:100%" title="Youtube Video"
+                            allow="presentation; fullscreen; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            src="https://www.youtube.com/embed/wUpwkPAVEYg?iv_load_policy=3&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=wUpwkPAVEYg"
+                            frameborder="0"></iframe>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Row 3: 물류 (텍스트 왼쪽, 이미지 오른쪽) -->
+            <div class="capability-row">
+                <div class="cap-text">
+                    <span class="cap-num">03. 스마트 물류 시스템 (Smart Logistics)</span>
+                    <h2 class="cap-title">실시간으로 추적되는<br>안심 물류 시스템</h2>
+                    <p class="cap-desc">
+                        자체 물류 시스템을 통해 주문부터 도착까지 전 과정을 추적합니다.<br>
+                        최적의 운송 루트를 통해 가장 빠르고 안전하게 배송합니다.
+                    </p>
+                    <ul class="cap-features">
+                        <li><i class="ph-fill ph-check-circle"></i> 실시간 배송 조회</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 해상/항공 최적 루트 제안</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 빠르고 안전한 통관 처리</li>
+                    </ul>
+                </div>
+                <div class="cap-image">
+                    <img src="images/img_logistics.png" alt="Logistics Center">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. 유튜브 채널 -->
+        <section class="section-youtube">
+            <div class="youtube-container">
+                <div class="youtube-content">
+                    <span class="youtube-tag">WINIPIC YOUTUBE</span>
+                    <h2 class="youtube-title">
+                        중국 사입의 생생한 이야기,<br>
+                        <span style="color: #ff0000;">위니픽 유튜브</span>에서 만나보세요!
+                    </h2>
+                    <p class="youtube-desc">
+                        현지 도매 시장의 생생한 현장부터 사입 실무 꿀팁까지.<br>
+                        글로벌 셀러를 꿈꾸는 사장님들을 위해<br>
+                        중국 사입에 관한 모든 이야기를 영상으로 담았습니다.
+                    </p>
+                    <a href="https://www.youtube.com/@%EC%A4%91%EA%B5%AD%EC%9D%98%EB%A5%98%EC%88%98%EC%9E%85_%EC%9C%84%EB%8B%88%ED%94%BD"
+                        target="_blank" class="btn-youtube">
+                        <i class="ph-fill ph-youtube-logo"></i> 채널 바로가기
+                    </a>
+                </div>
+                <div class="youtube-visual">
+                    <!-- 임베디드 비디오 (수동 재생) -->
+                    <div class="youtube-embed">
+                        <iframe src="https://www.youtube.com/embed/1tfsS63WMy0?rel=0&modestbranding=1&playsinline=1"
+                            title="Winipic YouTube Sourcing Story"
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
 
     </div>
 </body>

@@ -307,7 +307,7 @@ function renderNavbar() {
                 <!-- 카카오 상담톡 버튼 (모바일 아이콘만) -->
                 <button class="btn-kakao mobile-hide" onclick="openKakaoChat()">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
-                    <span class="desktop-text">카톡 상담</span>
+                    <span class="desktop-text">1:1 문의</span>
                 </button>
             </div>
         `;
@@ -322,7 +322,7 @@ function renderNavbar() {
                 <!-- 카카오 상담톡 버튼 (PC: 텍스트 포함, 모바일: 아이콘만) -->
                 <button class="btn-kakao mobile-hide" onclick="openKakaoChat()">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
-                    <span class="desktop-text">카톡 상담</span>
+                    <span class="desktop-text">1:1 문의</span>
                 </button>
                 <button class="btn-icon desktop-hide" onclick="openKakaoChat()" style="background: #FEE500; border-color: #FEE500;">
                     <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px; color: #371D1E;"></i>
@@ -353,7 +353,7 @@ function renderNavbar() {
             <div style="display:flex; align-items:center;">
                 ${toolsHTML}
 
-                <!-- Mobile Menu Button (Hamburger) - Visible only on mobile via CSS -->
+                <!-- 모바일 메뉴 버튼 (햄버거) - CSS를 통해 모바일에서만 보임 -->
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu(true)">
                     <i class="ph ph-list" style="font-size: 28px; color: #111;"></i>
                 </button>
@@ -361,12 +361,12 @@ function renderNavbar() {
         </div>
     `;
 
-    // Mobile Menu Drawer HTML
+    // 모바일 메뉴 드로어 HTML
     const mobileMenuHTML = `
         <div id="mobileMenu" class="mobile-menu-backdrop" style="display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.5);">
             <div class="mobile-drawer" style="position:absolute; top:0; right:0; width:85%; max-width:320px; height:100%; background:#fff; display:flex; flex-direction:column; overflow:hidden;">
                 
-                <!-- Drawer Header -->
+                <!-- 드로어 헤더 -->
                 <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
                     <span style="font-weight: 800; font-size: 18px;">MENU</span>
                     <button onclick="toggleMobileMenu(false)" style="background:none; border:none; padding:4px; cursor:pointer;">
@@ -374,11 +374,11 @@ function renderNavbar() {
                     </button>
                 </div>
 
-                <!-- Drawer Content -->
+                <!-- 드로어 콘텐츠 -->
                 <div class="mobile-nav-list" style="flex: 1; overflow-y: auto; padding: 20px;">
                     
                     ${isLoggedIn ? `
-                    <!-- 1. Point Badge (Mobile Only) -->
+                    <!-- 1. 적립금 배지 (모바일 전용) -->
                     <div onclick="togglePointsModal(true); toggleMobileMenu(false);" 
                         style="background: #f4f4f5; padding: 12px 16px; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
                         <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px;">
@@ -389,7 +389,7 @@ function renderNavbar() {
                     </div>
                     ` : ''}
 
-                    <!-- 2. Main Categories (Women, Men, My Products) -->
+                    <!-- 2. 메인 카테고리 (여성, 남성, My Products) -->
                     <div style="margin-bottom: 30px;">
                         <div style="font-size: 13px; font-weight: 700; color: #888; margin-bottom: 12px; letter-spacing: 0.5px;">SHOPPING</div>
                         ${navConfig.topMenu.map(item => `
@@ -438,14 +438,14 @@ function renderNavbar() {
 
                 </div>
 
-                <!-- Footer / Login Actions -->
+                <!-- 푸터 / 로그인 액션 -->
                 <div style="padding: 20px; border-top: 1px solid #eee; background: #f9f9f9; padding-right: 30px;">
                     ${isLoggedIn ? `
                         <button onclick="localStorage.removeItem('isLoggedIn'); location.href='index.html';" 
                             style="width: 100%; height: 44px; border: 1px solid #ddd; background: #fff; border-radius: 8px; font-weight: 600; color: #e11d48; cursor: pointer; margin-bottom: 12px;">
                             로그아웃
                         </button>
-                        <!-- Kakao Chat (Moved to bottom) -->
+                        <!-- 카카오 상담톡 (하단으로 이동됨) -->
                         <div onclick="openKakaoChat(); toggleMobileMenu(false);" 
                             style="width: 100%; height: 44px; background: #FAE100; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: #371D1E;">
                             <i class="ph-fill ph-chat-circle-dots" style="font-size: 20px;"></i>
@@ -521,7 +521,9 @@ function renderNavbar() {
             'request_tool.html',
             'cart.html',
             'user_profile.html',
-            'excel_order'
+            'excel_order',
+            'wishlist.html',
+            'notice'
         ];
 
         // 현재 페이지가 마이페이지 관련 경로인지 확인 (파일명 포함 여부)
@@ -537,6 +539,7 @@ function renderNavbar() {
                 { label: '상품요청', href: 'request_tool.html' },
                 { label: '장바구니', href: 'cart.html' },
                 { label: '엑셀주문', href: 'excel_order.html' },
+                { label: '관심상품', href: 'wishlist.html' },
                 { label: '고객센터', href: 'notice.html' },
                 { label: '회원정보수정', href: 'user_profile.html' }
             ];
@@ -596,7 +599,7 @@ window.toggleMobileMenu = function (show) {
 
     if (show) {
         menu.style.display = 'block';
-        // Allow slight delay for transition
+        // 트랜지션을 위한 약간의 지연 허용
         setTimeout(() => drawer.style.transform = 'translateX(0)', 10);
         document.body.style.overflow = 'hidden';
     } else {
@@ -606,7 +609,7 @@ window.toggleMobileMenu = function (show) {
     }
 }
 
-// Mobile Submenu Toggle
+// 모바일 서브메뉴 토글
 window.toggleSubmenu = function (btn) {
     const submenu = btn.parentElement.nextElementSibling;
     const icon = btn.querySelector('i');
@@ -615,7 +618,7 @@ window.toggleSubmenu = function (btn) {
         if (submenu.style.display === 'none') {
             submenu.style.display = 'grid';
             icon.classList.replace('ph-caret-down', 'ph-caret-up');
-            // Optional: Close other submenus
+            // 선택사항: 다른 서브메뉴 닫기
             // document.querySelectorAll('.mobile-submenu').forEach(el => {
             //    if (el !== submenu) el.style.display = 'none';
             // });
