@@ -174,17 +174,27 @@
                 margin-bottom: 16px;
                 padding-bottom: 12px;
                 border-bottom: 2px solid #f0f0f0;
+                /* Prevent header overflow */
+                width: 100%;
+                word-break: break-all;
             }
 
             /* --- Table to Card Transformation --- */
+            /* Ensure box-sizing is border-box */
+            .sub-table,
+            .sub-table * {
+                box-sizing: border-box;
+            }
+
             .sub-table,
             .sub-table tbody,
             .sub-table tr,
             .sub-table td {
                 display: block;
-                /* Removed width: 100% to prevent overflow with padding */
                 width: auto;
-                box-sizing: border-box;
+                /* Allow auto width */
+                max-width: 100%;
+                /* Prevent overflow */
             }
 
             .sub-table thead {
@@ -197,7 +207,8 @@
                 border: 1px solid #e1e1e1;
                 border-radius: 12px;
                 margin-bottom: 16px;
-                padding: 16px;
+                padding: 12px;
+                /* Reduced padding for small screens */
                 position: relative;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
             }
@@ -208,9 +219,14 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                /* Align items properly */
                 text-align: right;
                 font-size: 14px;
                 color: #333;
+                /* Crucial for small screens: break long text */
+                word-break: break-all;
+                gap: 10px;
+                /* Space between label and value */
             }
 
             /* Hide unnecessary columns */
@@ -309,82 +325,6 @@
             .sub-table td:nth-child(10) {
                 font-weight: 700;
                 color: #2563eb;
-            }
-        }
-
-        /* Ultra Small Screen Optimization (320px) */
-        @media (max-width: 480px) {
-            .page-container {
-                padding: 8px;
-                /* Minimize padding */
-                overflow-x: hidden;
-            }
-
-            .w-card {
-                padding: 12px 10px !important;
-                /* Reduce card padding */
-            }
-
-            /* Filter Section Fix - Stack Vertically */
-            .filter-row {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
-            }
-
-            .filter-row>span {
-                margin-bottom: 4px;
-            }
-
-            .filter-row>* {
-                margin: 0 !important;
-                /* Override inline margins */
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-
-            .filter-group {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-                width: 100%;
-            }
-
-            /* Pagination Fix */
-            .w-card-header {
-                flex-direction: column;
-                align-items: flex-start !important;
-                gap: 12px;
-            }
-
-            .w-card-header>div {
-                width: 100%;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-            }
-
-            .pagination {
-                flex-wrap: wrap;
-                gap: 2px;
-            }
-
-            .page-btn {
-                min-width: 28px;
-                padding: 0 6px;
-            }
-
-            /* Prevent long text overflow */
-            .pic-header,
-            .sub-table td {
-                word-wrap: break-word;
-                word-break: break-all;
-            }
-
-            .sub-table td {
-                font-size: 13px;
-                /* Slightly smaller text */
             }
         }
     </style>
