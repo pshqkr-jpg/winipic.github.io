@@ -13,6 +13,7 @@
         body {
             background-color: #fff;
             overflow-x: hidden;
+            /* overflow-x hidden only */
             margin: 0;
             padding: 0;
         }
@@ -20,16 +21,18 @@
         /* Iframe Container */
         .iframe-container {
             width: 100%;
-            min-height: 100vh;
+            min-height: calc(100vh - 60px);
             margin-top: 60px;
             /* Header Height */
         }
 
         iframe {
             width: 100%;
-            height: 100%;
+            /* Height controlled by JS */
+            min-height: calc(100vh - 60px);
             border: none;
             display: block;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -38,8 +41,8 @@
     <header class="w-header"></header>
 
     <div class="iframe-container">
-        <iframe id="aboutFrame" src="https://pshqkr-jpg.github.io/winipic.github.io/about_content"
-            title="About Content"></iframe>
+        <!-- Relative path for Same-Origin -->
+        <iframe id="aboutFrame" src="about_content.html" title="About Content" scrolling="no"></iframe>
     </div>
 
     <!-- Iframe Auto Height Script -->
@@ -48,21 +51,29 @@
 
         function resizeIframe() {
             try {
-                // Same Origin (local test)
-                if (iframe.contentWindow.document.body) {
-                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+                if (iframe.contentWindow && iframe.contentWindow.document.body) {
+                    const height = iframe.contentWindow.document.body.scrollHeight;
+                    if (height > 50) {
+                        iframe.style.height = height + 'px';
+                    }
                 }
             } catch (e) {
-                // Cross Origin (GitHub Pages)시 메시지 수신 방식으로 높이 조절 필요
-                // 이 부분은 추후 배포 환경에서 postMessage 구현이 필요할 수 있음
-                // 일단은 충분히 긴 높이로 설정하거나, 100vh로 설정
-                console.log('Cross-origin frame access restricted. Set fixed height or implement postMessage.');
-                iframe.style.height = 'calc(100vh - 60px)';
+                console.warn('Iframe resize failed:', e);
             }
         }
 
-        iframe.onload = resizeIframe;
-        window.onresize = resizeIframe;
+        iframe.onload = function () {
+            resizeIframe();
+            try {
+                const resizeObserver = new ResizeObserver(() => resizeIframe());
+                resizeObserver.observe(iframe.contentWindow.document.body);
+            } catch (e) {
+                setInterval(resizeIframe, 500);
+            }
+        };
+
+        window.addEventListener('resize', resizeIframe);
+        setInterval(resizeIframe, 1000);
     </script>
 </body>
 
