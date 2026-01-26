@@ -480,6 +480,7 @@ function renderNavbar() {
                 <span class="w-quick-label">배송조회</span>
             </div>
             <div class="w-quick-item" onclick="location.href='mannequin_check.html'">
+                <div class="w-quick-badge">3</div>
                 <i class="ph ph-t-shirt w-quick-icon"></i>
                 <span class="w-quick-label">마네킹샷<br>확인</span>
             </div>
