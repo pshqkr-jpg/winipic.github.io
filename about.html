@@ -13,7 +13,6 @@
         body {
             background-color: #fff;
             overflow-x: hidden;
-            /* overflow-x hidden only */
             margin: 0;
             padding: 0;
         }
@@ -28,7 +27,6 @@
 
         iframe {
             width: 100%;
-            /* Height controlled by JS */
             min-height: calc(100vh - 60px);
             border: none;
             display: block;
@@ -41,7 +39,6 @@
     <header class="w-header"></header>
 
     <div class="iframe-container">
-        <!-- Relative path for Same-Origin -->
         <iframe id="aboutFrame" src="about_content.html" title="About Content" scrolling="no"></iframe>
     </div>
 
@@ -58,7 +55,7 @@
                     }
                 }
             } catch (e) {
-                console.warn('Iframe resize failed:', e);
+                // Ignore errors in local environment
             }
         }
 
@@ -67,9 +64,7 @@
             try {
                 const resizeObserver = new ResizeObserver(() => resizeIframe());
                 resizeObserver.observe(iframe.contentWindow.document.body);
-            } catch (e) {
-                setInterval(resizeIframe, 500);
-            }
+            } catch (e) { }
         };
 
         window.addEventListener('resize', resizeIframe);
